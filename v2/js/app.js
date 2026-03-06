@@ -39,24 +39,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 b.classList.remove('active', 'border-aero-yellow', 'bg-aero-yellow/10');
                 b.classList.add('border-transparent', 'bg-slate-800/50');
                 
-                const icon = b.querySelector('i');
+                const icon = b.querySelector('svg');
                 const text = b.querySelector('span');
-                icon.classList.remove('text-white');
-                icon.classList.add('text-gray-400');
-                text.classList.remove('text-white');
-                text.classList.add('text-gray-400');
+                if (icon) {
+                    icon.classList.remove('text-white');
+                    icon.classList.add('text-gray-400');
+                }
+                if (text) {
+                    text.classList.remove('text-white');
+                    text.classList.add('text-gray-400');
+                }
             });
 
             // Set active state for clicked button
             btn.classList.add('active', 'border-aero-yellow', 'bg-aero-yellow/10');
             btn.classList.remove('border-transparent', 'bg-slate-800/50');
             
-            const icon = btn.querySelector('i');
+            const icon = btn.querySelector('svg');
             const text = btn.querySelector('span');
-            icon.classList.remove('text-gray-400');
-            icon.classList.add('text-white');
-            text.classList.remove('text-gray-400');
-            text.classList.add('text-white');
+            if (icon) {
+                icon.classList.remove('text-gray-400');
+                icon.classList.add('text-white');
+            }
+            if (text) {
+                text.classList.remove('text-gray-400');
+                text.classList.add('text-white');
+            }
 
             // Render Pills
             const fleet = btn.getAttribute('data-fleet');
@@ -188,9 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isRecording) return;
         isRecording = true;
         
-        const iconDiv = btnMic.querySelector('div');
-        iconDiv.classList.add('bg-red-500', 'text-white', 'scale-110');
-        iconDiv.classList.remove('bg-red-500/10', 'text-red-500');
+        btnMic.classList.add('bg-red-500', 'text-white');
+        btnMic.classList.remove('bg-red-500/10', 'text-red-500');
         
         animateVisualizer();
     }
@@ -199,9 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isRecording) return;
         isRecording = false;
         
-        const iconDiv = btnMic.querySelector('div');
-        iconDiv.classList.remove('bg-red-500', 'text-white', 'scale-110');
-        iconDiv.classList.add('bg-red-500/10', 'text-red-500');
+        btnMic.classList.remove('bg-red-500', 'text-white');
+        btnMic.classList.add('bg-red-500/10', 'text-red-500');
         
         // Reset visualizer bars
         const bars = audioVisualizer.children;
@@ -211,7 +217,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Submit & Skip
-    if(btnSubmit) btnSubmit.addEventListener('click', finishChallenge);
+    if(btnSubmit) btnSubmit.addEventListener('click', () => {
+        const input = document.getElementById('text-input');
+        if (input && input.value.trim() !== "") {
+            // Simulate sending message
+            const chatContainer = document.querySelector('#state-challenge .space-y-6');
+            const userMsg = document.createElement('div');
+            userMsg.className = 'flex items-start gap-3 justify-end';
+            userMsg.innerHTML = `
+                <div class="bg-blue-600 text-white rounded-2xl rounded-tr-none p-4 max-w-[85%]">
+                    <p class="text-sm font-medium leading-relaxed">${input.value}</p>
+                </div>
+            `;
+            chatContainer.appendChild(userMsg);
+            input.value = '';
+            
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // AI Thinking...
+            const thinking = document.createElement('div');
+            thinking.className = 'flex items-start gap-3 animate-pulse';
+            thinking.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-blue-600 flex-shrink-0 flex items-center justify-center">
+                    <i class="fa-solid fa-robot text-xs text-white"></i>
+                </div>
+                <div class="bg-slate-800 border border-white/10 rounded-2xl rounded-tl-none p-4">
+                    <p class="text-xs text-gray-500">AeroPass AI is analyzing...</p>
+                </div>
+            `;
+            chatContainer.appendChild(thinking);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            setTimeout(finishChallenge, 1500);
+        } else {
+            finishChallenge();
+        }
+    });
     if(btnSkip) btnSkip.addEventListener('click', finishChallenge);
 
     // --- State 3: Paywall Logic ---
