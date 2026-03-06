@@ -100,10 +100,10 @@
 
             <!-- Magic Moment Section (Interactive) -->
             <div id="magic-moment-container" class="relative z-10">
-                <div class="glass-card rounded-2xl p-1 backdrop-blur-xl shadow-2xl overflow-hidden relative min-h-[500px] flex flex-col transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,214,0,0.1)]">
+                <div class="glass-card rounded-2xl p-1 backdrop-blur-xl shadow-2xl overflow-hidden relative transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,214,0,0.1)]">
                     
                     <!-- State 1: Setup -->
-                    <div id="state-setup" class="p-8 h-full flex flex-col justify-between transition-opacity duration-500">
+                    <div id="state-setup" class="p-8 flex flex-col justify-between transition-opacity duration-500">
                         <div>
                             <div class="flex items-center justify-between mb-8">
                                 <h3 class="text-xl font-bold font-mono text-white"><i class="fa-solid fa-crosshairs text-aero-yellow mr-2"></i>Take a 60-Second Interview Drill.</h3>
@@ -193,7 +193,7 @@
                     </div>
 
                     <!-- State 2: Challenge (Initially Hidden) -->
-                    <div id="state-challenge" class="absolute inset-0 bg-slate-900 p-8 flex flex-col h-full hidden opacity-0 transition-opacity duration-500">
+                    <div id="state-challenge" class="p-8 flex flex-col hidden opacity-0 transition-opacity duration-500">
                         <!-- Header: Timer & Status -->
                         <div class="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
                             <div class="flex items-center gap-3">
@@ -245,9 +245,9 @@
                     </div>
 
                     <!-- State 3: Paywall (Overlay) -->
-                    <div id="state-paywall" class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center p-6 bg-slate-900/90 backdrop-blur-md hidden opacity-0 transition-opacity duration-500">
+                    <div id="state-paywall" class="p-8 flex flex-col justify-between hidden opacity-0 transition-opacity duration-500">
                         
-                        <div class="w-full max-w-lg relative">
+                        <div class="w-full max-w-lg mx-auto relative">
                             <!-- Hook Text -->
                             <div class="mb-8 relative z-30">
                                 <div class="inline-block bg-blue-500/10 text-blue-400 border border-blue-500/20 px-3 py-1 rounded-full text-xs font-bold uppercase mb-4">AI Analysis</div>
@@ -261,7 +261,7 @@
                                 <!-- AI Message Bubble -->
                                 <div class="bg-slate-800 border border-white/10 rounded-2xl p-6 text-left relative overflow-hidden group">
                                     <!-- Blur Layer (Initially or on top) -->
-                                    <div class="filter blur-lg opacity-40 select-none pointer-events-none">
+                                    <div class="filter blur-md opacity-40 select-none pointer-events-none">
                                         <p class="text-sm text-gray-300 leading-relaxed font-mono">
                                             While your callout for the engine fire was immediate, you missed the critical logic specific to the B777. During takeoff, the fire bell is inhibited from V1 until 400 feet radio altitude or 25 seconds after V1. This means if you heard the bell at V1, it might indicate a different failure mode or a simulator anomaly that you must account for in your emergency briefing to avoid confusion and ensure correct memory item application.
                                         </p>

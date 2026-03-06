@@ -262,14 +262,15 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(countdownInterval);
         isRecording = false;
         
-        // Blur the challenge content (simulated by blurring the whole container's children)
-        // Note: The paywall overlay is absolute positioned over this, so we blur underneath.
-        // We need to blur the specific input areas we just used.
+        // Hide Challenge State and show Paywall State
+        stateChallenge.classList.add('opacity-0');
         
-        // Show Paywall Overlay
-        statePaywall.classList.remove('hidden');
-        void statePaywall.offsetWidth; // Trigger reflow
-        statePaywall.classList.remove('opacity-0');
+        setTimeout(() => {
+            stateChallenge.classList.add('hidden');
+            statePaywall.classList.remove('hidden');
+            void statePaywall.offsetWidth; // Trigger reflow
+            statePaywall.classList.remove('opacity-0');
+        }, 500);
     }
 
 });
