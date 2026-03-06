@@ -111,9 +111,12 @@
 
                             <!-- Fleet Selection -->
                             <div class="space-y-4 mb-8">
-                                <label class="text-sm font-bold text-gray-400 uppercase tracking-wider block">Select Manufacturer</label>
+                                <label class="text-sm font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                                    <span class="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 text-[10px] flex items-center justify-center text-gray-400">1</span>
+                                    Select Manufacturer
+                                </label>
                                 <div class="grid grid-cols-2 gap-4">
-                                    <button class="fleet-btn active border-2 border-aero-yellow bg-aero-yellow/10 p-4 rounded-xl flex flex-col items-center gap-2 transition-all hover:bg-aero-yellow/20" data-fleet="boeing">
+                                    <button class="fleet-btn active border-2 border-aero-yellow/60 bg-aero-yellow/10 ring-1 ring-aero-yellow/30 p-4 rounded-xl flex flex-col items-center gap-2 transition-all hover:bg-aero-yellow/20" data-fleet="boeing">
                                         <svg class="w-12 h-12 text-white" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                                             <!-- Center Column -->
                                             <path d="M28 58 L36 58 L32 30 Z" fill="currentColor" fill-opacity="0.2"/>
@@ -148,7 +151,10 @@
 
                             <!-- Aircraft Selection -->
                             <div class="space-y-4 mb-8">
-                                <label class="text-sm font-bold text-gray-400 uppercase tracking-wider block">Select Aircraft Type</label>
+                                <label class="text-sm font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                                    <span class="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 text-[10px] flex items-center justify-center text-gray-400">2</span>
+                                    Select Aircraft Type
+                                </label>
                                 <div id="aircraft-pills" class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                                     <!-- Pills injected by JS -->
                                 </div>
@@ -156,10 +162,13 @@
 
                             <!-- Challenge Selector (Cards) -->
                             <div class="space-y-4 mb-8">
-                                <label class="text-sm font-bold text-gray-400 uppercase tracking-wider block">Pick a Gouge</label>
+                                <label class="text-sm font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                                    <span class="w-5 h-5 rounded-full bg-slate-800 border border-slate-700 text-[10px] flex items-center justify-center text-gray-400">3</span>
+                                    Pick a Gouge
+                                </label>
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <!-- Card 1 -->
-                                    <div class="challenge-card active cursor-pointer p-4 rounded-xl bg-slate-800/80 border border-aero-yellow relative overflow-hidden group hover:bg-slate-800 transition-all">
+                                    <div class="challenge-card active cursor-pointer p-4 rounded-xl bg-slate-800/80 border border-aero-yellow/60 ring-1 ring-aero-yellow/30 relative overflow-hidden group hover:bg-slate-800 transition-all">
                                         <div class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-bl-lg">HOT 🔥</div>
                                         <div class="flex items-center gap-3 mb-2">
                                             <img src="assets/logos/emirates.png" class="h-5 w-5 rounded-sm" alt="Emirates">
@@ -187,7 +196,7 @@
                             </div>
                         </div>
 
-                        <button id="btn-start-challenge" class="mt-8 w-full bg-transparent border border-aero-yellow text-aero-yellow font-bold py-4 rounded-xl hover:bg-aero-yellow hover:text-slate-900 transition-all transform hover:scale-[1.02] shadow-sm flex items-center justify-center gap-2 text-lg">
+                        <button id="btn-start-challenge" class="mt-8 w-full bg-aero-yellow text-slate-900 font-bold py-4 rounded-xl hover:bg-yellow-400 transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(255,214,0,0.2)] flex items-center justify-center gap-2 text-lg">
                             Enter Interview <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>

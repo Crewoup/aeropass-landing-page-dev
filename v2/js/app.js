@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             // Remove active state from all fleet buttons
             fleetBtns.forEach(b => {
-                b.classList.remove('active', 'border-aero-yellow', 'bg-aero-yellow/10');
+                b.classList.remove('active', 'border-aero-yellow', 'border-aero-yellow/60', 'bg-aero-yellow/10', 'ring-1', 'ring-aero-yellow/30');
                 b.classList.add('border-transparent', 'bg-slate-800/50');
                 
                 const icon = b.querySelector('svg');
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Set active state for clicked button
-            btn.classList.add('active', 'border-aero-yellow', 'bg-aero-yellow/10');
+            btn.classList.add('active', 'border-aero-yellow/60', 'bg-aero-yellow/10', 'ring-1', 'ring-aero-yellow/30');
             btn.classList.remove('border-transparent', 'bg-slate-800/50');
             
             const icon = btn.querySelector('svg');
@@ -97,11 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
     challengeCards.forEach(card => {
         card.addEventListener('click', () => {
             challengeCards.forEach(c => {
-                c.classList.remove('active', 'bg-slate-800/80', 'border-aero-yellow');
+                c.classList.remove('active', 'bg-slate-800/80', 'border-aero-yellow/60', 'ring-1', 'ring-aero-yellow/30');
                 c.classList.add('bg-slate-800/30', 'border-slate-700');
             });
             card.classList.remove('bg-slate-800/30', 'border-slate-700');
-            card.classList.add('active', 'bg-slate-800/80', 'border-aero-yellow');
+            card.classList.add('active', 'bg-slate-800/80', 'border-aero-yellow/60', 'ring-1', 'ring-aero-yellow/30');
         });
     });
 
