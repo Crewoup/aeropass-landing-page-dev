@@ -89,29 +89,47 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Magic Moment Specifics */
 .magic-blur-v3 {
-    filter: blur(2px); /* Lighter blur as per image */
-    mask-image: linear-gradient(to bottom, 
-        rgba(0,0,0,1) 0%, 
-        rgba(0,0,0,0.8) 20%, 
-        rgba(0,0,0,0.3) 50%, 
-        rgba(0,0,0,0.05) 80%,
-        transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, 
-        rgba(0,0,0,1) 0%, 
-        rgba(0,0,0,0.8) 20%, 
-        rgba(0,0,0,0.3) 50%, 
-        rgba(0,0,0,0.05) 80%,
-        transparent 100%);
+    /* filter: blur(4px); Removed to use backdrop-filter for gradient blur */
     pointer-events: none;
     user-select: none;
     transition: filter 0.5s ease;
 }
 
-.magic-blur {
-    filter: blur(8px);
+.fade-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
     pointer-events: none;
-    user-select: none;
-    transition: filter 0.5s ease;
+    
+    /* 1. 設定模糊強度 */
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    
+    /* 2. 讓模糊從上到下由無變有 */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #555 40%, #333 50%, black 60%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #555 40%, #333 50%, black 60%);
+
+    /* 3. 顏色漸層 (選配，強化遮罩效果) */
+    background: linear-gradient(to bottom, transparent 0%, #1e293b 50%);
+}
+
+.magic-blur {
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        black 0%,
+        rgba(0, 0, 0, 0.8) 10%,
+        rgba(0, 0, 0, 0.6) 30%,
+        rgba(0, 0, 0, 0.3) 60%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        black 0%,
+        rgba(0, 0, 0, 0.8) 10%,
+        rgba(0, 0, 0, 0.6) 30%,
+        rgba(0, 0, 0, 0.3) 60%,
+        transparent 100%
+    );
 }
 
 .lock-overlay {
@@ -175,3 +193,4 @@ input[type=range]::-webkit-slider-runnable-track {
     background: #334155;
     border-radius: 2px;
 }
+

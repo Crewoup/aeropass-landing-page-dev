@@ -238,21 +238,15 @@
                                         <div class="bg-slate-800 border border-white/10 rounded-2xl rounded-tl-none p-4 max-w-[85%]">
                                             <h4 class="text-blue-400 text-[10px] font-bold uppercase mb-1 tracking-widest">AeroPass AI Evaluation</h4>
                                             
-                                            <!-- Clear part: 2 lines -->
-                                            <p class="text-sm font-medium leading-relaxed mb-1">
-                                                Solid initial callout, but you completely missed the Boeing specific fire bell inhibition logic.
-                                            </p>
-                                            <p class="text-sm font-medium leading-relaxed mb-2">
-                                                In the B777, the fire bell is inhibited from V1 until 400ft RA or 25 seconds.
-                                            </p>
-
-                                            <!-- Blurred part -->
-                                            <div class="relative mt-2">
-                                                <div class="magic-blur-v3">
-                                                    <p class="text-sm text-gray-400 leading-relaxed font-mono">
-                                                        This means your reaction to the bell at that specific moment should have been filtered through the lens of inhibition logic. Hearing it suggests either a simulator anomaly or a non-inhibited failure that requires immediate differentiation. You must address why the bell was active despite the phase of flight in your post-V1 briefing.
+                                            <!-- Blurred part with fade overlay -->
+                                            <div class="relative mt-1 overflow-hidden">
+                                                <div class="magic-blur">
+                                                    <p class="text-sm font-medium leading-relaxed">
+                                                        Solid initial callout, but you completely missed the Boeing specific fire bell inhibition logic. In the B777, the fire bell is inhibited from V1 until 400ft RA or 25 seconds. This means your reaction to the bell at that specific moment should have been filtered through the lens of inhibition logic. Hearing it suggests either a simulator anomaly or a non-inhibited failure that requires immediate differentiation. You must address why the bell was active despite the phase of flight in your post-V1 briefing.
                                                     </p>
                                                 </div>
+                                                <!-- Gradient Fade Overlay -->
+                                                <div class="fade-overlay"></div>
 
                                                 <!-- Floating Tags on Blurred Area -->
                                                 <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 z-20">
