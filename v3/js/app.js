@@ -17,6 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const timerElement = document.getElementById('timer');
     const audioVisualizer = document.getElementById('audio-visualizer');
+    const conversationContainer = document.getElementById('conversation-container');
+
+    function scrollToBottom(smooth = true) {
+        if (!conversationContainer) return;
+        if (smooth) {
+            conversationContainer.scrollTo({
+                top: conversationContainer.scrollHeight,
+                behavior: 'smooth'
+            });
+        } else {
+            conversationContainer.scrollTop = conversationContainer.scrollHeight;
+        }
+    }
     
     // --- Sign In Flow Elements ---
     const btnSigninNav = document.getElementById('btn-signin-nav');
@@ -415,6 +428,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Generate Visualizer Bars
                 createVisualizerBars();
                 
+                // Ensure scroll to top/start of state 2
+                scrollToBottom(false);
+                
             }, 500);
         });
     }
@@ -527,8 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
             input.value = '';
             
             // Scroll to bottom
-            const container = document.getElementById('conversation-container');
-            container.scrollTop = container.scrollHeight;
+            scrollToBottom();
             
             showEvaluation();
         } else {
@@ -552,11 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
             evaluationArea.classList.remove('opacity-0');
             
             // Scroll to bottom
-            const container = document.getElementById('conversation-container');
-            container.scrollTo({
-                top: container.scrollHeight,
-                behavior: 'smooth'
-            });
+            scrollToBottom();
         }, 800);
     }
 });

@@ -87,7 +87,36 @@ h1, h2, h3, h4, h5, h6 {
     animation: pulse-glow 2s infinite;
 }
 
+.h-100-pc {
+    height: 100%;
+}
+
 /* Magic Moment Specifics */
+#magic-moment-container .glass-card {
+    /* height: 650px; */
+    max-height: calc(100vh - 6rem);
+    display: flex;
+    flex-direction: column;
+}
+
+#state-setup, #state-combined {
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#state-setup {
+    justify-content: space-between;
+}
+
+#conversation-container {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 0 !important; /* Remove margin as it's handled by parent flex */
+    padding-bottom: 1.5rem;
+}
+
 .magic-blur-v3 {
     /* filter: blur(4px); Removed to use backdrop-filter for gradient blur */
     pointer-events: none;
@@ -247,6 +276,27 @@ select {
 .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-500 {
+    transition-duration: 500ms;
+}
+
+.duration-1000 {
+    transition-duration: 1000ms;
 }
 
 /* Range Slider Customization for Magic Moment */
