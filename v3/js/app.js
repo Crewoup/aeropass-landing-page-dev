@@ -18,6 +18,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const timerElement = document.getElementById('timer');
     const audioVisualizer = document.getElementById('audio-visualizer');
     
+    // --- Sign In Flow Elements ---
+    const btnSigninNav = document.getElementById('btn-signin-nav');
+    const btnHeroCta = document.getElementById('btn-hero-cta');
+    const signinModal = document.getElementById('signin-modal');
+    const modalSteps = {
+        signin: document.getElementById('modal-step-signin'),
+        profile: document.getElementById('modal-step-profile'),
+        success: document.getElementById('modal-step-success')
+    };
+    const modalTitle = document.getElementById('modal-title');
+    const formSignin = document.getElementById('form-signin');
+    const formProfile = document.getElementById('form-profile');
+    const airlineDropdown = document.getElementById('airline-dropdown');
+    const profAirlineInput = document.getElementById('prof-airline');
+    
+    // New Modal elements
+    const profFleetBtns = document.querySelectorAll('.prof-fleet-btn');
+    const profAircraftPillsContainer = document.getElementById('prof-aircraft-pills');
+    const profChallengeCards = document.querySelectorAll('.prof-challenge-card');
+    const titlePills = document.querySelectorAll('.title-pill');
+
+    let selectedModalFleet = 'boeing';
+    let selectedModalAircraft = '';
+    let selectedModalGouge = '';
+    let selectedModalTitle = '';
+
+    const airlines = [
+        "Emirates", "Qatar Airways", "Singapore Airlines", "Cathay Pacific", 
+        "Lufthansa", "Delta Air Lines", "United Airlines", "British Airways", 
+        "Turkish Airlines", "EVA Air"
+    ];
+
     let countdownInterval;
     let isRecording = false;
 
@@ -27,6 +59,256 @@ document.addEventListener('DOMContentLoaded', () => {
         airbus: ['A320', 'A350', 'A330', 'A380', 'A340'],
         general: ['HR', 'Technical', 'Weather', 'Regs']
     };
+
+    // --- Sign In Flow Logic ---
+
+    // Open Modal
+    if (btnSigninNav) {
+        btnSigninNav.addEventListener('click', () => {
+            signinModal.classList.add('active');
+            signinModal.classList.remove('hidden');
+            goToStep('signin');
+        });
+    }
+
+    if (btnHeroCta) {
+        btnHeroCta.addEventListener('click', () => {
+            signinModal.classList.add('active');
+            signinModal.classList.remove('hidden');
+            goToStep('signin');
+        });
+    }
+
+    // Close Modal
+    document.querySelectorAll('.modal-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+            signinModal.classList.remove('active');
+            signinModal.classList.add('hidden');
+        });
+    });
+
+    function goToStep(step) {
+        Object.values(modalSteps).forEach(el => el.classList.add('hidden'));
+        modalSteps[step].classList.remove('hidden');
+        
+        if (step === 'signin') {
+            modalTitle.textContent = 'Sign In';
+        } else if (step === 'profile') {
+            modalTitle.textContent = 'Complete Your Profile';
+            prefillProfileData();
+        } else if (step === 'success') {
+            modalTitle.textContent = 'Welcome Aboard';
+        }
+    }
+
+    function prefillProfileData() {
+        console.log('Prefilling profile data...');
+        // Get data from current selections in the main page
+        const activeFleetBtn = document.querySelector('.fleet-btn.active');
+        const activeAircraftPill = document.querySelector('.aircraft-pill.active');
+        const activeChallengeCard = document.querySelector('.challenge-card.active');
+
+        const manufacturer = activeFleetBtn?.getAttribute('data-fleet');
+        const aircraft = activeAircraftPill?.textContent;
+        const gouge = activeChallengeCard?.querySelector('span')?.textContent;
+
+        console.log('Detected from main page:', { manufacturer, aircraft, gouge });
+
+        if (manufacturer) {
+            selectedModalFleet = manufacturer;
+            updateModalFleetUI(manufacturer);
+            renderModalAircraftPills(manufacturer, aircraft);
+        } else {
+            // Default to boeing if nothing selected
+            updateModalFleetUI('boeing');
+            renderModalAircraftPills('boeing');
+        }
+        
+        if (gouge) {
+            selectedModalGouge = gouge;
+            updateModalGougeUI(gouge);
+        }
+
+        // Default title selection
+        if (!selectedModalTitle) {
+            const firstTitle = titlePills[0];
+            if (firstTitle) {
+                firstTitle.classList.remove('bg-slate-800', 'text-gray-400');
+                firstTitle.classList.add('active', 'bg-aero-yellow', 'text-slate-900', 'font-bold');
+                selectedModalTitle = firstTitle.getAttribute('data-title');
+            }
+        }
+    }
+
+    function updateModalFleetUI(fleet) {
+        console.log('Updating modal fleet UI to:', fleet);
+        const btns = document.querySelectorAll('.prof-fleet-btn');
+        btns.forEach(btn => {
+            const svg = btn.querySelector('svg');
+            const span = btn.querySelector('span');
+            if (btn.getAttribute('data-fleet') === fleet) {
+                btn.classList.add('active');
+                if (svg) svg.classList.add('text-white');
+                if (span) span.classList.add('text-white');
+            } else {
+                btn.classList.remove('active');
+                if (svg) svg.classList.remove('text-white');
+                if (span) span.classList.remove('text-white');
+            }
+        });
+    }
+
+    function renderModalAircraftPills(fleet, selectedAircraft = '') {
+        console.log('Rendering modal aircraft pills for:', fleet, 'selected:', selectedAircraft);
+        const container = document.getElementById('prof-aircraft-pills');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        const models = fleetData[fleet] || [];
+        
+        models.forEach((model, index) => {
+            const pill = document.createElement('button');
+            pill.type = 'button';
+            // Default to first if selectedAircraft not found
+            const isActive = selectedAircraft ? (model === selectedAircraft) : (index === 0);
+            if (isActive) selectedModalAircraft = model;
+
+            pill.className = `prof-aircraft-pill px-4 py-2 rounded-full font-mono text-sm whitespace-nowrap transition-all ${isActive ? 'active' : ''}`;
+            pill.textContent = model;
+            
+            pill.addEventListener('click', () => {
+                container.querySelectorAll('.prof-aircraft-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                selectedModalAircraft = model;
+            });
+            
+            container.appendChild(pill);
+        });
+    }
+
+    function updateModalGougeUI(gouge) {
+        console.log('Updating modal gouge UI to:', gouge);
+        const cards = document.querySelectorAll('.prof-challenge-card');
+        cards.forEach(card => {
+            const span = card.querySelector('span');
+            const match = card.getAttribute('data-gouge') === gouge || span?.textContent === gouge;
+            if (match) {
+                card.classList.add('active');
+                if (span) span.classList.add('text-white');
+                selectedModalGouge = card.getAttribute('data-gouge') || span?.textContent;
+            } else {
+                card.classList.remove('active');
+                if (span) span.classList.remove('text-white');
+            }
+        });
+    }
+
+    // Modal Fleet Selection
+    profFleetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const fleet = btn.getAttribute('data-fleet');
+            selectedModalFleet = fleet;
+            updateModalFleetUI(fleet);
+            renderModalAircraftPills(fleet);
+        });
+    });
+
+    // Modal Gouge Selection
+    profChallengeCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const gouge = card.getAttribute('data-gouge');
+            selectedModalGouge = gouge;
+            updateModalGougeUI(gouge);
+        });
+    });
+
+    // Title Pill Selection
+    titlePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            titlePills.forEach(p => {
+                p.classList.add('bg-slate-800', 'text-gray-400');
+                p.classList.remove('active', 'bg-aero-yellow', 'text-slate-900', 'font-bold');
+            });
+            pill.classList.remove('bg-slate-800', 'text-gray-400');
+            pill.classList.add('active', 'bg-aero-yellow', 'text-slate-900', 'font-bold');
+            selectedModalTitle = pill.getAttribute('data-title');
+        });
+    });
+
+    // Handle Sign In Form
+    if (formSignin) {
+        formSignin.addEventListener('submit', (e) => {
+            e.preventDefault();
+            goToStep('profile');
+        });
+    }
+
+    // Airline Search Dropdown
+    if (profAirlineInput) {
+        profAirlineInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            if (!val) {
+                airlineDropdown.classList.add('hidden');
+                return;
+            }
+            
+            const filtered = airlines.filter(a => a.toLowerCase().includes(val));
+            if (filtered.length > 0) {
+                airlineDropdown.innerHTML = filtered.map(a => `<div class="dropdown-item p-3 text-sm cursor-pointer hover:bg-white/5 transition-colors">${a}</div>`).join('');
+                airlineDropdown.classList.remove('hidden');
+                
+                // Add click event to items
+                airlineDropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        profAirlineInput.value = item.textContent;
+                        airlineDropdown.classList.add('hidden');
+                    });
+                });
+            } else {
+                airlineDropdown.classList.add('hidden');
+            }
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profAirlineInput.contains(e.target) && !airlineDropdown.contains(e.target)) {
+                airlineDropdown.classList.add('hidden');
+            }
+        });
+    }
+
+    // Handle Profile Form
+    if (formProfile) {
+        formProfile.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const title = selectedModalTitle || "Captain";
+            const airline = profAirlineInput.value;
+            const dateStr = document.getElementById('prof-date').value;
+            const name = document.getElementById('prof-name').value || "Eric";
+            const gouge = selectedModalGouge || "Emirates";
+            
+            document.getElementById('welcome-message').textContent = `Welcome to the flight deck, ${title} ${name}.`;
+            
+            if (dateStr) {
+                const interviewDate = new Date(dateStr);
+                const today = new Date();
+                const diffTime = interviewDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays >= 0) {
+                    document.getElementById('countdown-text').textContent = `⏳ ${diffDays} Days until your ${airline || gouge} Assessment`;
+                    document.getElementById('countdown-card').classList.remove('hidden');
+                } else {
+                    document.getElementById('countdown-card').classList.add('hidden');
+                }
+            } else {
+                document.getElementById('countdown-card').classList.add('hidden');
+            }
+            
+            goToStep('success');
+        });
+    }
 
     // --- State 1: Setup Logic ---
     
