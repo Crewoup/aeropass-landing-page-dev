@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Sign In Flow Elements ---
     const btnSigninNav = document.getElementById('btn-signin-nav');
     const btnHeroCta = document.getElementById('btn-hero-cta');
+    const btnUnlockCta = document.getElementById('btn-unlock-cta');
     const signinModal = document.getElementById('signin-modal');
     const modalSteps = {
         signin: document.getElementById('modal-step-signin'),
@@ -86,6 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnHeroCta) {
         btnHeroCta.addEventListener('click', () => {
+            signinModal.classList.add('active');
+            signinModal.classList.remove('hidden');
+            goToStep('signin');
+        });
+    }
+
+    if (btnUnlockCta) {
+        btnUnlockCta.addEventListener('click', () => {
             signinModal.classList.add('active');
             signinModal.classList.remove('hidden');
             goToStep('signin');
