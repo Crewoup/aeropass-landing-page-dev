@@ -12,7 +12,7 @@ import {
 
 // 你的 Firebase 配置資訊
 const firebaseConfig = {
-    apiKey: "AIzaSyAyoTEYTG8M1kaaagvg8A7eY68B5rWpVeQ",
+    apiKey: "AIzaSyAyoTEYTG8M1kaaagvg8A7eY68B5rWpVeQ", // the key for test
     authDomain: "auth.captainai.app",
     projectId: "project-909923853969"
 };
@@ -196,14 +196,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnHeroCta) {
         btnHeroCta.addEventListener('click', () => {
             showSigninModal();
-            goToStep('signin');
+            if (currentUser) goToStep('profile');
+            else goToStep('signin');
         });
     }
 
     if (btnUnlockCta) {
         btnUnlockCta.addEventListener('click', () => {
             showSigninModal();
-            goToStep('signin');
+            if (currentUser) goToStep('profile');
+            else goToStep('signin');
         });
     }
 
