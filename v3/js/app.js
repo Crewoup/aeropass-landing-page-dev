@@ -1,4 +1,77 @@
+// 引入必要的 Firebase 函式
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { 
+    getAuth, 
+    signInWithPopup,
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+// 你的 Firebase 配置資訊
+const firebaseConfig = {
+    apiKey: "AIzaSyAyoTEYTG8M1kaaagvg8A7eY68B5rWpVeQ",
+    authDomain: "auth.captainai.app",
+    projectId: "project-909923853969"
+};
+
+let initChecked = false;
+let currentUser = null;
+
+async function authWithEmailAndPasswordSync(auth, email, password) {
+    try {
+      // 1. 嘗試註冊
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("新用戶註冊並登入成功");
+      return userCredential.user;
+    } catch (error) {
+      // 2. 如果錯誤是「Email 已被使用」，則執行登入
+      if (error.code === 'auth/email-already-in-use') {
+        try {
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          console.log("現有用戶登入成功");
+          return userCredential.user;
+        } catch (loginError) {
+          console.error("登入失敗（密碼錯誤）:", loginError.code);
+          throw loginError;
+        }
+      } else {
+        // 其他錯誤（如：格式不對、密碼太弱）
+        console.error("註冊過程發生錯誤:", error.code);
+        throw error;
+      }
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+    // 初始化 Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // 監聽登入狀態（這就是 Serverless 的核心：自動追蹤 Token）
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log(user);
+            currentUser = user;
+            if (initChecked) {
+                // in sign-in flow
+                goToStep('profile');
+            } else {
+                // first time check, control the state of screen
+                // showSigninModal();
+            }
+            changeLogState(true);
+        } else {
+            console.error("尚未登入");
+            changeLogState(false);
+        }
+        initChecked = true;
+    });
+
     // --- Elements ---
     const stateSetup = document.getElementById('state-setup');
     const stateCombined = document.getElementById('state-combined');
@@ -33,8 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Sign In Flow Elements ---
     const btnSigninNav = document.getElementById('btn-signin-nav');
+    const btnSignOutNav = document.getElementById('btn-signout-nav');
+
     const btnHeroCta = document.getElementById('btn-hero-cta');
     const btnUnlockCta = document.getElementById('btn-unlock-cta');
+    const btnSigninGoogle = document.getElementById('btn-signin-google');
     const signinModal = document.getElementById('signin-modal');
     const modalSteps = {
         signin: document.getElementById('modal-step-signin'),
@@ -46,6 +122,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const formProfile = document.getElementById('form-profile');
     const airlineDropdown = document.getElementById('airline-dropdown');
     const profAirlineInput = document.getElementById('prof-airline');
+
+    // login state control
+    function changeLogState(isLogin) {
+        if (isLogin) {
+            btnSignOutNav.classList.remove('hidden');
+            btnSigninNav.classList.add('hidden');
+        } else {
+            btnSignOutNav.classList.add('hidden');
+            btnSigninNav.classList.remove('hidden');
+        }
+    }
+
+    // google sign in
+    btnSigninGoogle.onclick = async () => {
+        try {
+            await signInWithPopup(auth, provider);
+        } catch (error) {
+            console.error("登入出錯：", error.code, error.message);
+            alert("登入失敗，請檢查 Console。");
+        }
+    };
     
     // New Modal elements
     const profFleetBtns = document.querySelectorAll('.prof-fleet-btn');
@@ -77,26 +174,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Sign In Flow Logic ---
 
     // Open Modal
+    function showSigninModal() {
+        signinModal.classList.add('active');
+        signinModal.classList.remove('hidden');
+    }
+
     if (btnSigninNav) {
         btnSigninNav.addEventListener('click', () => {
-            signinModal.classList.add('active');
-            signinModal.classList.remove('hidden');
+            showSigninModal();
             goToStep('signin');
+        });
+    }
+
+    if (btnSignOutNav) {
+        btnSignOutNav.addEventListener('click', () => {
+            signOut(auth);
+            changeLogState(false);
         });
     }
 
     if (btnHeroCta) {
         btnHeroCta.addEventListener('click', () => {
-            signinModal.classList.add('active');
-            signinModal.classList.remove('hidden');
+            showSigninModal();
             goToStep('signin');
         });
     }
 
     if (btnUnlockCta) {
         btnUnlockCta.addEventListener('click', () => {
-            signinModal.classList.add('active');
-            signinModal.classList.remove('hidden');
+            showSigninModal();
             goToStep('signin');
         });
     }
@@ -125,6 +231,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function prefillProfileData() {
         console.log('Prefilling profile data...');
+
+        if (currentUser) {
+            document.getElementById('prof-name').value = currentUser.displayName || currentUser.email.split('@')[0];
+        }
+
         // Get data from current selections in the main page
         const activeFleetBtn = document.querySelector('.fleet-btn.active');
         const activeAircraftPill = document.querySelector('.aircraft-pill.active');
@@ -261,7 +372,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (formSignin) {
         formSignin.addEventListener('submit', (e) => {
             e.preventDefault();
-            goToStep('profile');
+            const formData = new FormData(e.target);
+            const email = formData.get('email');
+            const password = formData.get('password');
+            authWithEmailAndPasswordSync(auth, email, password)
+                .then(user => {
+                    console.log(user);
+                    currentUser = user;
+                    goToStep('profile');
+                });
         });
     }
 
