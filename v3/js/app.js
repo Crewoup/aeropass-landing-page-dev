@@ -34,6 +34,7 @@ async function authWithEmailAndPasswordSync(auth, email, password) {
           console.log("現有用戶登入成功");
           return userCredential.user;
         } catch (loginError) {
+          alert("Failed. Invalid email or password");
           console.error("登入失敗（密碼錯誤）:", loginError.code);
           throw loginError;
         }
@@ -153,12 +154,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // google sign in
     btnSigninGoogle.onclick = async () => {
+        toggleModalLoading(true);
         try {
             await signInWithPopup(auth, provider);
         } catch (error) {
             console.error("登入出錯：", error.code, error.message);
-            alert("登入失敗，請檢查 Console。");
+            alert("Failed. Please try agiain later");
         }
+        toggleModalLoading(false);
     };
     
     // New Modal elements
@@ -394,11 +397,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(e.target);
             const email = formData.get('email');
             const password = formData.get('password');
+            toggleModalLoading(true);
             authWithEmailAndPasswordSync(auth, email, password)
                 .then(user => {
                     console.log(user);
                     currentUser = user;
+                    toggleModalLoading(false);
                     goToStep('profile');
+                })
+                .catch(res => {
+                    console.error(res);
+                    toggleModalLoading(false);
                 });
         });
     }
