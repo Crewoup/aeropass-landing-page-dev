@@ -380,8 +380,17 @@
                     <button class="text-gray-400 hover:text-white modal-close"><i class="fa-solid fa-xmark text-xl"></i></button>
                 </div>
 
-                <!-- Modal Content -->
-                <div class="p-8 overflow-y-auto scrollbar-hide flex-1">
+                <!-- Modal Content Wrapper -->
+                <div class="relative flex-1 overflow-hidden flex flex-col">
+                    <!-- Loading Mask -->
+                    <div id="modal-loading-mask" class="absolute inset-0 z-50 bg-slate-900/60 backdrop-blur-[2px] hidden items-center justify-center">
+                        <div class="flex flex-col items-center gap-4">
+                            <i class="fa-solid fa-circle-notch animate-spin-custom text-4xl text-aero-yellow"></i>
+                        </div>
+                    </div>
+
+                    <!-- Modal Content -->
+                    <div class="p-8 overflow-y-auto scrollbar-hide flex-1">
                 <!-- Step 1: Sign In -->
                 <div id="modal-step-signin" class="space-y-6 mx-auto">
                     <div class="grid grid-cols-1 gap-4"> <!-- grid-cols-2 for 2 columns -->
@@ -539,6 +548,7 @@
                     <button class="w-full bg-white/10 text-white font-bold py-3 rounded-xl hover:bg-white/20 transition-all modal-close">
                         Close
                     </button>
+                </div>
                 </div>
             </div>
         </div>

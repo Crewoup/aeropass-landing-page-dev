@@ -123,6 +123,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const airlineDropdown = document.getElementById('airline-dropdown');
     const profAirlineInput = document.getElementById('prof-airline');
 
+    // Modal Loading Mask Control
+    function toggleModalLoading(show) {
+        const mask = document.getElementById('modal-loading-mask');
+        if (!mask) return;
+        
+        if (show) {
+            mask.classList.remove('hidden');
+            mask.classList.add('flex');
+        } else {
+            mask.classList.add('hidden');
+            mask.classList.remove('flex');
+        }
+    }
+
+    // Expose to window for external control
+    window.toggleModalLoading = toggleModalLoading;
+
     // login state control
     function changeLogState(isLogin) {
         if (isLogin) {
