@@ -56,6 +56,36 @@ async function authWithEmailAndPasswordSync(auth, email, password) {
     }
 }
 
+const stageMapping = {
+    'Captain': 5,
+    'Senior First Officer': 4,
+    'First Officer': 3
+};
+
+const dreamCompanyMapping = {
+    'Emirates': 'EM',
+    'Qatar': 'QR',
+    'Singapore': 'SQ'
+};
+
+function getBrowserLanguage() {
+    // Detect browser language
+    const supportedLanguages = ['en', 'zh-TW', 'zh-CN', 'ja', 'ko', 'es'];
+    const browserLangs = navigator.languages || [navigator.language];
+    let detectedLang = 'en';
+    for (const lang of browserLangs) {
+        if (supportedLanguages.includes(lang)) {
+            detectedLang = lang;
+            break;
+        }
+        const prefix = lang.split('-')[0];
+        if (supportedLanguages.includes(prefix)) {
+            detectedLang = prefix;
+            break;
+        }
+    }
+    return detectedLang;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     // 初始化 Firebase
@@ -521,59 +551,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleModalLoading(true);
                 try {
                     const idToken = await currentUser.getIdToken();
-                    // Detect browser language
-                    const supportedLanguages = ['en', 'zh-TW', 'zh-CN', 'ja', 'ko', 'es'];
-                    const browserLangs = navigator.languages || [navigator.language];
-                    let detectedLang = 'en';
-                    for (const lang of browserLangs) {
-                        if (supportedLanguages.includes(lang)) {
-                            detectedLang = lang;
-                            break;
-                        }
-                        const prefix = lang.split('-')[0];
-                        if (supportedLanguages.includes(prefix)) {
-                            detectedLang = prefix;
-                            break;
-                        }
-                    }
-
                     const profileData = {
                         username: name,
-                        current_stage_id: 1, // Default to 1 for onboarding
-                        current_company: airline,
-                        dream_company: gouge,
+                        current_stage_id: stageMapping[title] || 1, // Default to 1 if not matched
+                        // current_company: airline,
+                        current_company: null,
+                        dream_company: dreamCompanyMapping[gouge] || gouge,
                         assessment_date: dateStr || null,
                         aircraft_type: selectedModalAircraft || "B777",
-                        language_preference: detectedLang
+                        language_preference: getBrowserLanguage()
                     };
                     const updateResult = await updateProfile(idToken, profileData);
+                    userShouldFillProfile = updateResult.is_first_login;
                     console.log("Profile updated:", updateResult);
+                    handleCurrentStep();
                 } catch (error) {
                     console.error("Failed to update profile:", error);
                 } finally {
                     toggleModalLoading(false);
                 }
             }
-
-            document.getElementById('welcome-message').textContent = `Welcome to the flight deck, ${title} ${name}.`;
+            // document.getElementById('welcome-message').textContent = `Welcome to the flight deck, ${title} ${name}.`;
             
-            if (dateStr) {
-                const interviewDate = new Date(dateStr);
-                const today = new Date();
-                const diffTime = interviewDate - today;
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            // if (dateStr) {
+            //     const interviewDate = new Date(dateStr);
+            //     const today = new Date();
+            //     const diffTime = interviewDate - today;
+            //     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 
-                if (diffDays >= 0) {
-                    document.getElementById('countdown-text').textContent = `⏳ ${diffDays} Days until your ${airline || gouge} Assessment`;
-                    document.getElementById('countdown-card').classList.remove('hidden');
-                } else {
-                    document.getElementById('countdown-card').classList.add('hidden');
-                }
-            } else {
-                document.getElementById('countdown-card').classList.add('hidden');
-            }
+            //     if (diffDays >= 0) {
+            //         document.getElementById('countdown-text').textContent = `⏳ ${diffDays} Days until your ${airline || gouge} Assessment`;
+            //         document.getElementById('countdown-card').classList.remove('hidden');
+            //     } else {
+            //         document.getElementById('countdown-card').classList.add('hidden');
+            //     }
+            // } else {
+            //     document.getElementById('countdown-card').classList.add('hidden');
+            // }
             
-            goToStep('success');
+            // goToStep('success');
         });
     }
 
