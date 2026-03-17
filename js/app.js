@@ -521,6 +521,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleModalLoading(true);
                 try {
                     const idToken = await currentUser.getIdToken();
+                    // Detect browser language
+                    const supportedLanguages = ['en', 'zh-TW', 'zh-CN', 'ja', 'ko', 'es'];
+                    const browserLangs = navigator.languages || [navigator.language];
+                    let detectedLang = 'en';
+                    for (const lang of browserLangs) {
+                        if (supportedLanguages.includes(lang)) {
+                            detectedLang = lang;
+                            break;
+                        }
+                        const prefix = lang.split('-')[0];
+                        if (supportedLanguages.includes(prefix)) {
+                            detectedLang = prefix;
+                            break;
+                        }
+                    }
+
                     const profileData = {
                         username: name,
                         current_stage_id: 1, // Default to 1 for onboarding
@@ -528,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         dream_company: gouge,
                         assessment_date: dateStr || null,
                         aircraft_type: selectedModalAircraft || "B777",
-                        language_preference: "en"
+                        language_preference: detectedLang
                     };
                     const updateResult = await updateProfile(idToken, profileData);
                     console.log("Profile updated:", updateResult);
