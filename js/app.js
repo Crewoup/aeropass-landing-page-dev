@@ -546,6 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const dateStr = document.getElementById('prof-date').value;
             const name = document.getElementById('prof-name').value || "Eric";
             const gouge = selectedModalGouge || "Emirates";
+            const lang = getBrowserLanguage();
             
             // API Integration: Update Profile
             if (currentUser) {
@@ -560,12 +561,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         dream_company: dreamCompanyMapping[gouge] || gouge,
                         assessment_date: dateStr || null,
                         aircraft_type: selectedModalAircraft || "B777",
-                        language_preference: getBrowserLanguage()
+                        language_preference: lang
                     };
                     const updateResult = await updateProfile(idToken, profileData);
                     userShouldFillProfile = updateResult.is_first_login;
                     console.log("Profile updated:", updateResult);
                     handleCurrentStep();
+                    hideSigninModal();
                 } catch (error) {
                     console.error("Failed to update profile:", error);
                 } finally {
