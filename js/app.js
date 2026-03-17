@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     const idToken = await user.getIdToken();
                     const verifyResult = await verifyFirebaseToken(idToken);
+                    currentUser = user;
                     userShouldFillProfile = verifyResult.is_first_login;
                     if (userShouldFillProfile) {
                         goToStep('profile');
@@ -78,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         hideSigninModal();
                         goToStep('signin'); // reset
                     }
-                    currentUser = user;
                     changeLogState(true);
                 } catch (error) {
                     console.error("API Error:", error);
