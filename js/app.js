@@ -16,6 +16,7 @@ import {
     updateProfile 
 } from "./api.js";
 
+
 // 你的 Firebase 配置資訊
 const firebaseConfig = {
     apiKey: "AIzaSyD5dsy5tG3BFg4T7GA_kAQ8a3p3qFWSf7M",  // production
