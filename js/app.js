@@ -79,9 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         goToStep('signin'); // reset
                     }
                     currentUser = user;
+                    changeLogState(true);
                 } catch (error) {
                     console.error("API Error:", error);
                     signOut(auth);
+                    changeLogState(false);
                 }
             }
             fromLoginPopup = false;
@@ -97,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     userShouldFillProfile = profile.is_first_login;
                     currentUser = user;
+                    changeLogState(true);
                 } catch (error) {
                     console.error("API Error:", error);
                     signOut(auth);
