@@ -10,6 +10,12 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
+import { 
+    verifyFirebaseToken, 
+    getMe, 
+    updateProfile 
+} from "./api.js";
+
 // 你的 Firebase 配置資訊
 const firebaseConfig = {
     apiKey: "AIzaSyD5dsy5tG3BFg4T7GA_kAQ8a3p3qFWSf7M",  // production
@@ -20,8 +26,9 @@ const firebaseConfig = {
     appId: "1:909923853969:web:48b5eb2c0f3ad260fc0130",
 };
 
-let initChecked = false;
+let fromLoginPopup = false;
 let currentUser = null;
+let userShouldFillProfile = false;
 
 async function authWithEmailAndPasswordSync(auth, email, password) {
     try {
@@ -57,23 +64,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const provider = new GoogleAuthProvider();
 
     // 監聽登入狀態（這就是 Serverless 的核心：自動追蹤 Token）
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            console.log(user);
-            currentUser = user;
-            if (initChecked) {
-                // in sign-in flow
-                goToStep('profile');
-            } else {
-                // first time check, control the state of screen
-                // showSigninModal();
+    onAuthStateChanged(auth, async (user) => {
+        if (fromLoginPopup) {
+            if (user) {
+                console.log(user);
+                try {
+                    const idToken = await user.getIdToken();
+                    const verifyResult = await verifyFirebaseToken(idToken);
+                    userShouldFillProfile = verifyResult.is_first_login;
+                    if (userShouldFillProfile) {
+                        goToStep('profile');
+                    } else {
+                        hideSigninModal();
+                        goToStep('signin'); // reset
+                    }
+                    currentUser = user;
+                } catch (error) {
+                    console.error("API Error:", error);
+                    signOut(auth);
+                }
             }
-            changeLogState(true);
+            fromLoginPopup = false;
         } else {
-            console.error("尚未登入");
-            changeLogState(false);
+            if (user) {
+                console.log(user);
+                try {
+                    const idToken = await user.getIdToken();
+                    const profile = await getMe(idToken);
+                    // Does not login of backend
+                    if ( !profile.id ) {
+                        throw new Error(profile.detail || "Error");
+                    }
+                    userShouldFillProfile = profile.is_first_login;
+                    currentUser = user;
+                } catch (error) {
+                    console.error("API Error:", error);
+                    signOut(auth);
+                    changeLogState(false);
+                }
+            } else {
+                console.error("尚未登入");
+                changeLogState(false);
+            }
         }
-        initChecked = true;
     });
 
     // --- Elements ---
@@ -109,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // --- Sign In Flow Elements ---
+    const btnConsoleNav = document.getElementById('btn-console-nav'); 
     const btnSigninNav = document.getElementById('btn-signin-nav');
     const btnSignOutNav = document.getElementById('btn-signout-nav');
 
@@ -148,9 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function changeLogState(isLogin) {
         if (isLogin) {
             btnSignOutNav.classList.remove('hidden');
+            btnConsoleNav.classList.remove('hidden');
             btnSigninNav.classList.add('hidden');
         } else {
             btnSignOutNav.classList.add('hidden');
+            btnConsoleNav.classList.add('hidden');
             btnSigninNav.classList.remove('hidden');
         }
     }
@@ -159,8 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
     btnSigninGoogle.onclick = async () => {
         toggleModalLoading(true);
         try {
+            fromLoginPopup = true;
             await signInWithPopup(auth, provider);
         } catch (error) {
+            fromLoginPopup = false; // reset if error caused
             console.error("登入出錯：", error.code, error.message);
             alert("Failed. Please try agiain later");
         }
@@ -202,11 +240,34 @@ document.addEventListener('DOMContentLoaded', () => {
         signinModal.classList.remove('hidden');
     }
 
+    function hideSigninModal() {
+        signinModal.classList.remove('active');
+        signinModal.classList.add('hidden');
+    }
+
+    function handleCurrentStep() {
+        if (currentUser) {
+            if (userShouldFillProfile) {
+                showSigninModal();
+                goToStep('profile');
+            } else {
+                // do redirect to console
+                console.log("do redirect to console");
+            }
+        } else {
+            goToStep('signin');
+        }
+    }
+
     if (btnSigninNav) {
         btnSigninNav.addEventListener('click', () => {
             showSigninModal();
             goToStep('signin');
         });
+    }
+
+    if (btnConsoleNav) {
+        btnConsoleNav.addEventListener('click', handleCurrentStep);
     }
 
     if (btnSignOutNav) {
@@ -217,27 +278,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (btnHeroCta) {
-        btnHeroCta.addEventListener('click', () => {
-            showSigninModal();
-            if (currentUser) goToStep('profile');
-            else goToStep('signin');
-        });
+        btnHeroCta.addEventListener('click', handleCurrentStep);
     }
 
     if (btnUnlockCta) {
-        btnUnlockCta.addEventListener('click', () => {
-            showSigninModal();
-            if (currentUser) goToStep('profile');
-            else goToStep('signin');
-        });
+        btnUnlockCta.addEventListener('click', handleCurrentStep);
     }
 
     // Close Modal
     document.querySelectorAll('.modal-close').forEach(btn => {
-        btn.addEventListener('click', () => {
-            signinModal.classList.remove('active');
-            signinModal.classList.add('hidden');
-        });
+        btn.addEventListener('click', hideSigninModal);
     });
 
     function goToStep(step) {
@@ -401,15 +451,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = formData.get('email');
             const password = formData.get('password');
             toggleModalLoading(true);
+            fromLoginPopup = true;
             authWithEmailAndPasswordSync(auth, email, password)
                 .then(user => {
+                    console.log("after call authWithEmailAndPasswordSync");
                     console.log(user);
-                    currentUser = user;
+                    // currentUser = user;
                     toggleModalLoading(false);
-                    goToStep('profile');
+                    // goToStep('profile');
                 })
                 .catch(res => {
                     console.error(res);
+                    fromLoginPopup = false;
                     toggleModalLoading(false);
                 });
         });
@@ -451,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle Profile Form
     if (formProfile) {
-        formProfile.addEventListener('submit', (e) => {
+        formProfile.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const title = selectedModalTitle || "Captain";
@@ -460,6 +513,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = document.getElementById('prof-name').value || "Eric";
             const gouge = selectedModalGouge || "Emirates";
             
+            // API Integration: Update Profile
+            if (currentUser) {
+                toggleModalLoading(true);
+                try {
+                    const idToken = await currentUser.getIdToken();
+                    const profileData = {
+                        username: name,
+                        current_stage_id: 1, // Default to 1 for onboarding
+                        current_company: airline,
+                        dream_company: gouge,
+                        assessment_date: dateStr || null,
+                        aircraft_type: selectedModalAircraft || "B777",
+                        language_preference: "en"
+                    };
+                    const updateResult = await updateProfile(idToken, profileData);
+                    console.log("Profile updated:", updateResult);
+                } catch (error) {
+                    console.error("Failed to update profile:", error);
+                } finally {
+                    toggleModalLoading(false);
+                }
+            }
+
             document.getElementById('welcome-message').textContent = `Welcome to the flight deck, ${title} ${name}.`;
             
             if (dateStr) {
