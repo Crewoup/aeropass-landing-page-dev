@@ -124,12 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(user);
                 try {
                     const idToken = await user.getIdToken();
-                    const profile = await getMe(idToken);
+                    const verifyResult = await verifyFirebaseToken(idToken);
                     // Does not login of backend
-                    if ( !profile.id ) {
-                        throw new Error(profile.detail || "Error");
+                    if ( !verifyResult.id ) {
+                        throw new Error(verifyResult.detail || "Error");
                     }
-                    userShouldFillProfile = profile.is_first_login;
+                    userShouldFillProfile = verifyResult.is_first_login;
                     currentUser = user;
                     changeLogState(true);
                 } catch (error) {
