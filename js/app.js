@@ -30,6 +30,7 @@ const firebaseConfig = {
 let fromLoginPopup = false;
 let currentUser = null;
 let userShouldFillProfile = false;
+let userIsNew = false;
 
 async function authWithEmailAndPasswordSync(auth, email, password) {
     try {
@@ -279,14 +280,17 @@ document.addEventListener('DOMContentLoaded', () => {
         signinModal.classList.add('hidden');
     }
 
-    function handleCurrentStep() {
+    async function handleCurrentStep() {
         if (currentUser) {
             if (userShouldFillProfile) {
                 showSigninModal();
                 goToStep('profile');
             } else {
+                const idToken = await currentUser.getIdToken();
+                const url = `https://console.captainai.app/?token=${idToken}` + (userIsNew ? `&new=1` : '');
                 // do redirect to console
                 console.log("do redirect to console");
+                location.href = url;
             }
         } else {
             goToStep('signin');
@@ -565,6 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
                     const updateResult = await updateProfile(idToken, profileData);
                     userShouldFillProfile = updateResult.is_first_login;
+                    userIsNew = true;
                     console.log("Profile updated:", updateResult);
                     handleCurrentStep();
                     hideSigninModal();
