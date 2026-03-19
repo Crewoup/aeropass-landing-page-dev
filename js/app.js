@@ -176,10 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+    // btn-enter-nav
+
     // --- Sign In Flow Elements ---
-    const btnConsoleNav = document.getElementById('btn-console-nav'); 
+    const btnEnterNav = document.getElementById('btn-enter-nav'); 
     const btnSigninNav = document.getElementById('btn-signin-nav');
-    const btnSignOutNav = document.getElementById('btn-signout-nav');
+    // const btnSignOutNav = document.getElementById('btn-signout-nav');
 
     const btnHeroCta = document.getElementById('btn-hero-cta');
     const btnUnlockCta = document.getElementById('btn-unlock-cta');
@@ -216,12 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // login state control
     function changeLogState(isLogin) {
         if (isLogin) {
-            btnSignOutNav.classList.remove('hidden');
-            btnConsoleNav.classList.remove('hidden');
+            // btnSignOutNav.classList.remove('hidden');
+            btnEnterNav.classList.remove('hidden');
             btnSigninNav.classList.add('hidden');
         } else {
-            btnSignOutNav.classList.add('hidden');
-            btnConsoleNav.classList.add('hidden');
+            // btnSignOutNav.classList.add('hidden');
+            btnEnterNav.classList.add('hidden');
             btnSigninNav.classList.remove('hidden');
         }
     }
@@ -304,16 +306,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (btnConsoleNav) {
-        btnConsoleNav.addEventListener('click', handleCurrentStep);
+    if (btnEnterNav) {
+        btnEnterNav.addEventListener('click', handleCurrentStep);
     }
 
-    if (btnSignOutNav) {
-        btnSignOutNav.addEventListener('click', () => {
-            signOut(auth);
-            changeLogState(false);
-        });
-    }
+    // if (btnSignOutNav) {
+    //     btnSignOutNav.addEventListener('click', () => {
+    //         signOut(auth);
+    //         changeLogState(false);
+    //     });
+    // }
 
     if (btnHeroCta) {
         btnHeroCta.addEventListener('click', handleCurrentStep);
