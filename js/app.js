@@ -12,7 +12,6 @@ import {
 
 import { 
     verifyFirebaseToken, 
-    getMe, 
     updateProfile,
     getAirlines
 } from "./api.js";
@@ -279,9 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
         signinModal.classList.add('hidden');
     }
 
-    window.showSigninModal = showSigninModal;
-    window.hideSigninModal = hideSigninModal;
-
     async function handleCurrentStep() {
         if (currentUser) {
             if (userShouldFillProfile) {
@@ -343,8 +339,6 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTitle.textContent = 'Welcome Aboard';
         }
     }
-
-    window.goToStep = goToStep;
 
     async function prefillProfileData() {
         console.log('Prefilling profile data...');

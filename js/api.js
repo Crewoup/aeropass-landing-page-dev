@@ -21,21 +21,6 @@ export async function verifyFirebaseToken(idToken, currentStageId = null) {
 }
 
 /**
- * Get current user profile
- * @param {string} token 
- */
-export async function getMe(token) {
-    const response = await fetch(`${BASE_URL}/auth/me`, {
-        method: 'GET',
-        headers: {
-            'accept': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-    });
-    return response.json();
-}
-
-/**
  * Update user profile
  * @param {string} token 
  * @param {Object} profileData 
