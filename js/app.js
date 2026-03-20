@@ -13,7 +13,8 @@ import {
 import { 
     verifyFirebaseToken, 
     getMe, 
-    updateProfile 
+    updateProfile,
+    getAirlines
 } from "./api.js";
 
 
@@ -253,11 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedModalGouge = '';
     let selectedModalTitle = '';
 
-    const airlines = [
-        "Emirates", "Qatar Airways", "Singapore Airlines", "Cathay Pacific", 
-        "Lufthansa", "Delta Air Lines", "United Airlines", "British Airways", 
-        "Turkish Airlines", "EVA Air"
-    ];
+    let airlinesData = [];
 
     let countdownInterval;
     let isRecording = false;
@@ -281,6 +278,9 @@ document.addEventListener('DOMContentLoaded', () => {
         signinModal.classList.remove('active');
         signinModal.classList.add('hidden');
     }
+
+    window.showSigninModal = showSigninModal;
+    window.hideSigninModal = hideSigninModal;
 
     async function handleCurrentStep() {
         if (currentUser) {
@@ -344,11 +344,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function prefillProfileData() {
+    window.goToStep = goToStep;
+
+    async function prefillProfileData() {
         console.log('Prefilling profile data...');
 
         if (currentUser) {
             document.getElementById('prof-name').value = currentUser.displayName || currentUser.email.split('@')[0];
+            
+            // Fetch airlines reference data if not already fetched
+            if (airlinesData.length === 0) {
+                try {
+                    const idToken = await currentUser.getIdToken();
+                    const result = await getAirlines(idToken);
+                    if (result && result.airlines) {
+                        airlinesData = result.airlines;
+                        console.log('Airlines data loaded:', airlinesData.length);
+                    }
+                } catch (error) {
+                    console.error('Failed to load airlines data:', error);
+                }
+            }
         }
 
         // Get data from current selections in the main page
@@ -512,21 +528,39 @@ document.addEventListener('DOMContentLoaded', () => {
     if (profAirlineInput) {
         profAirlineInput.addEventListener('input', (e) => {
             const val = e.target.value.toLowerCase();
-            if (!val) {
+            if (!val || val.length < 2) {
                 airlineDropdown.classList.add('hidden');
                 return;
             }
             
-            const filtered = airlines.filter(a => a.toLowerCase().includes(val));
+            // Search in code, name, description, country
+            const filtered = airlinesData.filter(a => 
+                (a.code && a.code.toLowerCase().includes(val)) || 
+                (a.name && a.name.toLowerCase().includes(val)) || 
+                (a.description && a.description.toLowerCase().includes(val)) || 
+                (a.country && a.country.toLowerCase().includes(val))
+            );
+
             if (filtered.length > 0) {
-                airlineDropdown.innerHTML = filtered.map(a => `<div class="dropdown-item p-3 text-sm cursor-pointer hover:bg-white/5 transition-colors">${a}</div>`).join('');
+                airlineDropdown.innerHTML = filtered.map(a => `
+                    <div class="dropdown-item p-3 text-sm cursor-pointer hover:bg-white/5 transition-colors border-b border-white/5 last:border-0" data-code="${a.code}">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-white">${a.name}</span>
+                            <span class="text-[10px] font-mono bg-slate-700 px-1.5 py-0.5 rounded text-gray-400">${a.code}</span>
+                        </div>
+                        <div class="text-[11px] text-gray-500 mt-1 truncate">${a.description || ''}</div>
+                    </div>
+                `).join('');
                 airlineDropdown.classList.remove('hidden');
                 
                 // Add click event to items
                 airlineDropdown.querySelectorAll('.dropdown-item').forEach(item => {
                     item.addEventListener('click', () => {
-                        profAirlineInput.value = item.textContent;
+                        const name = item.querySelector('.font-bold').textContent;
+                        profAirlineInput.value = name;
                         airlineDropdown.classList.add('hidden');
+                        // Store selected airline code if needed for API submission
+                        profAirlineInput.dataset.selectedCode = item.getAttribute('data-code');
                     });
                 });
             } else {
@@ -559,11 +593,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleModalLoading(true);
                 try {
                     const idToken = await currentUser.getIdToken();
+                    const selectedAirlineCode = profAirlineInput.dataset.selectedCode;
+                    
                     const profileData = {
                         username: name,
                         current_stage_id: stageMapping[title] || 1, // Default to 1 if not matched
-                        // current_company: airline,
-                        current_company: null,
+                        current_company: selectedAirlineCode || airline,
                         dream_company: dreamCompanyMapping[gouge] || gouge,
                         assessment_date: dateStr || null,
                         aircraft_type: selectedModalAircraft || "B777",

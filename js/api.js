@@ -52,3 +52,18 @@ export async function updateProfile(token, profileData) {
     });
     return response.json();
 }
+
+/**
+ * Get airlines reference data
+ * @param {string} token 
+ */
+export async function getAirlines(token) {
+    const response = await fetch(`${BASE_URL}/reference-data/airlines`, {
+        method: 'GET',
+        headers: {
+            'accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    return response.json();
+}
