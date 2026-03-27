@@ -391,8 +391,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!selectedModalTitle) {
             const firstTitle = titlePills[0];
             if (firstTitle) {
-                firstTitle.classList.remove('bg-bg-secondary', 'text-text-muted');
-                firstTitle.classList.add('active', 'bg-accent-cyan', 'text-bg-primary', 'font-bold');
+                firstTitle.classList.remove('bg-slate-800', 'text-gray-400');
+                firstTitle.classList.add('active', 'bg-aero-yellow', 'text-slate-900', 'font-bold');
                 selectedModalTitle = firstTitle.getAttribute('data-title');
             }
         }
@@ -431,12 +431,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const isActive = selectedAircraft ? (model === selectedAircraft) : (index === 0);
             if (isActive) selectedModalAircraft = model;
 
-            pill.className = `prof-aircraft-pill px-4 py-2 rounded-full font-mono text-sm whitespace-nowrap transition-all ${isActive ? 'active' : ''}`;
+            pill.className = `prof-aircraft-pill px-4 py-2 rounded-sm font-mono text-xs whitespace-nowrap transition-all ${isActive ? 'active bg-aero-yellow/10 border border-aero-yellow text-aero-yellow font-bold' : 'bg-slate-900 border border-white/10 text-gray-500 hover:bg-slate-800 hover:text-white hover:border-white/30'}`;
             pill.textContent = model;
             
             pill.addEventListener('click', () => {
-                container.querySelectorAll('.prof-aircraft-pill').forEach(p => p.classList.remove('active'));
-                pill.classList.add('active');
+                container.querySelectorAll('.prof-aircraft-pill').forEach(p => p.classList.remove('active', 'bg-aero-yellow/10', 'border-aero-yellow', 'text-aero-yellow', 'font-bold'));
+                container.querySelectorAll('.prof-aircraft-pill').forEach(p => p.classList.add('bg-slate-900', 'border-white/10', 'text-gray-500'));
+                pill.classList.remove('bg-slate-900', 'border-white/10', 'text-gray-500');
+                pill.classList.add('active', 'bg-aero-yellow/10', 'border-aero-yellow', 'text-aero-yellow', 'font-bold');
                 selectedModalAircraft = model;
             });
             
@@ -484,11 +486,11 @@ document.addEventListener('DOMContentLoaded', () => {
     titlePills.forEach(pill => {
         pill.addEventListener('click', () => {
             titlePills.forEach(p => {
-                p.classList.add('bg-bg-secondary', 'text-text-muted');
-                p.classList.remove('active', 'bg-accent-cyan', 'text-bg-primary', 'font-bold');
+                p.classList.add('bg-slate-800', 'text-gray-400');
+                p.classList.remove('active', 'bg-aero-yellow', 'text-slate-900', 'font-bold');
             });
-            pill.classList.remove('bg-bg-secondary', 'text-text-muted');
-            pill.classList.add('active', 'bg-accent-cyan', 'text-bg-primary', 'font-bold');
+            pill.classList.remove('bg-slate-800', 'text-gray-400');
+            pill.classList.add('active', 'bg-aero-yellow', 'text-slate-900', 'font-bold');
             selectedModalTitle = pill.getAttribute('data-title');
         });
     });
@@ -540,9 +542,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="dropdown-item p-3 text-sm cursor-pointer hover:bg-white/5 transition-colors border-b border-white/5 last:border-0" data-code="${a.code}">
                         <div class="flex justify-between items-center">
                             <span class="font-bold text-white">${a.name}</span>
-                            <span class="text-[10px] font-mono bg-bg-secondary px-1.5 py-0.5 rounded text-text-muted">${a.code}</span>
+                            <span class="text-[10px] font-mono bg-slate-700 px-1.5 py-0.5 rounded text-gray-400">${a.code}</span>
                         </div>
-                        <div class="text-[11px] text-text-muted mt-1 truncate">${a.description || ''}</div>
+                        <div class="text-[11px] text-gray-500 mt-1 truncate">${a.description || ''}</div>
                     </div>
                 `).join('');
                 airlineDropdown.classList.remove('hidden');
@@ -610,6 +612,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     toggleModalLoading(false);
                 }
             }
+            // document.getElementById('welcome-message').textContent = `Welcome to the flight deck, ${title} ${name}.`;
+            
+            // if (dateStr) {
+            //     const interviewDate = new Date(dateStr);
+            //     const today = new Date();
+            //     const diffTime = interviewDate - today;
+            //     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+            //     if (diffDays >= 0) {
+            //         document.getElementById('countdown-text').textContent = `⏳ ${diffDays} Days until your ${airline || gouge} Assessment`;
+            //         document.getElementById('countdown-card').classList.remove('hidden');
+            //     } else {
+            //         document.getElementById('countdown-card').classList.add('hidden');
+            //     }
+            // } else {
+            //     document.getElementById('countdown-card').classList.add('hidden');
+            // }
+            
+            // goToStep('success');
         });
     }
 
@@ -624,33 +645,33 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Fleet button clicked:', btn.getAttribute('data-fleet'));
             // Remove active state from all fleet buttons
             fleetBtns.forEach(b => {
-                b.classList.remove('active', 'border-accent-cyan/60', 'bg-accent-cyan/10', 'ring-1', 'ring-accent-cyan/30');
-                b.classList.add('border-transparent', 'bg-bg-secondary/50');
+                b.classList.remove('active', 'border-aero-yellow/60', 'bg-aero-yellow/10', 'ring-1', 'ring-aero-yellow/30');
+                b.classList.add('border-transparent', 'bg-slate-800/50');
                 
                 const icon = b.querySelector('svg');
                 const text = b.querySelector('span');
                 if (icon) {
                     icon.classList.remove('text-white');
-                    icon.classList.add('text-text-muted');
+                    icon.classList.add('text-gray-400');
                 }
                 if (text) {
                     text.classList.remove('text-white');
-                    text.classList.add('text-text-muted');
+                    text.classList.add('text-gray-400');
                 }
             });
 
             // Set active state for clicked button
-            btn.classList.add('active', 'border-accent-cyan/60', 'bg-accent-cyan/10', 'ring-1', 'ring-accent-cyan/30');
-            btn.classList.remove('border-transparent', 'bg-bg-secondary/50');
+            btn.classList.add('active', 'border-aero-yellow/60', 'bg-aero-yellow/10', 'ring-1', 'ring-aero-yellow/30');
+            btn.classList.remove('border-transparent', 'bg-slate-800/50');
             
             const icon = btn.querySelector('svg');
             const text = btn.querySelector('span');
             if (icon) {
-                icon.classList.remove('text-text-muted');
+                icon.classList.remove('text-gray-400');
                 icon.classList.add('text-white');
             }
             if (text) {
-                text.classList.remove('text-text-muted');
+                text.classList.remove('text-gray-400');
                 text.classList.add('text-white');
             }
 
@@ -670,15 +691,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         models.forEach((model, index) => {
             const pill = document.createElement('button');
-            pill.className = `aircraft-pill px-4 py-2 rounded-full font-mono text-sm whitespace-nowrap transition-all ${index === 0 ? 'active bg-accent-cyan text-bg-primary font-bold' : 'bg-bg-secondary border border-white/10 text-text-muted hover:bg-bg-secondary/80 hover:text-white'}`;
+            const isActive = index === 0;
+            pill.className = `aircraft-pill px-4 py-2 rounded-sm font-mono text-xs whitespace-nowrap transition-all ${isActive ? 'active bg-aero-yellow/10 border border-aero-yellow text-aero-yellow font-bold' : 'bg-slate-900 border border-white/10 text-gray-500 hover:bg-slate-800 hover:text-white hover:border-white/30'}`;
             pill.textContent = model;
             
             pill.addEventListener('click', () => {
                 // Toggle active state
                 document.querySelectorAll('.aircraft-pill').forEach(p => {
-                    p.className = 'aircraft-pill px-4 py-2 rounded-full bg-bg-secondary border border-white/10 text-text-muted font-mono text-sm whitespace-nowrap hover:bg-bg-secondary/80 hover:text-white transition-all';
+                    p.className = 'aircraft-pill px-4 py-2 rounded-sm font-mono text-xs whitespace-nowrap transition-all bg-slate-900 border border-white/10 text-gray-500 hover:bg-slate-800 hover:text-white hover:border-white/30';
                 });
-                pill.className = 'aircraft-pill active px-4 py-2 rounded-full bg-accent-cyan text-bg-primary font-bold font-mono text-sm whitespace-nowrap transition-all';
+                pill.className = 'aircraft-pill active px-4 py-2 rounded-sm font-mono text-xs whitespace-nowrap transition-all bg-aero-yellow/10 border border-aero-yellow text-aero-yellow font-bold';
             });
             
             aircraftPillsContainer.appendChild(pill);
@@ -689,11 +711,11 @@ document.addEventListener('DOMContentLoaded', () => {
     challengeCards.forEach(card => {
         card.addEventListener('click', () => {
             challengeCards.forEach(c => {
-                c.classList.remove('active', 'bg-bg-secondary/80', 'border-accent-cyan/60', 'ring-1', 'ring-accent-cyan/30');
-                c.classList.add('bg-bg-secondary/30', 'border-white/10');
+                c.classList.remove('active', 'bg-slate-800/80', 'border-aero-yellow/60', 'ring-1', 'ring-aero-yellow/30');
+                c.classList.add('bg-slate-800/30', 'border-slate-700');
             });
-            card.classList.remove('bg-bg-secondary/30', 'border-white/10');
-            card.classList.add('active', 'bg-bg-secondary/80', 'border-accent-cyan/60', 'ring-1', 'ring-accent-cyan/30');
+            card.classList.remove('bg-slate-800/30', 'border-slate-700');
+            card.classList.add('active', 'bg-slate-800/80', 'border-aero-yellow/60', 'ring-1', 'ring-aero-yellow/30');
         });
     });
 
@@ -825,7 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Simulate sending message
             userResponsePlaceholder.innerHTML = `
                 <div class="flex items-start gap-3 justify-end">
-                    <div class="bg-accent-cyan text-bg-primary rounded-2xl rounded-tr-none p-4 max-w-[85%]">
+                    <div class="bg-blue-600 text-white rounded-2xl rounded-tr-none p-4 max-w-[85%]">
                         <p class="text-sm font-medium leading-relaxed">${input.value}</p>
                     </div>
                 </div>

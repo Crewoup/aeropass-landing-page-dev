@@ -1,27 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap');
 
 :root {
-    --bg-primary: #0A0F1E;
-    --bg-secondary: #161B2D;
-    --accent-cyan: #00F2FF;
-    --accent-green: #39FF14;
-    --accent-violet: #8A2BE2; /* For GateNight */
-    --text-main: #E0E6ED;
-    --text-muted: #8E9BB0;
-    --glass-bg: rgba(22, 27, 45, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    
-    /* Legacy compatibility or transitional variables */
-    --aero-yellow: var(--accent-cyan);
-    --aero-dark: var(--bg-primary);
+    --alnair-cyan: #00F0FF;
+    --aero-yellow: #00F0FF; /* Alias to keep old class names working initially */
+    --aero-dark: #0A0F1A;
+    --glass-border: rgba(0, 240, 255, 0.2);
+    --glass-bg: rgba(10, 15, 26, 0.8);
 }
 
 body {
-    background-color: var(--bg-primary);
-    font-family: var(--font-main);
-    color: var(--text-main);
+    background-color: var(--aero-dark);
+    font-family: 'Roboto Mono', 'Inter', sans-serif;
+    color: white;
     overflow-x: hidden;
+    background-image: linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -34,17 +28,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-primary);
+    background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--bg-secondary);
+    background: #334155;
     border-radius: 4px;
-    border: 1px solid var(--glass-border);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #1f2943;
+    background: #475569;
 }
 
 /* Glassmorphism Utilities */
@@ -56,11 +49,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-card {
-    background: linear-gradient(145deg, rgba(22, 27, 45, 0.7) 0%, rgba(22, 27, 45, 0.4) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    background: #0D131F;
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
 }
 
 /* Animations */
@@ -90,8 +82,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 10px rgba(0, 242, 255, 0.2); }
-    50% { box-shadow: 0 0 25px rgba(0, 242, 255, 0.6); }
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 214, 0, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(255, 214, 0, 0.6); }
 }
 
 .animate-pulse-glow {
@@ -159,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
     mask-image: linear-gradient(to bottom, transparent 0%, #555 40%, #333 50%, black 60%);
 
     /* 3. 顏色漸層 (選配，強化遮罩效果) */
-    background: linear-gradient(to bottom, transparent 0%, var(--bg-primary) 50%);
+    background: linear-gradient(to bottom, transparent 0%, #1e293b 50%);
 }
 
 .magic-blur {
@@ -182,7 +174,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lock-overlay {
-    background: rgba(10, 15, 30, 0.6);
+    background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(4px);
 }
 
@@ -214,25 +206,25 @@ h1, h2, h3, h4, h5, h6 {
 .fleet-btn.active,
 .prof-challenge-card.active,
 .challenge-card.active {
-    border-color: var(--accent-cyan) !important;
-    background-color: rgba(0, 242, 255, 0.15) !important;
-    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+    border-color: #FFD600 !important;
+    background-color: rgba(255, 214, 0, 0.15) !important;
+    box-shadow: 0 0 15px rgba(255, 214, 0, 0.2);
 }
 
 .prof-aircraft-pill,
 .aircraft-pill,
 .title-pill {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--glass-border);
-    color: var(--text-muted);
+    background-color: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
 }
 
 .prof-aircraft-pill.active,
 .aircraft-pill.active,
 .title-pill.active {
-    background-color: var(--accent-cyan) !important;
-    border-color: var(--accent-cyan) !important;
-    color: var(--bg-primary) !important;
+    background-color: #FFD600 !important;
+    border-color: #FFD600 !important;
+    color: #0F172A !important;
     font-weight: 700 !important;
 }
 
@@ -243,7 +235,7 @@ h1, h2, h3, h4, h5, h6 {
 .prof-aircraft-pill:hover:not(.active) {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.3);
-    color: var(--text-main);
+    color: white;
 }
 
 /* Modal Specifics */
@@ -289,8 +281,8 @@ select {
 
 /* Custom dropdown item hover */
 .dropdown-item:hover {
-    background-color: rgba(0, 242, 255, 0.1);
-    color: var(--accent-cyan);
+    background-color: rgba(255, 214, 0, 0.1);
+    color: var(--aero-yellow);
 }
 
 .scrollbar-hide {
@@ -330,7 +322,7 @@ input[type=range]::-webkit-slider-thumb {
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: var(--accent-cyan);
+    background: #FFD600;
     cursor: pointer;
     margin-top: -6px; 
 }
@@ -339,6 +331,7 @@ input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
     height: 4px;
     cursor: pointer;
-    background: var(--bg-secondary);
+    background: #334155;
     border-radius: 2px;
 }
+
