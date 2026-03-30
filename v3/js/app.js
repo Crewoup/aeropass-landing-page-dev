@@ -882,4 +882,14 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollToBottom();
         }, 800);
     }
+
+    // Header scroll behavior
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.glass-header');
+        if (window.scrollY > 20) {
+            header.classList.remove('transparent');
+        } else {
+            header.classList.add('transparent');
+        }
+    });
 });

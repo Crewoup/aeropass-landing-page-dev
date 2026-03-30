@@ -57,6 +57,14 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid var(--glass-border);
 }
 
+.glass-header.transparent {
+    z-index: 5;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+}
+
 .glass-card {
     background: #0D131F;
     border: 1px solid rgba(0, 240, 255, 0.1);
@@ -110,6 +118,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .h-100-pc {
     height: 100%;
+}
+
+.h-80-pc {
+    height: 80%;
 }
 
 #vanta-bg {
@@ -225,9 +237,10 @@ h1, h2, h3, h4, h5, h6 {
 .fleet-btn.active,
 .prof-challenge-card.active,
 .challenge-card.active {
-    border-color: #FFD600 !important;
-    background-color: rgba(255, 214, 0, 0.15) !important;
-    box-shadow: 0 0 15px rgba(255, 214, 0, 0.2);
+    border-color: var(--accent-cyan) !important;
+    /* border-color: #FFD600 !important; */
+    background-color: rgba(0, 242, 255, 0.15) !important;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
 }
 
 .prof-aircraft-pill,
@@ -241,8 +254,8 @@ h1, h2, h3, h4, h5, h6 {
 .prof-aircraft-pill.active,
 .aircraft-pill.active,
 .title-pill.active {
-    background-color: #FFD600 !important;
-    border-color: #FFD600 !important;
+    background-color: var(--accent-cyan) !important;
+    border-color: var(--accent-cyan) !important;
     color: #0F172A !important;
     font-weight: 700 !important;
 }
