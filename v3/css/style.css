@@ -1,0 +1,369 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap');
+
+:root {
+    --bg-primary: #0A0F1E;
+    --bg-secondary: #161B2D;
+    --accent-cyan: #00F2FF;
+    --accent-green: #39FF14;
+    --accent-violet: #8A2BE2; /* For GateNight */
+    --text-main: #E0E6ED;
+    --text-muted: #8E9BB0;
+    --glass-bg: rgba(22, 27, 45, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    --alnair-cyan: #00F0FF;
+    --aero-yellow: #00F0FF; /* Alias to keep old class names working initially */
+    --aero-dark: #0A0F1A;
+}
+
+body {
+    background-color: var(--bg-primary);
+    font-family: 'Roboto Mono', 'Inter', sans-serif;
+    color: white;
+    overflow-x: hidden;
+    background-image: linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+}
+
+.glass-header.transparent {
+    z-index: 5;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+}
+
+.glass-card {
+    background: #0D131F;
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 214, 0, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(255, 214, 0, 0.6); }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin-custom {
+    animation: spin 1s linear infinite;
+}
+
+.h-100-pc {
+    height: 100%;
+}
+
+.h-80-pc {
+    height: 80%;
+}
+
+#vanta-bg {
+    background-color: var(--bg-primary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Magic Moment Specifics */
+#magic-moment-container .glass-card {
+    /* height: 650px; */
+    max-height: calc(100vh - 6rem);
+    display: flex;
+    flex-direction: column;
+}
+
+#state-setup, #state-combined {
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#state-setup {
+    justify-content: space-between;
+}
+
+#conversation-container {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 0 !important; /* Remove margin as it's handled by parent flex */
+    padding-bottom: 1.5rem;
+}
+
+.magic-blur-v3 {
+    /* filter: blur(4px); Removed to use backdrop-filter for gradient blur */
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.5s ease;
+}
+
+.fade-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    
+    /* 1. 設定模糊強度 */
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    
+    /* 2. 讓模糊從上到下由無變有 */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #555 40%, #333 50%, black 60%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #555 40%, #333 50%, black 60%);
+
+    /* 3. 顏色漸層 (選配，強化遮罩效果) */
+    background: linear-gradient(to bottom, transparent 0%, #1e293b 50%);
+}
+
+.magic-blur {
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        black 0%,
+        rgba(0, 0, 0, 0.8) 10%,
+        rgba(0, 0, 0, 0.6) 30%,
+        rgba(0, 0, 0, 0.3) 60%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        black 0%,
+        rgba(0, 0, 0, 0.8) 10%,
+        rgba(0, 0, 0, 0.6) 30%,
+        rgba(0, 0, 0, 0.3) 60%,
+        transparent 100%
+    );
+}
+
+.lock-overlay {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+/* Toast Notification */
+.toast-enter {
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.toast-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.toast-exit {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-exit-active {
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: all 0.5s ease-in;
+}
+
+/* Active States for interactive elements */
+.prof-fleet-btn.active, 
+.fleet-btn.active,
+.prof-challenge-card.active,
+.challenge-card.active {
+    border-color: var(--accent-cyan) !important;
+    /* border-color: #FFD600 !important; */
+    background-color: rgba(0, 242, 255, 0.15) !important;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+}
+
+.prof-aircraft-pill,
+.aircraft-pill,
+.title-pill {
+    background-color: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+}
+
+.prof-aircraft-pill.active,
+.aircraft-pill.active,
+.title-pill.active {
+    background-color: var(--accent-cyan) !important;
+    border-color: var(--accent-cyan) !important;
+    color: #0F172A !important;
+    font-weight: 700 !important;
+}
+
+/* Hover effects */
+.prof-fleet-btn:hover:not(.active),
+.prof-challenge-card:hover:not(.active),
+.title-pill:hover:not(.active),
+.prof-aircraft-pill:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* Modal Specifics */
+#signin-modal.active {
+    display: flex;
+}
+
+.modal-container {
+    width: fit-content;
+    min-width: 280px;
+    max-width: 90vw;
+    margin: auto;
+}
+
+/* Ensure modal is centered vertically and horizontally */
+.modal-content-wrapper {
+    margin: auto;
+}
+
+@media (max-width: 640px) {
+    .modal-container {
+        max-width: 100%;
+    }
+}
+
+.modal-close {
+    cursor: pointer;
+}
+
+/* Form Styles */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+/* Custom dropdown item hover */
+.dropdown-item:hover {
+    background-color: rgba(255, 214, 0, 0.1);
+    color: var(--aero-yellow);
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-500 {
+    transition-duration: 500ms;
+}
+
+.duration-1000 {
+    transition-duration: 1000ms;
+}
+
+/* Range Slider Customization for Magic Moment */
+input[type=range] {
+    -webkit-appearance: none; 
+    background: transparent; 
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #FFD600;
+    cursor: pointer;
+    margin-top: -6px; 
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: #334155;
+    border-radius: 2px;
+}
+
