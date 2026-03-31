@@ -352,7 +352,7 @@
 
     <!-- Footer -->
     <footer class="bg-slate-950 border-t border-white/10 py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
             <div class="flex items-center gap-4">
                 <div class="flex flex-col">
                     <span class="text-xl font-bold font-mono leading-none">CaptainAI</span>
@@ -362,14 +362,29 @@
                     <span class="text-[9px] font-bold text-aero-yellow tracking-[0.2em] uppercase leading-none mt-1">Release</span>
                 </div>
             </div>
-            <div class="text-gray-500 text-sm">
+            <div class="flex flex-col md:flex-row gap-12 md:gap-24">
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-white font-mono font-bold tracking-widest text-sm uppercase">Comms</h4>
+                    <a href="mailto:service@alnair-studio.com" class="text-accent-cyan text-sm font-mono hover:underline decoration-aero-yellow/50 underline-offset-4">service@alnair-studio.com</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-white font-mono font-bold tracking-widest text-sm uppercase">Frequency</h4>
+                    <div class="flex gap-4">
+                        <a href="https://x.com/StudioAlna70798" target="_blank" class="text-gray-400 hover:text-accent-cyan transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/alnair.studio/" target="_blank" class="text-gray-400 hover:text-accent-cyan transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.threads.com/@alnair.studio" target="_blank" class="text-gray-400 hover:text-accent-cyan transition-colors"><i class="fa-brands fa-threads"></i></a>
+                        <a href="https://www.linkedin.com/company/alnair-studio/" target="_blank" class="text-gray-400 hover:text-accent-cyan transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-gray-600 text-sm font-mono">
                 &copy; 2026 Alnair Studio. All rights reserved.
             </div>
-            <div class="flex gap-6">
-                <a href="https://x.com/StudioAlna70798" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://www.instagram.com/alnair.studio/" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.threads.com/@alnair.studio" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-threads"></i></a>
-                <a href="https://www.linkedin.com/company/alnair-studio/" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+            <div class="flex gap-6 text-sm text-gray-500 font-mono">
+                <a href="./privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+                <!-- <a href="#" class="hover:text-white transition-colors">Terms of Service</a> -->
             </div>
         </div>
     </footer>
