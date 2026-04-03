@@ -291,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 location.href = url;
             }
         } else {
+            showSigninModal();
             goToStep('signin');
         }
     }
