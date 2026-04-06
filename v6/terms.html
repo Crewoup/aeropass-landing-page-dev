@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Terms - CaptainAI</title>
+    <meta name="description" content="CaptainAI Service Terms and Conditions.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'captain-purple': '#7C3AED',
+                        'captain-purple-light': '#D6BBFB',
+                        'captain-blue': '#3B82F6',
+                        'captain-bg': '#06080D',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-captain-bg text-white font-sans antialiased overflow-x-hidden selection:bg-captain-purple selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/5 bg-captain-bg/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-6 py-4">
+            <a href="./" class="flex items-center space-x-2">
+                <span class="text-2xl font-bold font-mono tracking-tighter">CaptainAI</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+            <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-captain-purple/10 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-captain-blue/5 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6">
+            <article class="prose prose-invert prose-purple max-w-none">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-mono tracking-tight text-white">CAPTAINAI SERVICE TERMS</h1>
+                <p class="text-gray-500 font-mono mb-8">Last Updated: 2026-04-01</p>
+
+                <div class="space-y-12 text-gray-400 leading-relaxed">
+                    <section>
+                        <p>
+                            These terms apply specifically to your use of <strong class="text-white">CaptainAI</strong>. These terms supplement the Alnair Studio Master Terms of Service.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                            <span class="text-captain-purple-light font-mono text-sm border border-captain-purple/30 px-2 py-1 rounded">01</span>
+                            SERVICE DESCRIPTION
+                        </h2>
+                        <p>
+                            CaptainAI is an AI-powered educational tool designed to assist users in professional assessment preparation through interactive feedback and simulation.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                            <span class="text-captain-purple-light font-mono text-sm border border-captain-purple/30 px-2 py-1 rounded">02</span>
+                            AI DISCLAIMER
+                        </h2>
+                        <ul class="list-disc pl-6 space-y-4">
+                            <li><strong class="text-gray-200">Accuracy:</strong> AI-generated responses are probabilistic and may contain errors. CaptainAI is a study aid, not an official certification body.</li>
+                            <li><strong class="text-gray-200">No Guarantee of Success:</strong> We do not guarantee specific career outcomes or scores.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                            <span class="text-captain-purple-light font-mono text-sm border border-captain-purple/30 px-2 py-1 rounded">03</span>
+                            LEGAL
+                        </h2>
+                        <p>
+                            Users are responsible for ensuring they have all necessary rights to any content they upload or discuss within the service.
+                        </p>
+                    </section>
+                </div>
+            </article>
+            <div class="mt-16 pt-8 border-t border-white/5">
+                <a href="./" class="inline-flex items-center gap-2 text-captain-purple-light hover:text-white transition-colors font-bold uppercase tracking-widest text-xs">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Experience
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-captain-bg border-t border-white/5 py-12">        
+        <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 text-sm font-mono">
+            &copy; 2026 Alnair Studio. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

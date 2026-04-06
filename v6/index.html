@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captain.ai - AI Check Airman Interview Prep</title>
+    <meta name="description" content="Master your pilot interview with AI-powered simulations. Real-time feedback on technical knowledge and HR scenarios.">
+    <meta property="og:image" content="https://placehold.co/1200x630">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'captain-purple': '#7C3AED',
+                        'captain-purple-light': '#D6BBFB',
+                        'captain-blue': '#3B82F6',
+                        'captain-navy': '#0F172A',
+                        'captain-bg': '#06080D',
+                        'captain-surface': '#080B12',
+                        'captain-card': '#12161F',
+                        'captain-gold': '#FBBF24',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-captain-bg text-gray-100 font-sans antialiased overflow-x-hidden selection:bg-captain-purple selection:text-white">
+
+    <!-- Navbar (Simple) -->
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/5 bg-captain-bg/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-6 py-4">
+            <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse">
+                <div class="flex flex-col">
+                    <span class="self-center text-2xl font-bold whitespace-nowrap font-mono tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">CaptainAI</span>
+                </div>
+                <div class="flex flex-col border-l border-white/20 pl-3">
+                    <span class="text-[9px] font-bold text-captain-purple-light tracking-[0.2em] uppercase leading-none">Senior</span>
+                    <span class="text-[9px] font-bold text-captain-purple-light tracking-[0.2em] uppercase leading-none mt-1">Mentor</span>
+                </div>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <button type="button" id="btn-signin-nav" class="text-white hover:text-captain-purple-light font-medium text-sm px-5 py-2 text-center font-bold uppercase tracking-wider transition-all transform hover:scale-105">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="pt-24 pb-12 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+            <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-captain-purple/20 rounded-full blur-[140px]"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[700px] h-[700px] bg-captain-blue/10 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-6rem)]">
+            
+            <!-- Hero Section (Text) -->
+            <div class="space-y-8 animate-fade-in-up">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-captain-purple/10 border border-captain-purple/30 text-captain-purple-light text-xs font-bold tracking-widest uppercase">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-captain-purple opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-captain-purple"></span>
+                    </span>
+                    AI Check Airman is Live
+                </div>
+                
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
+                    Master Your <br/>
+                    Next <span class="text-transparent bg-clip-text bg-gradient-to-r from-captain-purple to-captain-blue font-mono">Interview</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-400 max-w-lg leading-relaxed">
+                    Practice with a <span class="text-white font-bold">Senior Check Airman</span> 24/7. 
+                    Get the <span class="text-captain-purple-light font-bold">Golden Answer</span> for every technical and HR scenario.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button id="btn-hero-cta" class="px-8 py-4 bg-captain-purple text-white font-bold rounded-xl hover:bg-captain-purple/90 transition-all transform hover:-translate-y-1 shadow-[0_0_40px_rgba(124,58,237,0.3)] flex items-center justify-center gap-2 group text-lg">
+                        Start Free Session
+                        <i class="fa-solid fa-bolt group-hover:scale-110 transition-transform"></i>
+                    </button>
+                </div>
+
+                <div class="pt-8 border-t border-white/5 flex flex-wrap items-center gap-x-6 gap-y-3 text-gray-500 text-sm font-mono">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-captain-blue"></i> Privacy-First
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-microchip text-captain-purple"></i> Proprietary LLM
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-award text-captain-gold"></i> Golden Answers
+                    </div>
+                </div>
+            </div>
+
+            <!-- Magic Moment Section (Interactive) -->
+            <div class="flex items-start relative h-100-pc">
+                <div id="magic-moment-container" class="relative z-10 w-full max-w-lg mx-auto">
+                    <div class="glass-card rounded-2xl p-1 backdrop-blur-xl shadow-2xl overflow-hidden relative transition-all duration-500 hover:shadow-[0_0_60px_rgba(124,58,237,0.15)]">
+                        
+                        <!-- State 1: Setup -->
+                        <div id="state-setup" class="p-8 flex flex-col justify-between transition-opacity duration-500 min-h-[500px]">
+                            <div>
+                                <div class="flex items-center justify-between mb-8">
+                                    <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-wand-magic-sparkles text-captain-purple mr-2"></i>Evaluate Your Skills</h3>
+                                </div>
+    
+                                <!-- Module Selection -->
+                                <div class="space-y-4 mb-8">
+                                    <label class="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                        <span class="w-5 h-5 rounded-full bg-captain-purple/20 border border-captain-purple/30 text-[10px] flex items-center justify-center text-captain-purple-light">1</span>
+                                        Select Assessment Module
+                                    </label>
+                                    <div class="grid grid-cols-1 gap-3">
+                                        <button class="module-btn active border border-white/10 bg-white/5 p-4 rounded-xl flex items-center gap-4 transition-all hover:bg-white/10" data-module="technical">
+                                            <div class="w-10 h-10 rounded-lg bg-captain-purple/20 flex items-center justify-center text-captain-purple-light flex-shrink-0">
+                                                <i class="fa-solid fa-gears text-lg"></i>
+                                            </div>
+                                            <div class="text-left">
+                                                <div class="font-bold text-sm">Technical Proficiency</div>
+                                                <div class="text-[10px] text-gray-500">Systems, Ops, and Regs</div>
+                                            </div>
+                                        </button>
+                                        <button class="module-btn border border-white/10 bg-white/5 p-4 rounded-xl flex items-center gap-4 transition-all hover:bg-white/10" data-module="hr">
+                                            <div class="w-10 h-10 rounded-lg bg-captain-blue/20 flex items-center justify-center text-captain-blue flex-shrink-0">
+                                                <i class="fa-solid fa-users text-lg"></i>
+                                            </div>
+                                            <div class="text-left">
+                                                <div class="font-bold text-sm">HR & Behavioral</div>
+                                                <div class="text-[10px] text-gray-500">Leadership, Teamwork, CRM</div>
+                                            </div>
+                                        </button>
+                                        <button class="module-btn border border-white/10 bg-white/5 p-4 rounded-xl flex items-center gap-4 transition-all hover:bg-white/10" data-module="situational">
+                                            <div class="w-10 h-10 rounded-lg bg-blue-900/20 flex items-center justify-center text-blue-400 flex-shrink-0">
+                                                <i class="fa-solid fa-brain text-lg"></i>
+                                            </div>
+                                            <div class="text-left">
+                                                <div class="font-bold text-sm">Emergency Situational</div>
+                                                <div class="text-[10px] text-gray-500">Rapid Decision Making</div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+    
+                                <!-- Complexity Slider -->
+                                <div class="space-y-4 mb-8">
+                                    <label class="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                        <span class="w-5 h-5 rounded-full bg-captain-purple/20 border border-captain-purple/30 text-[10px] flex items-center justify-center text-captain-purple-light">2</span>
+                                        Difficulty Level
+                                    </label>
+                                    <div class="px-2">
+                                        <input type="range" min="1" max="3" value="2" class="w-full h-1 bg-captain-navy rounded-lg appearance-none cursor-pointer accent-captain-purple">
+                                        <div class="flex justify-between text-[10px] text-gray-500 mt-2 font-mono">
+                                            <span>FO LEVEL</span>
+                                            <span>CAPTAIN</span>
+                                            <span>CHECKER</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <button id="btn-start-challenge" class="mt-4 w-full bg-captain-purple text-white font-bold py-4 rounded-xl hover:bg-captain-purple/90 transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(124,58,237,0.2)] flex items-center justify-center gap-2 text-lg">
+                                Initiate Interview <i class="fa-solid fa-chevron-right text-sm"></i>
+                            </button>
+                        </div>
+    
+                        <!-- State 2: Combined Conversation & Evaluation -->
+                        <div id="state-combined" class="p-8 flex flex-col hidden opacity-0 transition-opacity duration-500 min-h-[500px]">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between mb-6 border-b border-white/5 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-captain-purple animate-pulse"></div>
+                                    <span class="font-mono text-gray-400 text-[10px] tracking-widest uppercase">AI Assessment in Progress</span>
+                                </div>
+                                <div class="font-mono text-sm font-bold text-captain-purple-light" id="timer">00:00</div>
+                            </div>
+    
+                            <!-- Conversation Area -->
+                            <div id="conversation-container" class="space-y-6 mb-8 overflow-y-auto pr-2 scrollbar-hide flex-1 relative">
+                                <!-- AI Message (Question) -->
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-captain-purple/20 flex-shrink-0 flex items-center justify-center border border-captain-purple/30">
+                                        <i class="fa-solid fa-user-tie text-xs text-captain-purple-light"></i>
+                                    </div>
+                                    <div class="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none p-4 max-w-[90%]">
+                                        <h4 class="text-captain-purple-light text-[9px] font-bold uppercase mb-1 tracking-widest">Senior Check Airman</h4>
+                                        <p class="text-sm font-medium leading-relaxed" id="ai-question">
+                                            "Describe your decision-making process when faced with a conflicting safety report and operational pressure."
+                                        </p>
+                                    </div>
+                                </div>
+    
+                                <!-- User Message -->
+                                <div id="user-response-placeholder"></div>
+    
+                                <!-- Evaluation (Golden Answer) -->
+                                <div id="evaluation-area" class="hidden opacity-0 transition-opacity duration-1000">
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-captain-gold/20 flex-shrink-0 flex items-center justify-center border border-captain-gold/30">
+                                            <i class="fa-solid fa-award text-xs text-captain-gold"></i>
+                                        </div>
+                                        <div class="relative w-full">
+                                            <div class="golden-answer-reveal rounded-2xl rounded-tl-none p-5">
+                                                <h4 class="text-captain-gold text-[9px] font-bold uppercase mb-2 tracking-widest">The Golden Answer</h4>
+                                                
+                                                <div class="relative overflow-hidden">
+                                                    <div class="magic-blur">
+                                                        <p class="text-sm font-medium leading-relaxed italic text-gray-300">
+                                                            "A superior response should explicitly reference the FORDEC or DODAR model, emphasizing that safety is the primary metric for every operational decision. You must address the conflict by..."
+                                                        </p>
+                                                    </div>
+                                                    <div class="fade-overlay"></div>
+    
+                                                    <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 z-20">
+                                                        <span class="bg-white text-black text-[10px] font-bold px-4 py-1.5 rounded-full shadow-xl flex items-center gap-2 animate-bounce">
+                                                            <i class="fa-solid fa-lock text-[8px]"></i> Unlock Golden Feedback
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="mt-8 ml-11">
+                                        <button id="btn-unlock-cta" class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] flex items-center justify-center gap-2 text-lg transform hover:scale-[1.02]">
+                                            Get Full Evaluation
+                                        </button>
+                                        <p class="text-center text-[10px] text-gray-600 mt-4 font-mono tracking-widest uppercase">Precision Matters</p>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!-- Input Area -->
+                            <div id="input-area" class="space-y-4">
+                                <div class="relative">
+                                    <input type="text" id="text-input" class="w-full bg-white/5 border border-white/10 text-white rounded-xl p-4 pr-32 focus:ring-1 focus:ring-captain-purple focus:border-captain-purple outline-none placeholder-gray-600 text-sm" placeholder="Speak or type your response...">
+                                    <button id="btn-submit" class="absolute right-2 top-2 bottom-2 bg-captain-purple hover:bg-captain-purple/90 text-white font-bold px-6 rounded-lg text-xs transition-all">
+                                        Send
+                                    </button>
+                                </div>
+                                <div class="flex justify-center">
+                                    <button id="btn-mic" class="flex items-center gap-2 text-gray-500 hover:text-white transition-all">
+                                        <i class="fa-solid fa-microphone text-xs"></i>
+                                        <span class="text-[9px] font-bold uppercase tracking-widest">Voice Input</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Section 2: Why CaptainAI -->
+    <section class="py-32 bg-captain-surface relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">Built for <span class="text-captain-purple">Excellence</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                    Generic AI models don't know the nuances of a high-stakes interview. We do.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-10 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-captain-purple/30 transition-all group">
+                    <div class="w-14 h-14 bg-captain-purple/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-check text-captain-purple text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Check Airman Logic</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Our models are trained on the exact evaluation criteria used by senior airline examiners to identify technical and leadership potential.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-10 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-captain-blue/30 transition-all group">
+                    <div class="w-14 h-14 bg-captain-blue/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-award text-captain-blue text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Golden Answer Path</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Don't just answer—master. Learn the structure and keywords that signal professionalism and command authority.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-10 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-captain-gold/30 transition-all group">
+                    <div class="w-14 h-14 bg-captain-gold/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bolt-lightning text-captain-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Instant Refinement</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Receive frame-by-frame analysis of your responses, identifying logic gaps and opportunities for improvement in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-captain-bg border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl font-bold font-mono tracking-tighter">CaptainAI</span>
+                    <span class="px-2 py-0.5 rounded-sm bg-captain-purple text-[8px] font-bold uppercase tracking-widest">Senior Mentor</span>
+                </div>
+                <div class="flex gap-8 text-sm text-gray-500 font-medium">
+                    <a href="#" class="hover:text-captain-purple transition-colors">Experience</a>
+                    <a href="#" class="hover:text-captain-purple transition-colors">Methodology</a>
+                    <a href="#" class="hover:text-captain-purple transition-colors">Privacy</a>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 font-mono">
+                <div>&copy; 2026 Alnair Studio. Advanced AI Mentorship.</div>
+                <div class="flex gap-6">
+                    <a href="https://x.com/StudioAlna70798" target="_blank" class="hover:text-white transition-colors">TWITTER</a>
+                    <a href="https://www.linkedin.com/company/alnair-studio/" target="_blank" class="hover:text-white transition-colors">LINKEDIN</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sign In Modal -->
+    <div id="signin-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 md:p-8">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm modal-close"></div>
+        <div class="modal-content-wrapper relative z-10 max-h-[90vh] flex flex-col items-center justify-center pointer-events-none">
+            <div class="glass-card modal-container relative overflow-hidden animate-fade-in-up pointer-events-auto flex flex-col">
+                <!-- Modal Header -->
+                <div class="p-6 border-b border-white/10 flex justify-between items-center shrink-0">
+                    <h3 class="text-xl font-bold font-mono" id="modal-title">Sign In</h3>
+                    <button class="text-gray-400 hover:text-white modal-close"><i class="fa-solid fa-xmark text-xl"></i></button>
+                </div>
+
+                <!-- Modal Content Wrapper -->
+                <div class="relative flex-1 overflow-hidden flex flex-col">
+                    <!-- Loading Mask -->
+                    <div id="modal-loading-mask" class="absolute inset-0 z-50 bg-slate-900/60 backdrop-blur-[2px] hidden items-center justify-center">
+                        <div class="flex flex-col items-center gap-4">
+                            <i class="fa-solid fa-circle-notch animate-spin-custom text-4xl text-aero-yellow"></i>
+                        </div>
+                    </div>
+
+                    <!-- Modal Content -->
+                    <div class="p-8 overflow-y-auto scrollbar-hide flex-1">
+                <!-- Step 1: Sign In -->
+                <div id="modal-step-signin" class="space-y-6 mx-auto">
+                    <div class="grid grid-cols-1 gap-4"> <!-- grid-cols-2 for 2 columns -->
+                        <button id="btn-signin-google" class="flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 p-3 rounded-xl transition-all">
+                            <i class="fa-brands fa-google text-red-500"></i>
+                            <span class="text-xs font-bold uppercase tracking-wider">Google</span>
+                        </button>
+                        <!-- <button class="flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 p-3 rounded-xl transition-all">
+                            <i class="fa-brands fa-apple text-white"></i>
+                            <span class="text-xs font-bold uppercase tracking-wider">Apple</span>
+                        </button> -->
+                    </div>
+                    <div class="relative flex items-center justify-center">
+                        <hr class="w-full border-white/10">
+                        <span class="absolute px-3 bg-slate-900 text-gray-500 text-[10px] font-bold uppercase tracking-widest">or email</span>
+                    </div>
+                    <form class="space-y-4" id="form-signin">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Email Address</label>
+                            <input type="email" name="email" required class="w-full bg-slate-800/50 border border-white/10 rounded-xl p-3 text-sm focus:border-aero-yellow focus:ring-1 focus:ring-aero-yellow outline-none transition-all" placeholder="name@airline.com">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Password</label>
+                            <input type="password" name="password" required class="w-full bg-slate-800/50 border border-white/10 rounded-xl p-3 text-sm focus:border-aero-yellow focus:ring-1 focus:ring-aero-yellow outline-none transition-all" placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="w-full bg-aero-yellow text-slate-900 font-bold py-3 rounded-xl hover:bg-yellow-400 transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(255,214,0,0.2)]">
+                            Continue
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Step 2: Pilot Profile (Data Collection) -->
+                <div id="modal-step-profile" class="hidden space-y-8">
+                    <p class="text-sm text-gray-400">Welcome! Let's complete your pilot profile to tailor your experience.</p>
+                    <form class="space-y-8" id="form-profile">
+                        <!-- Full Name -->
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Full Name</label>
+                            <input type="text" id="prof-name" required class="w-full bg-slate-800/50 border border-white/10 rounded-xl p-4 text-sm focus:border-aero-yellow outline-none transition-all" placeholder="e.g. Eric Chen">
+                        </div>
+
+                        <!-- Manufacturer Selection -->
+                        <div class="space-y-4">
+                            <label class="text-sm font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                                Manufacturer
+                            </label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button type="button" class="prof-fleet-btn border-2 border-transparent bg-slate-800/50 p-4 rounded-xl flex flex-col items-center gap-2 transition-all hover:bg-slate-700 hover:border-slate-600" data-fleet="boeing">
+                                    <svg class="w-10 h-10 text-gray-400" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M26 58 L38 58 L34 30 L30 30 Z" />
+                                        <rect x="24" y="22" width="16" height="16" rx="2" />
+                                        <path d="M14 26 C 14 44, 50 44, 50 26" />
+                                        <path d="M14 26 L10 26 C 6 26, 6 10, 14 10 C 18 10, 18 16, 14 20" />
+                                        <path d="M50 26 L54 26 C 58 26, 58 10, 50 10 C 46 10, 46 16, 50 20" />
+                                    </svg>
+                                    <span class="font-bold text-gray-400">Boeing</span>
+                                </button>
+                                <button type="button" class="prof-fleet-btn border-2 border-transparent bg-slate-800/50 p-4 rounded-xl flex flex-col items-center gap-2 transition-all hover:bg-slate-700 hover:border-slate-600" data-fleet="airbus">
+                                    <svg class="w-10 h-10 text-gray-400" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 58 L48 58" />
+                                        <path d="M22 58 L28 46 L36 46 L42 58" />
+                                        <path d="M32 46 L32 24" />
+                                        <path d="M26 24 C 26 10, 38 10, 38 24 Z" />
+                                    </svg>
+                                    <span class="font-bold text-gray-400">Airbus</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Aircraft Selection -->
+                        <div class="space-y-4">
+                            <label class="text-sm font-bold text-gray-400 uppercase tracking-wider">
+                                Aircraft Type
+                            </label>
+                            <div id="prof-aircraft-pills" class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                                <!-- Pills injected by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Gouge Selection -->
+                        <div class="space-y-4">
+                            <label class="text-sm font-bold text-gray-400 uppercase tracking-wider">
+                                Target Gouge
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="prof-challenge-card cursor-pointer p-4 rounded-xl bg-slate-800/30 border border-slate-700 relative overflow-hidden group hover:bg-slate-800/80 hover:border-slate-500 transition-all" data-gouge="Emirates">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <img src="assets/logos/emirates.png" class="h-5 w-5 rounded-sm" alt="Emirates">
+                                        <span class="font-bold text-sm text-gray-300 group-hover:text-white">Emirates</span>
+                                    </div>
+                                    <p class="text-[10px] text-gray-500 group-hover:text-gray-400 font-mono">Verified</p>
+                                </div>
+                                <div class="prof-challenge-card cursor-pointer p-4 rounded-xl bg-slate-800/30 border border-slate-700 relative overflow-hidden group hover:bg-slate-800/80 hover:border-slate-500 transition-all" data-gouge="Qatar">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <img src="assets/logos/qatar.png" class="h-5 w-5 rounded-sm opacity-70 group-hover:opacity-100 transition-opacity" alt="Qatar">
+                                        <span class="font-bold text-sm text-gray-300 group-hover:text-white">Qatar</span>
+                                    </div>
+                                    <p class="text-[10px] text-gray-500 group-hover:text-gray-400 font-mono">Updated</p>
+                                </div>
+                                <div class="prof-challenge-card cursor-pointer p-4 rounded-xl bg-slate-800/30 border border-slate-700 relative overflow-hidden group hover:bg-slate-800/80 hover:border-slate-500 transition-all" data-gouge="Singapore">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <img src="assets/logos/singapore.png" class="h-5 w-5 rounded-sm opacity-70 group-hover:opacity-100 transition-opacity" alt="Singapore">
+                                        <span class="font-bold text-sm text-gray-300 group-hover:text-white">Singapore</span>
+                                    </div>
+                                    <p class="text-[10px] text-gray-500 group-hover:text-gray-400 font-mono">Popular</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Current Title -->
+                        <div class="space-y-4">
+                            <label class="text-sm font-bold text-gray-400 uppercase tracking-wider">
+                                Current Title
+                            </label>
+                            <div class="flex flex-wrap gap-2" id="prof-title-pills">
+                                <button type="button" class="title-pill px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-gray-400 font-mono text-sm whitespace-nowrap hover:bg-slate-700 hover:text-white transition-all" data-title="Captain">Captain</button>
+                                <button type="button" class="title-pill px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-gray-400 font-mono text-sm whitespace-nowrap hover:bg-slate-700 hover:text-white transition-all" data-title="Senior First Officer">Senior First Officer</button>
+                                <button type="button" class="title-pill px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-gray-400 font-mono text-sm whitespace-nowrap hover:bg-slate-700 hover:text-white transition-all" data-title="First Officer">First Officer</button>
+                            </div>
+                        </div>
+
+                        <!-- Current Airline -->
+                        <div class="space-y-2 relative">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Current Airline</label>
+                            <input type="text" id="prof-airline" required class="w-full bg-slate-800/50 border border-white/10 rounded-xl p-4 text-sm focus:border-aero-yellow outline-none transition-all" placeholder="Search airline...">
+                            <div id="airline-dropdown" class="absolute z-20 w-full mt-1 bg-slate-800 border border-white/10 rounded-xl shadow-2xl max-h-48 overflow-y-auto hidden">
+                                <!-- Generated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Interview Date -->
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Interview Date (Optional)</label>
+                            <input type="date" id="prof-date" class="w-full bg-slate-800/50 border border-white/10 rounded-xl p-4 text-sm focus:border-aero-yellow outline-none transition-all" placeholder="Optional: Help us customize your countdown.">
+                        </div>
+
+                        <button type="submit" class="w-full bg-aero-yellow text-slate-900 font-bold py-4 rounded-xl hover:bg-yellow-400 transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(255,214,0,0.2)] text-lg">
+                            Save Profile
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Step 3: Success & Welcome -->
+                <div id="modal-step-success" class="hidden text-center space-y-6 py-4">
+                    <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-check text-4xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold font-mono" id="welcome-message">Welcome to the flight deck, Captain Eric.</h2>
+                    
+                    <div id="countdown-card" class="hidden p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 animate-pulse-glow">
+                        <p class="text-sm text-gray-400 font-mono uppercase tracking-widest">Next Assessment</p>
+                        <p class="text-xl font-bold text-aero-yellow" id="countdown-text">⏳ 14 Days until your Emirates Assessment</p>
+                    </div>
+
+                    <button class="w-full bg-white/10 text-white font-bold py-3 rounded-xl hover:bg-white/20 transition-all modal-close">
+                        Close
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 left-6 z-50 flex flex-col gap-4 pointer-events-none"></div>
+
+    <!-- Scripts -->
+    <script src="js/social-proof.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
