@@ -7,7 +7,6 @@ import {
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword,
     sendEmailVerification,
-    applyActionCode,
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -39,7 +38,7 @@ async function authWithEmailAndPasswordSync(auth, email, password) {
     const actionCodeSettings = {
         // 驗證完後，使用者點擊「回應用程式」會跳轉的網址
         url: `${location.origin}${location.pathname}?verified=1`,
-        handleCodeInApp: true, 
+        handleCodeInApp: false, // 通常設為 false 即可
     };
     try {
       // 1. 嘗試註冊
@@ -104,34 +103,11 @@ function getBrowserLanguage() {
     return detectedLang;
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     // 初始化 Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
-
-    // verify flow
-    async function checkParamIsVerified() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const verified = urlParams.get('verified');
-        const oobCode = urlParams.get('oobCode');
-        if (verified == '1' && oobCode) {
-            history.replaceState({}, "", location.pathname);
-            showSigninModal();
-            toggleModalLoading(true);
-            try {
-                await applyActionCode(auth, oobCode);
-                alert("Email verification successful");
-                // pass to onAuthStateChanged for handling the state
-                fromLoginPopup = true;
-                fromEmailMethod = true;
-            } catch (error) {
-                console.error("驗證出錯：", error.code, error.message);
-            }
-        }
-    }
-
-    await checkParamIsVerified();
 
     // 監聽登入狀態（這就是 Serverless 的核心：自動追蹤 Token）
     onAuthStateChanged(auth, async (user) => {
@@ -190,7 +166,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                 changeLogState(false);
             }
         }
+        checkParamIsVerified();
     });
+
+    function checkParamIsVerified() {
+        if (location.search == '?verified=1') {
+            history.replaceState({}, "", location.pathname);
+            if (currentUser && currentUser.emailVerified && userShouldFillProfile) {
+                showSigninModal();
+                goToStep('profile');
+            }
+        }
+    }
 
     // --- Elements ---
     const stateSetup = document.getElementById('state-setup');
