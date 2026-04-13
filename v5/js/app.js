@@ -152,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const userResponsePlaceholder = document.getElementById('user-response-placeholder');
     
     const fleetBtns = document.querySelectorAll('.fleet-btn');
-    const aircraftPillsContainer = document.getElementById('aircraft-pills');
     const challengeCards = document.querySelectorAll('.challenge-card');
     
     const btnStart = document.getElementById('btn-start-challenge');
@@ -244,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // New Modal elements
     const profFleetBtns = document.querySelectorAll('.prof-fleet-btn');
-    const profAircraftPillsContainer = document.getElementById('prof-aircraft-pills');
     const profChallengeCards = document.querySelectorAll('.prof-challenge-card');
     const titlePills = document.querySelectorAll('.title-pill');
 
@@ -340,6 +338,8 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTitle.textContent = 'Welcome Aboard';
         }
     }
+
+    window.goToStep = goToStep;
 
     async function prefillProfileData() {
         console.log('Prefilling profile data...');
@@ -681,11 +681,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function renderPills(fleet) {
-        if (!aircraftPillsContainer) {
-            console.error('aircraftPillsContainer not found');
-            return;
-        }
-        aircraftPillsContainer.innerHTML = '';
         const models = fleetData[fleet] || [];
         
         models.forEach((model, index) => {
@@ -700,8 +695,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 pill.className = 'aircraft-pill active px-4 py-2 rounded-full bg-aero-yellow text-slate-900 font-bold font-mono text-sm whitespace-nowrap transition-all';
             });
-            
-            aircraftPillsContainer.appendChild(pill);
         });
     }
 
