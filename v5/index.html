@@ -56,36 +56,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
     <!-- Custom CSS -->
-    <style>
-        body {
-            background-color: #06080D;
-            color: #F9FAFB;
-        }
-        .glass-card {
-            background: rgba(18, 22, 31, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .magic-blur {
-            filter: blur(4px);
-            user-select: none;
-        }
-        .fade-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, #12161F 90%);
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="font-sans antialiased overflow-x-hidden selection:bg-captain-purple selection:text-white">
 
@@ -493,7 +464,7 @@
                             <input type="date" id="prof-date" class="w-full bg-slate-800/50 border border-white/10 rounded-xl p-4 text-sm focus:border-captain-purple outline-none transition-all" placeholder="Optional: Help us customize your countdown.">
                         </div>
 
-                        <button type="submit" class="w-full bg-captain-purple text-slate-900 font-bold py-4 rounded-xl transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(255,214,0,0.2)] text-lg">
+                        <button type="submit" class="w-full bg-captain-purple text-slate-900 font-bold py-4 rounded-xl transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(255,214,0,0.2)] text-lg text-white">
                             Save Profile
                         </button>
                     </form>
@@ -517,6 +488,7 @@
                 </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
