@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Terms - Captain.ai</title>
+    <title>CaptainAI | Service Terms</title>
     <meta name="description" content="Captain.ai Service Terms and Conditions.">
     
+    <link rel="icon" type="image/png" href="./assets/icon/CaptainAI_Icon_C.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,14 +20,33 @@
             theme: {
                 extend: {
                     colors: {
-                        'aero-yellow': '#FFD600',
-                        'aero-dark': '#0F172A',
-                        'aero-blue': '#3B82F6',
+                        'captain-purple': '#7C3AED',
+                        'captain-purple-light': '#D6BBFB',
+                        'captain-purple-glow': 'rgba(124, 58, 237, 0.3)',
+                        'captain-blue': '#3B82F6',
+                        'captain-bg': '#06080D',
+                        'captain-surface': '#080B12',
+                        'captain-card': '#12161F',
+                        'captain-popover': '#0E121A',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        mono: ['Roboto Mono', 'monospace'],
+                        mono: ['JetBrains Mono', 'Roboto Mono', 'monospace'],
                     },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-glow': 'pulseGlow 2s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(124, 58, 237, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(124, 58, 237, 0.6)' },
+                        }
+                    }
                 }
             }
         }
@@ -37,18 +58,18 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-slate-900 text-white font-sans antialiased overflow-x-hidden selection:bg-aero-yellow selection:text-black">
+<body class="font-sans antialiased overflow-x-hidden selection:bg-captain-purple selection:text-white">
 
     <!-- Navbar (Simple) -->
-    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-slate-900/80 backdrop-blur-md">
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/5 bg-captain-bg/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-6 py-4">
-            <a href="#" class="flex items-center space-x-2 rtl:space-x-reverse">
-                <div class="flex flex-col">
-                    <span class="self-center text-2xl font-bold whitespace-nowrap font-mono tracking-tighter leading-none">CaptainAI</span>
+            <a href="./" class="flex items-center space-x-2">
+                <div class="flex flex-col gap-1">
+                    <span class="self-center text-2xl font-bold whitespace-nowrap font-mono tracking-tight leading-none text-white">CaptainAI</span>
+                    <span class="text-[0.5rem] text-gray-600 text-3xs font-black uppercase tracking-[0.15rem]">Aviation Intelligence</span>
                 </div>
-                <div class="flex flex-col border-l border-white/20 pl-3">
-                    <span class="text-[9px] font-bold text-aero-yellow tracking-[0.2em] uppercase leading-none">Limited</span>
-                    <span class="text-[9px] font-bold text-aero-yellow tracking-[0.2em] uppercase leading-none mt-1">Release</span>
+                <div class="flex flex-col border-l border-white/10 pl-3 ml-2">
+                    <span class="text-[0.55rem] font-bold text-captain-purple-light tracking-[0.1em] uppercase leading-none">Limited Release</span>
                 </div>
             </a>
         </div>
@@ -70,13 +91,13 @@
                 <div class="space-y-12 text-gray-300 leading-relaxed">
                     <section>
                         <p>
-                            These Product-Specific Terms apply to your use of <strong class="text-white">CaptainAI</strong>. These terms supplement the <a href="https://www.alnair-studio.com/terms" class="text-aero-yellow hover:underline">Alnair Studio Master Terms of Service</a>.
+                            These Product-Specific Terms apply to your use of <strong class="text-white">CaptainAI</strong>. These terms supplement the <a href="https://www.alnair-studio.com/terms" class="text-captain-purple-light hover:underline">Alnair Studio Master Terms of Service</a>.
                         </p>
                     </section>
 
                     <section>
                         <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                            <span class="text-aero-yellow font-mono text-sm border border-aero-yellow/30 px-2 py-1 rounded">01</span>
+                            <span class="text-captain-purple-light font-mono text-sm border border-captain-purple-light/50 px-2 py-1 rounded">01</span>
                             SERVICE DESCRIPTION
                         </h2>
                         <p>
@@ -86,7 +107,7 @@
 
                     <section>
                         <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                            <span class="text-aero-yellow font-mono text-sm border border-aero-yellow/30 px-2 py-1 rounded">02</span>
+                            <span class="text-captain-purple-light font-mono text-sm border border-captain-purple-light/50 px-2 py-1 rounded">02</span>
                             SUBSCRIPTIONS AND PAYMENTS
                         </h2>
                         <ul class="list-disc pl-6 space-y-4">
@@ -98,7 +119,7 @@
 
                     <section>
                         <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                            <span class="text-aero-yellow font-mono text-sm border border-aero-yellow/30 px-2 py-1 rounded">03</span>
+                            <span class="text-captain-purple-light font-mono text-sm border border-captain-purple-light/50 px-2 py-1 rounded">03</span>
                             USAGE LIMITS AND CONTENT RESTRICTIONS
                         </h2>
                         <ul class="list-disc pl-6 space-y-4">
@@ -117,7 +138,7 @@
 
                     <section>
                         <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                            <span class="text-aero-yellow font-mono text-sm border border-aero-yellow/30 px-2 py-1 rounded">04</span>
+                            <span class="text-captain-purple-light font-mono text-sm border border-captain-purple-light/50 px-2 py-1 rounded">04</span>
                             INTELLECTUAL PROPERTY & COPYRIGHT
                         </h2>
                         <ul class="list-disc pl-6 space-y-4">
@@ -128,7 +149,7 @@
 
                     <section>
                         <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                            <span class="text-aero-yellow font-mono text-sm border border-aero-yellow/30 px-2 py-1 rounded">05</span>
+                            <span class="text-captain-purple-light font-mono text-sm border border-captain-purple-light/50 px-2 py-1 rounded">05</span>
                             AI DISCLAIMER & LIMITATION OF LIABILITY
                         </h2>
                         <ul class="list-disc pl-6 space-y-4">
@@ -145,7 +166,7 @@
             <hr/>
             <br/>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <a href="./" class="text-aero-yellow bg-transparent border border-aero-yellow/50 hover:border-aero-yellow hover:bg-aero-yellow/10 font-medium rounded-lg text-sm px-5 py-2 text-center font-bold tracking-wider transition-all transform hover:scale-105">Back to Home</a>
+                <a href="./" class="text-captain-purple-light bg-transparent border border-captain-purple-light/50 hover:border-captain-purple-light hover:bg-border-captain-purple-light/10 font-medium rounded-lg text-sm px-5 py-2 text-center font-bold tracking-wider transition-all transform hover:scale-105">Back to Home</a>
             </div>
         </div>
     </main>
