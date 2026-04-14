@@ -104,6 +104,8 @@ function onInquirySubmit(token) {
     .then(res => res.json())
     .then(data => console.log(data));
 }
+// export
+window.onInquirySubmit = onInquirySubmit;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 初始化 Firebase
