@@ -52,6 +52,9 @@
         }
     </script>
 
+    <!-- reCaptcha -->
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeXlLYsAAAAAAuF7Sz4Ks5Pa5P1mc0nQeaDu1-z"></script>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
@@ -263,12 +266,16 @@
             <p class="text-gray-400 mb-10 text-lg">For airline integration, flight school standardization, and strategic ecosystem partnerships.</p>
             
             <div class="bg-captain-card p-8 rounded-2xl border border-white/10 shadow-2xl max-w-xl mx-auto">
-                <form class="space-y-4 text-left">
+                <form id="inquiry-form" class="space-y-4 text-left">
                     <div>
                         <label class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Work Email</label>
-                        <input type="email" class="w-full bg-captain-bg border border-white/10 rounded-xl p-3 text-white focus:border-captain-purple focus:ring-1 focus:ring-captain-purple outline-none transition-all" placeholder="name@airline.com">
+                        <input type="email" name="email" class="w-full bg-captain-bg border border-white/10 rounded-xl p-3 text-white focus:border-captain-purple focus:ring-1 focus:ring-captain-purple outline-none transition-all" placeholder="name@airline.com">
                     </div>
-                    <button type="button" class="w-full bg-captain-purple hover:bg-violet-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg mt-2">
+                    <div>
+                        <label class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Inquiry Details</label>
+                        <textarea rows="6" name="content" class="w-full bg-captain-bg border border-white/10 rounded-xl p-3 text-white focus:border-captain-purple focus:ring-1 focus:ring-captain-purple outline-none transition-all resize-none" placeholder="Please provide more information about your specific needs or any questions you have for our team."></textarea>
+                    </div>
+                    <button type="button" class="w-full bg-captain-purple hover:bg-violet-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg mt-2 g-recaptcha" data-sitekey="6LeXlLYsAAAAAAuF7Sz4Ks5Pa5P1mc0nQeaDu1-z" data-callback='onInquirySubmit' data-action='submit'>
                         Initiate Contact
                     </button>
                 </form>
