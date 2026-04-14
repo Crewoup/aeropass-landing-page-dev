@@ -99,6 +99,8 @@ function onInquirySubmit(token) {
 
     fetch(appsScriptEndPoint, {
         method: 'POST',
+        mode: 'no-cors', // 💡 重要：Apps Script 跨網域通常需設定 no-cors
+        cache: 'no-cache',
         body: formData
     })
     .then(res => res.json())
