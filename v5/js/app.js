@@ -89,7 +89,7 @@ function getBrowserLanguage() {
     return detectedLang;
 }
 
-const appsScriptEndPoint = "https://script.google.com/macros/s/AKfycbyWJnqf_P2cjIt2Yg73gVLCpKeRoTYo4EKURZ2xsthv7Jj_giWZ4VKM3YyKB0MlEcN8LA/exec";
+const cloudRunEndpoint = "https://website-inquiry-909923853969.asia-southeast1.run.app";
 // for reCaptcha callback
 function onInquirySubmit(token) {
     const form = document.getElementById("inquiry-form");
@@ -97,14 +97,23 @@ function onInquirySubmit(token) {
 
     formData.append('recaptchaToken', token); 
 
-    fetch(appsScriptEndPoint, {
+    const data = Object.fromEntries(formData.entries());
+
+    fetch(cloudRunEndpoint, {
         method: 'POST',
-        mode: 'no-cors', // 💡 重要：Apps Script 跨網域通常需設定 no-cors
-        cache: 'no-cache',
-        body: formData
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
     })
-    .then(res => res.json())
-    .then(data => console.log(data));
+    .then(response => {
+        if (response.ok) {
+            alert("我們已收到您的訊息，將儘速回覆！");
+            form.reset();
+        } else {
+            console.error(response);
+            alert("發送失敗，請稍後再試。");
+        }
+    })
+    .catch(err => console.error("Network error:", err));
 }
 // export
 window.onInquirySubmit = onInquirySubmit;
