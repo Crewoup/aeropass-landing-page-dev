@@ -89,7 +89,7 @@ function getBrowserLanguage() {
     return detectedLang;
 }
 
-const appsScriptEndPoint = "https://script.google.com/macros/s/AKfycbyqXw0x86JvgMYEMTMKm3Fy3XLGoiGOOpMykhfM51j416rAQCDd1X1Wz7KcZapqwU8sYA/exec";
+const appsScriptEndPoint = "https://script.google.com/macros/s/AKfycbyWJnqf_P2cjIt2Yg73gVLCpKeRoTYo4EKURZ2xsthv7Jj_giWZ4VKM3YyKB0MlEcN8LA/exec";
 // for reCaptcha callback
 function onInquirySubmit(token) {
     const form = document.getElementById("inquiry-form");
