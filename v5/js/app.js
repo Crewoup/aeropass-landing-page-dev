@@ -89,6 +89,24 @@ function getBrowserLanguage() {
     return detectedLang;
 }
 
+const appsScriptEndPoint = "https://script.google.com/macros/s/AKfycbyqXw0x86JvgMYEMTMKm3Fy3XLGoiGOOpMykhfM51j416rAQCDd1X1Wz7KcZapqwU8sYA/exec";
+// for reCaptcha callback
+function onInquirySubmit(token) {
+    const form = document.getElementById("inquiry-form");
+    const formData = new FormData(form);
+
+    formData.append('recaptchaToken', token); 
+
+    fetch(appsScriptEndPoint, {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+}
+// export
+window.onInquirySubmit = onInquirySubmit;
+
 document.addEventListener('DOMContentLoaded', () => {
     // 初始化 Firebase
     const app = initializeApp(firebaseConfig);
