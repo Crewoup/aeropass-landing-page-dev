@@ -93,6 +93,7 @@ const cloudRunEndpoint = "https://website-inquiry-909923853969.asia-southeast1.r
 // for reCaptcha callback
 function onInquirySubmit(token) {
     const form = document.getElementById("inquiry-form");
+    const submitBtn = document.getElementById("btn-inquiry-submit");
     const formData = new FormData(form);
 
     formData.append('recaptchaToken', token); 
@@ -106,14 +107,22 @@ function onInquirySubmit(token) {
     })
     .then(response => {
         if (response.ok) {
-            alert("我們已收到您的訊息，將儘速回覆！");
+            alert("We have received your message and will reply as soon as possible!");
             form.reset();
         } else {
             console.error(response);
-            alert("發送失敗，請稍後再試。");
+            alert("Sending failed, please try again later.");
         }
     })
-    .catch(err => console.error("Network error:", err));
+    .catch(err => console.error("Network error:", err))
+    .finally(() => {
+        // Remove loading state
+        if (submitBtn) submitBtn.classList.remove('btn-loading');
+        // Reset reCaptcha
+        if (typeof grecaptcha !== 'undefined') {
+            grecaptcha.enterprise.reset();
+        }
+    });
 }
 // export
 window.onInquirySubmit = onInquirySubmit;
@@ -188,6 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnSubmit = document.getElementById('btn-submit');
     const btnSkip = document.getElementById('btn-skip');
     
+    const btnInquirySubmit = document.getElementById("btn-inquiry-submit");
+
     const timerElement = document.getElementById('timer');
     const audioVisualizer = document.getElementById('audio-visualizer');
     const conversationContainer = document.getElementById('conversation-container');
@@ -349,6 +360,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btnUnlockCta.addEventListener('click', handleCurrentStep);
     }
 
+    if (btnInquirySubmit) {
+        btnInquirySubmit.addEventListener('click', () => {
+            btnInquirySubmit.classList.add('btn-loading');
+        });
+    }
+
     // Close Modal
     document.querySelectorAll('.modal-close').forEach(btn => {
         btn.addEventListener('click', hideSigninModal);
@@ -367,8 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTitle.textContent = 'Welcome Aboard';
         }
     }
-
-    window.goToStep = goToStep;
 
     async function prefillProfileData() {
         console.log('Prefilling profile data...');

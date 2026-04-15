@@ -361,3 +361,18 @@ input[type=range]::-webkit-slider-runnable-track {
     /* force to hide recaptcha */
     display: none !important;
 }
+
+/* Button Loading State */
+.btn-loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn-loading .btn-text {
+    display: none;
+}
+
+.btn-loading .btn-loader {
+    display: inline-block !important;
+    line-height: inherit;
+}
