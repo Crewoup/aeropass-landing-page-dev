@@ -275,8 +275,9 @@
                         <label class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 block">Inquiry Details</label>
                         <textarea rows="6" name="content" class="w-full bg-captain-bg border border-white/10 rounded-xl p-3 text-white focus:border-captain-purple focus:ring-1 focus:ring-captain-purple outline-none transition-all resize-none" placeholder="Please provide more information about your specific needs or any questions you have for our team."></textarea>
                     </div>
-                    <button type="button" class="w-full bg-captain-purple hover:bg-violet-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg mt-2 g-recaptcha" data-sitekey="6LeXlLYsAAAAAAuF7Sz4Ks5Pa5P1mc0nQeaDu1-z" data-callback='onInquirySubmit' data-action='submit'>
-                        Initiate Contact
+                    <button type="button" id="btn-inquiry-submit" class="w-full bg-captain-purple hover:bg-violet-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg mt-2 g-recaptcha flex items-center justify-center gap-2" data-sitekey="6LeXlLYsAAAAAAuF7Sz4Ks5Pa5P1mc0nQeaDu1-z" data-callback='onInquirySubmit' data-action='submit'>
+                        <span class="btn-text">Initiate Contact</span>
+                        <i class="fa-solid fa-circle-notch animate-spin-custom hidden btn-loader"></i>
                     </button>
                 </form>
                 <div class="mt-6 pt-6 border-t border-white/5 text-center">
