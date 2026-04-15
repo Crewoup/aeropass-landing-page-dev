@@ -357,3 +357,7 @@ input[type=range]::-webkit-slider-runnable-track {
     border-radius: 2px;
 }
 
+.grecaptcha-badge{
+    /* force to hide recaptcha */
+    display: none !important;
+}
