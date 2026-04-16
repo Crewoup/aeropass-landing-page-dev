@@ -6,6 +6,7 @@ import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword,
+    sendEmailVerification,
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -28,22 +29,35 @@ const firebaseConfig = {
 };
 
 let fromLoginPopup = false;
+let fromEmailMethod = false;
 let currentUser = null;
 let userShouldFillProfile = false;
 let userIsNew = false;
 
 async function authWithEmailAndPasswordSync(auth, email, password) {
+    const actionCodeSettings = {
+        // 驗證完後，使用者點擊「回應用程式」會跳轉的網址
+        url: `${location.origin}${location.pathname}?verified=1`,
+        handleCodeInApp: false, // 通常設為 false 即可
+    };
     try {
       // 1. 嘗試註冊
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("新用戶註冊並登入成功");
+      console.log("新用戶註冊並登入成功 (未驗證)");
+      await sendEmailVerification(userCredential.user, actionCodeSettings);
+      alert("Verification email has been sent. Please check your inbox!");
       return userCredential.user;
     } catch (error) {
       // 2. 如果錯誤是「Email 已被使用」，則執行登入
       if (error.code === 'auth/email-already-in-use') {
         try {
           const userCredential = await signInWithEmailAndPassword(auth, email, password);
-          console.log("現有用戶登入成功");
+          if (userCredential.user.emailVerified) {
+            console.log("現有用戶登入成功");
+          } else {
+            await sendEmailVerification(userCredential.user, actionCodeSettings);
+            alert("Verification email has been sent. Please check your inbox!");
+          }
           return userCredential.user;
         } catch (loginError) {
           alert("Failed. Invalid email or password");
@@ -138,28 +152,38 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fromLoginPopup) {
             if (user) {
                 console.log(user);
-                try {
-                    const idToken = await user.getIdToken();
-                    const verifyResult = await verifyFirebaseToken(idToken);
-                    currentUser = user;
-                    userShouldFillProfile = verifyResult.is_first_login;
-                    if (userShouldFillProfile) {
-                        goToStep('profile');
-                    } else {
-                        hideSigninModal();
-                        goToStep('signin'); // reset
+                if (user.emailVerified) {
+                    try {
+                        const idToken = await user.getIdToken();
+                        const verifyResult = await verifyFirebaseToken(idToken);
+                        currentUser = user;
+                        userShouldFillProfile = verifyResult.is_first_login;
+                        if (fromEmailMethod) {
+                            fromEmailMethod = false;
+                            toggleModalLoading(false);
+                        }
+                        if (userShouldFillProfile) {
+                            goToStep('profile');
+                        } else {
+                            hideSigninModal();
+                            goToStep('signin'); // reset
+                        }
+                        changeLogState(true);
+                    } catch (error) {
+                        console.error("API Error:", error);
+                        signOut(auth);
+                        changeLogState(false);
                     }
-                    changeLogState(true);
-                } catch (error) {
-                    console.error("API Error:", error);
-                    signOut(auth);
-                    changeLogState(false);
                 }
             }
             fromLoginPopup = false;
         } else {
             if (user) {
                 console.log(user);
+                if (!user.emailVerified) {
+                    signOut(auth);
+                    changeLogState(false);
+                }
                 try {
                     const idToken = await user.getIdToken();
                     const verifyResult = await verifyFirebaseToken(idToken);
@@ -180,7 +204,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 changeLogState(false);
             }
         }
+        checkParamIsVerified();
     });
+
+    function checkParamIsVerified() {
+        if (location.search == '?verified=1') {
+            history.replaceState({}, "", location.pathname);
+            if (currentUser && currentUser.emailVerified && userShouldFillProfile) {
+                showSigninModal();
+                goToStep('profile');
+            }
+        }
+    }
 
     // --- Elements ---
     const stateSetup = document.getElementById('state-setup');
@@ -547,12 +582,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = formData.get('password');
             toggleModalLoading(true);
             fromLoginPopup = true;
+            fromEmailMethod = true;
             authWithEmailAndPasswordSync(auth, email, password)
                 .then(user => {
                     console.log("after call authWithEmailAndPasswordSync");
                     console.log(user);
                     // currentUser = user;
-                    toggleModalLoading(false);
+                    // toggleModalLoading(false);
                     // goToStep('profile');
                 })
                 .catch(res => {
