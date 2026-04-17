@@ -153,40 +153,8 @@
                     </div>
 
                     <!-- Chat Body -->
-                    <div class="flex-1 p-6 space-y-6 overflow-y-auto scrollbar-hide bg-gradient-to-b from-transparent to-captain-surface/30">
-                        
-                        <!-- AI Message -->
-                        <div class="flex items-start gap-3">
-                            <div class="bg-captain-card border border-white/5 rounded-2xl rounded-tl-none p-4 max-w-[90%] shadow-md">
-                                <p class="text-sm text-gray-200 leading-relaxed">
-                                    "You're at FL350 and encounter unexpected severe turbulence. Your airspeed fluctuates wildly. Walk me through your immediate actions and CRM process."
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- User Message -->
-                        <div class="flex items-start gap-3 justify-end">
-                            <div class="bg-captain-blue/20 border border-captain-blue/30 rounded-2xl rounded-tr-none p-4 max-w-[90%] shadow-lg">
-                                <p class="text-sm text-gray-200 leading-relaxed">
-                                    "First, I would disconnect the autothrottle and maintain a target attitude rather than chasing airspeed. I'd set continuous ignition..."
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- AI Feedback & Golden Answer -->
-                        <div class="flex items-start gap-3">
-                            <div class="bg-captain-card border border-white/5 rounded-2xl rounded-tl-none p-4 max-w-[90%] shadow-md">
-                                <p class="text-sm text-gray-200 leading-relaxed">
-                                    "Good start on maintaining attitude, but you missed communicating with ATC and the cabin crew. Here is how a Check Airman expects you to structure it"
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 flex flex-col items-center gap-2">
-                            <span class="bg-blue-500/10 text-blue-400 text-[10px] font-bold px-2 py-1 rounded border border-blue-500/20">+ CRM Element</span>
-                            <span class="bg-blue-500/10 text-blue-400 text-[10px] font-bold px-2 py-1 rounded border border-blue-500/20">+ Threat Management</span>
-                        </div>
-
+                    <div id="chat-body-content" class="flex-1 p-6 space-y-6 overflow-y-auto scrollbar-hide bg-gradient-to-b from-transparent to-captain-surface/30">
+                        <!-- Content will be injected by chat-animation.js -->
                     </div>
 
                     <!-- Chat Input -->
@@ -194,8 +162,8 @@
                         <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 cursor-pointer hover:bg-white/10 transition-colors">
                             <i class="fa-solid fa-microphone"></i>
                         </div>
-                        <div class="flex-1 bg-captain-bg border border-white/10 rounded-xl p-3 flex justify-between items-center text-gray-500 text-sm">
-                            Type your response...
+                        <div id="chat-input-box" class="flex-1 bg-captain-bg border border-white/10 rounded-xl p-3 flex justify-between items-center text-gray-500 text-sm min-h-[44px]">
+                            <span id="chat-input-text">Type your response...</span>
                             <i class="fa-solid fa-paper-plane text-captain-blue"></i>
                         </div>
                     </div>
@@ -494,5 +462,6 @@
     <!-- Scripts -->
     <script src="js/social-proof.js"></script>
     <script type="module" src="js/app.js"></script>
+    <script src="js/chat-animation.js"></script>
 </body>
 </html>
