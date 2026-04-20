@@ -5,21 +5,28 @@
 
 const chatData = {
     initial: {
-        question: "You're at FL350 and encounter unexpected severe turbulence. Your airspeed fluctuates wildly. Walk me through your immediate actions and CRM process.",
-        userAnswer: "First, I would disconnect the autothrottle and maintain a target attitude rather than chasing airspeed. I'd set continuous ignition, check the seatbelt sign, and communicate with the FO to execute the Severe Turbulence checklist while requesting a block altitude from ATC.",
-        aiFeedback: "Excellent. Your prioritization of attitude over airspeed is correct. By setting continuous ignition, you protect the engines from flameout, and the CRM coordination ensures the workload is shared during a high-stress phase.",
+        question: "CX888, HKG-JFK, 15 hours flight duration, Augmented Crew (4 Pilots). 6 hours into the flight over the North Pacific, the Relief Captain (currently on rest) reports severe, acute abdominal pain and persistent dizziness. Concurrently, the aircraft EICAS displays a FUEL CTR L PUMP pressure message, followed by a minor fuel imbalance. Medlink suggests potential appendicitis for the Relief Captain, requiring clinical observation.",
+        userAnswer: `I would stabilize the aircraft first and run the fuel QRH so I know the fuel situation is contained.
+At the same time, I would remove the relief captain from duty and keep him under continuous cabin crew observation with MedLink support.
+Then I would reassess the remaining three-pilot crew against two things: whether we still have a legal and sustainable FDP for the rest of the flight, and whether the fuel system abnormal changes our ETOPS or destination margin.
+If both the technical issue and the crew situation remain stable, I can continue. If either one starts reducing my safety margin, I will divert early to a suitable airport with medical support.`,
+        // aiFeedback: "Excellent. Your prioritization of attitude over airspeed is correct. By setting continuous ignition, you protect the engines from flameout, and the CRM coordination ensures the workload is shared during a high-stress phase.",
         followUps: [
             { 
                 id: "f1",
-                label: "How would you handle a cabin altitude warning?", 
-                question: "How would you handle a cabin altitude warning during this scenario?", 
-                answer: "I would immediately don oxygen masks and establish communication. Then I'd initiate an emergency descent if the cabin altitude is uncontrollable, while coordinating with ATC and the cabin crew." 
+                // label: "How would you handle a cabin altitude warning?", 
+                question: "If the fuel abnormal starts affecting ETOPS suitability, how does that change your continuation decision?", 
+                answer: `If the fuel abnormal starts affecting ETOPS suitability, my continuation bias changes immediately.
+At that point, I need to confirm whether the aircraft still supports the route legally and safely. If the ETOPS margin is no longer protected, I will not continue deeper into the Pacific. I will coordinate with ATC and Dispatch and divert early to the nearest suitable airport.
+The key point is that once ETOPS margin becomes uncertain, I treat that as a decision trigger, not something to manage optimistically.`
             },
             { 
                 id: "f2",
-                label: "What are the specific pitch/N1 values?", 
-                question: "What are the specific pitch/N1 values for your aircraft type during severe turbulence?", 
-                answer: "For the B777 at cruise altitude, I would target approximately 4 degrees pitch and 85% N1 as a starting point, adjusting for actual weight and altitude as per the QRH." 
+                // label: "What are the specific pitch/N1 values?", 
+                question: "Which diversion field would you prefer in the North Pacific, and why?", 
+                answer: `My first preference would usually be Anchorage, because it gives me the best medical support for a possible appendicitis and the strongest engineering support for the fuel system issue.
+If time becomes more critical and a closer field is clearly suitable, then I would take the nearer option, such as Cold Bay, provided weather, runway, and support are acceptable.
+So the decision is not just nearest versus farthest. It is the best balance between medical urgency, aircraft support, and safe recovery of the operation.` 
             }
         ]
     }
@@ -69,7 +76,7 @@ function createUserMessageContainer(text) {
     div.className = 'flex items-start gap-3 justify-end';
     div.innerHTML = `
         <div class="bg-captain-blue/20 border border-captain-blue/30 rounded-2xl rounded-tr-none p-4 max-w-[90%] shadow-lg">
-            <p class="text-sm text-gray-200 leading-relaxed">${text}</p>
+            <p class="text-sm text-gray-200 leading-relaxed whitespace-pre-line">${text}</p>
         </div>
     `;
     return div;
@@ -85,8 +92,8 @@ function createFollowUpsContainer(followUps) {
     
     followUps.forEach(item => {
         const span = document.createElement('span');
-        span.className = 'bg-blue-500/10 text-blue-400 text-[10px] font-bold px-2 py-1 rounded border border-blue-500/20 cursor-pointer hover:bg-blue-500/20 transition-colors follow-up-btn';
-        span.textContent = `Follow-up: ${item.label}`;
+        span.className = 'bg-blue-500/10 text-blue-400 text-xs font-bold px-2 py-1 rounded border border-blue-500/20 cursor-pointer hover:bg-blue-500/20 transition-colors follow-up-btn truncate w-full';
+        span.textContent = `Follow-up: ${item.question}`;
         span.dataset.followUpId = item.id;
         span.onclick = () => handleFollowUpClick(item);
         div.appendChild(span);
@@ -128,7 +135,7 @@ function typeWriter(element, text, speed = 15) {
  * @param {number} speed 打字速度 (ms)
  * @returns {Promise}
  */
-function simulateInputTyping(element, text, maxChars = 50, speed = 30) {
+function simulateInputTyping(element, text, maxChars = 80, speed = 25) {
     return new Promise(resolve => {
         let i = 0;
         element.textContent = '';
@@ -173,31 +180,32 @@ async function startInitialChatAnimation() {
     
     await sleep(1000);
 
-    // 2. 模擬 User 在 Input Box 輸入 (約 50 字)
-    await simulateInputTyping(chatInputText, chatData.initial.userAnswer, 50, 25);
+    // 2. 模擬 User 在 Input Box 輸入 (約 80 字)
+    await simulateInputTyping(chatInputText, chatData.initial.userAnswer);
     
     await sleep(500);
 
     // 3. User 訊息出現在對話框
     const uContainer = createUserMessageContainer(chatData.initial.userAnswer);
     chatBody.appendChild(uContainer);
-    chatBody.scrollTop = chatBody.scrollHeight;
+    // if it contains new line wait 50ms for rendering
+    setTimeout(() => chatBody.scrollTop = chatBody.scrollHeight, 50);
     
     // 重置 Input Box
     chatInputText.textContent = 'Type your response...';
     chatInputText.classList.remove('text-white');
     chatInputText.classList.add('text-gray-500');
 
-    await sleep(800);
+    // await sleep(800);
 
-    // 4. 顯示 AI 思考中動畫
-    await showAiThinking();
+    // // 4. 顯示 AI 思考中動畫
+    // await showAiThinking();
 
-    // 5. AI 打字輸出 Feedback
-    const fContainer = createAiMessageContainer();
-    chatBody.appendChild(fContainer);
-    const fTextElement = fContainer.querySelector('p');
-    await typeWriter(fTextElement, chatData.initial.aiFeedback, 15);
+    // // 5. AI 打字輸出 Feedback
+    // const fContainer = createAiMessageContainer();
+    // chatBody.appendChild(fContainer);
+    // const fTextElement = fContainer.querySelector('p');
+    // await typeWriter(fTextElement, chatData.initial.aiFeedback, 15);
     
     await sleep(800);
 
@@ -252,8 +260,8 @@ async function handleFollowUpClick(item) {
 
     await sleep(1000);
 
-    // 2. 模擬 User 在 Input Box 輸入 (約 50 字)
-    await simulateInputTyping(chatInputText, item.answer, 50, 25);
+    // 2. 模擬 User 在 Input Box 輸入 (約 80 字)
+    await simulateInputTyping(chatInputText, item.answer);
     
     await sleep(500);
 
