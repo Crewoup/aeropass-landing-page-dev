@@ -141,6 +141,16 @@ function onInquirySubmit(token) {
 // export
 window.onInquirySubmit = onInquirySubmit;
 
+// Header scroll behavior
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('nav');
+    if (window.scrollY > 30) {
+        header.classList.remove('transparent');
+    } else {
+        header.classList.add('transparent');
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // 初始化 Firebase
     const app = initializeApp(firebaseConfig);
