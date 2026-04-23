@@ -11,7 +11,8 @@ body {
     color: #F9FAFB;
 }
 
-nav.transparent {
+nav.transparent,
+section.transparent {
     z-index: 5;
     background: transparent;
     backdrop-filter: none;
@@ -396,7 +397,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 /* 當此類別套用於 body 時，背景會固定且涵蓋全頁面 */
 .bg-airplane-fixed {
-    background-image: linear-gradient(rgba(6, 8, 13, 0.75), rgba(6, 8, 13, 0.75)), 
+    background-image: linear-gradient(rgba(6, 8, 13, 0.78), rgba(6, 8, 13, 0.78)), 
                       url('../assets/nighttime-airplane-cockpit-over-city-lights-image.webp') !important;
     background-attachment: fixed !important;
     background-size: cover !important;
