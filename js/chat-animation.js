@@ -92,7 +92,7 @@ function createFollowUpsContainer(followUps) {
     
     followUps.forEach(item => {
         const span = document.createElement('span');
-        span.className = 'bg-blue-500/10 text-blue-400 text-xs font-bold px-2 py-1 rounded border border-blue-500/20 cursor-pointer hover:bg-blue-500/20 transition-colors follow-up-btn truncate w-full';
+        span.className = 'bg-blue-500/10 text-blue-400 text-xs font-bold px-2 py-1 rounded border border-blue-500/20 cursor-pointer hover:bg-blue-500/20 transition-colors follow-up-btn w-full';
         span.textContent = `Follow-up: ${item.question}`;
         span.dataset.followUpId = item.id;
         span.onclick = () => handleFollowUpClick(item);
