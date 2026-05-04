@@ -18,7 +18,7 @@ import {
     getAirlines
 } from "./api.js";
 
-const consoleUrl = 'https://console.captainai.app/';
+const consoleUrl = 'https://console-dev.captainai.app/';
 
 // 你的 Firebase 配置資訊
 const firebaseConfig = {
