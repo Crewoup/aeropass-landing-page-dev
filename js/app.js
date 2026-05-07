@@ -4,6 +4,7 @@ import {
     getAuth, 
     signInWithPopup,
     GoogleAuthProvider,
+    OAuthProvider,
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword,
     sendEmailVerification,
@@ -156,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
+    const appleProvider = new OAuthProvider('apple.com');
 
     // 監聽登入狀態（這就是 Serverless 的核心：自動追蹤 Token）
     onAuthStateChanged(auth, async (user) => {
@@ -270,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnHeroCta = document.getElementById('btn-hero-cta');
     const btnUnlockCta = document.getElementById('btn-unlock-cta');
     const btnSigninGoogle = document.getElementById('btn-signin-google');
+    const btnSigninApple = document.getElementById('btn-signin-apple');
     const signinModal = document.getElementById('signin-modal');
     const modalSteps = {
         signin: document.getElementById('modal-step-signin'),
@@ -325,8 +328,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         toggleModalLoading(false);
     };
+
+    // apple sign in
+    btnSigninApple.onclick = async () => {
+        toggleModalLoading(true);
+        try {
+            fromLoginPopup = true;
+            await signInWithPopup(auth, appleProvider);
+        } catch (error) {
+            fromLoginPopup = false; // reset if error caused
+            console.error("Apple 登入出錯：", error.code, error.message);
+            alert("Failed. Please try again later");
+        }
+        toggleModalLoading(false);
+    };
     
-    // New Modal elements
     const profFleetBtns = document.querySelectorAll('.prof-fleet-btn');
     const profChallengeCards = document.querySelectorAll('.prof-challenge-card');
     const titlePills = document.querySelectorAll('.title-pill');
