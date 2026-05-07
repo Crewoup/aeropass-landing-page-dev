@@ -18,6 +18,7 @@ import {
     getAirlines
 } from "./api.js";
 
+const consoleUrl = 'https://console.captainai.app/';
 
 // 你的 Firebase 配置資訊
 const firebaseConfig = {
@@ -384,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 goToStep('profile');
             } else {
                 const idToken = await currentUser.getIdToken();
-                const url = `https://console.captainai.app/?token=${idToken}` + (userIsNew ? `&new=1` : '');
+                const url = `${consoleUrl}?token=${idToken}` + (userIsNew ? `&new=1` : '');
                 // do redirect to console
                 console.log("do redirect to console");
                 location.href = url;
