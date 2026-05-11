@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.captainai.app/api';
+const BASE_URL = 'https://api-dev.captainai.app/api';
 
 /**
  * Verify Firebase ID Token

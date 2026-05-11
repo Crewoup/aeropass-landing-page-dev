@@ -18,16 +18,16 @@ import {
     getAirlines
 } from "./api.js";
 
-const consoleUrl = 'https://console.captainai.app/';
+const consoleUrl = 'https://console-dev.captainai.app/';
 
 // 你的 Firebase 配置資訊
 const firebaseConfig = {
-    apiKey: "AIzaSyD5dsy5tG3BFg4T7GA_kAQ8a3p3qFWSf7M",  // production
-    authDomain: "auth.captainai.app",
-    projectId: "graceful-goods-488405-i7",
-    storageBucket: "graceful-goods-488405-i7.firebasestorage.app",
-    messagingSenderId: "909923853969",
-    appId: "1:909923853969:web:48b5eb2c0f3ad260fc0130",
+    apiKey: "AIzaSyBRdXxaWzmG14q9b1Upb_-Dey9k5CFuXHU",  // dev
+    authDomain: "captainai-dev.firebaseapp.com",
+    projectId: "captainai-dev",
+    storageBucket: "captainai-dev.firebasestorage.app",
+    messagingSenderId: "890470500009",
+    appId: "1:890470500009:web:0051c09d38d67f3e04cbb8",
 };
 
 let fromLoginPopup = false;
