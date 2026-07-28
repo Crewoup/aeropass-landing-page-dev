@@ -175,12 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             fromEmailMethod = false;
                             toggleModalLoading(false);
                         }
-                        if (userShouldFillProfile) {
-                            goToStep('profile');
-                        } else {
-                            hideSigninModal();
-                            goToStep('signin'); // reset
-                        }
+                        handleCurrentStep();
                         changeLogState(true);
                     } catch (error) {
                         console.error("API Error:", error);
@@ -223,9 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkParamIsVerified() {
         if (location.search == '?verified=1') {
             history.replaceState({}, "", location.pathname);
-            if (currentUser && currentUser.emailVerified && userShouldFillProfile) {
-                showSigninModal();
-                goToStep('profile');
+            if (currentUser && currentUser.emailVerified) {
+                handleCurrentStep();
             }
         }
     }
@@ -380,16 +374,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleCurrentStep() {
         if (currentUser) {
-            if (userShouldFillProfile) {
-                showSigninModal();
-                goToStep('profile');
-            } else {
-                const idToken = await currentUser.getIdToken();
-                const url = `${consoleUrl}?token=${idToken}` + (userIsNew ? `&new=1` : '');
-                // do redirect to console
-                console.log("do redirect to console");
-                location.href = url;
-            }
+            const idToken = await currentUser.getIdToken();
+            const url = `${consoleUrl}?token=${idToken}` + (userIsNew ? `&new=1` : '');
+            // do redirect to console
+            console.log("do redirect to console");
+            location.href = url;
         } else {
             showSigninModal();
             goToStep('signin');
@@ -433,6 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', hideSigninModal);
     });
 
+    // 20260728 profile, success steps are deprecated
     function goToStep(step) {
         Object.values(modalSteps).forEach(el => el.classList.add('hidden'));
         modalSteps[step].classList.remove('hidden');
