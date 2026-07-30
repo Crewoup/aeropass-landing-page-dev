@@ -1,18 +1,29 @@
-// Mock Data Pool based on structure.md
+// Mock Data Pool based on structure.md (English fallback; overlaid with the
+// translated copy from the i18n language pack once it is ready, see below).
 const notifications = [
     // Type A: Competition/Activity
     { icon: "fa-plane", text: "A B777 Captain just started the Question Bank mode.", time: "Just now", color: "text-blue-400" },
-    { icon: "fa-users", text: "An A320 FO is currently practicing HR scenarios.", time: "2 mins ago", color: "text-green-400" },
+    { icon: "fa-users", text: "An A320 FO is currently practising HR scenarios.", time: "2 mins ago", color: "text-green-400" },
     { icon: "fa-globe", text: "A pilot is currently preparing for an Emirates interview.", time: "5 mins ago", color: "text-aero-yellow" },
-    
+
     // Type B: Conversion/Value
     { icon: "fa-lock-open", text: "A B737 pilot just created an account to unlock AI feedback.", time: "1 min ago", color: "text-purple-400" },
     { icon: "fa-check-circle", text: "An FO just completed an interview session with the AI Check Airman.", time: "Just now", color: "text-green-400" },
-    
+
     // Type C: Scarcity/Heat
     { icon: "fa-fire", text: "4 pilots are currently preparing in the HR mode.", time: "Live", color: "text-orange-400" },
     { icon: "fa-clock", text: "12 interview sessions completed in the last hour.", time: "1 hour ago", color: "text-blue-400" }
 ];
+
+// Overlay translated text/time onto the fallback array once the language pack loads.
+function applyI18nToNotifications(dict) {
+    const items = dict && dict.toast && dict.toast.items;
+    if (!Array.isArray(items) || items.length !== notifications.length) return;
+    items.forEach((item, i) => {
+        if (item && typeof item.text === 'string') notifications[i].text = item.text;
+        if (item && typeof item.time === 'string') notifications[i].time = item.time;
+    });
+}
 
 const container = document.getElementById('toast-container');
 
@@ -65,8 +76,18 @@ function scheduleNextNotification() {
     }, interval);
 }
 
-// Start the loop after initial page load with 5-8s delay
-document.addEventListener('DOMContentLoaded', () => {
+// Start the loop after initial page load with 5-8s delay, once the i18n
+// language pack has been applied so toast copy matches the rest of the page.
+function start() {
     const initialDelay = Math.random() * (8000 - 5000) + 5000;
     setTimeout(scheduleNextNotification, initialDelay);
-});
+}
+
+if (window.__i18nOnReady) {
+    window.__i18nOnReady((dict) => {
+        applyI18nToNotifications(dict);
+        start();
+    });
+} else {
+    document.addEventListener('DOMContentLoaded', start);
+}

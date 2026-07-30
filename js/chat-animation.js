@@ -3,10 +3,12 @@
  * 實作 AI 提問、User 模擬輸入、AI 思考中、AI 回饋的打字效果
  */
 
+// English fallback demo transcript; overlaid with the translated copy from the
+// i18n language pack once it is ready (see applyI18nToChatData below).
 const chatData = {
     initial: {
         question: "CX888, HKG-JFK, 15 hours flight duration, Augmented Crew (4 Pilots). 6 hours into the flight over the North Pacific, the Relief Captain (currently on rest) reports severe, acute abdominal pain and persistent dizziness. Concurrently, the aircraft EICAS displays a FUEL CTR L PUMP pressure message, followed by a minor fuel imbalance. Medlink suggests potential appendicitis for the Relief Captain, requiring clinical observation.",
-        userAnswer: `I would stabilize the aircraft first and run the fuel QRH so I know the fuel situation is contained.
+        userAnswer: `I would stabilise the aircraft first and run the fuel QRH so I know the fuel situation is contained.
 At the same time, I would remove the relief captain from duty and keep him under continuous cabin crew observation with MedLink support.
 Then I would reassess the remaining three-pilot crew against two things: whether we still have a legal and sustainable FDP for the rest of the flight, and whether the fuel system abnormal changes our ETOPS or destination margin.
 If both the technical issue and the crew situation remain stable, I can continue. If either one starts reducing my safety margin, I will divert early to a suitable airport with medical support.`,
@@ -34,6 +36,30 @@ So the decision is not just nearest versus farthest. It is the best balance betw
 
 const chatBody = document.getElementById('chat-body-content');
 const chatInputText = document.getElementById('chat-input-text');
+
+/**
+ * 用語言包內容覆蓋 chatData 的英文預設逐字稿
+ */
+function applyI18nToChatData(dict) {
+    const demo = dict && dict.chat && dict.chat.demo;
+    if (!demo) return;
+
+    if (typeof demo.question === 'string') chatData.initial.question = demo.question;
+    if (typeof demo.user_answer === 'string') chatData.initial.userAnswer = demo.user_answer;
+
+    const followUpIds = ['f1', 'f2'];
+    followUpIds.forEach((id, index) => {
+        const translated = demo.followups && demo.followups[id];
+        const target = chatData.initial.followUps[index];
+        if (!translated || !target) return;
+        if (typeof translated.question === 'string') target.question = translated.question;
+        if (typeof translated.answer === 'string') target.answer = translated.answer;
+    });
+}
+
+function t(key, fallback) {
+    return window.__i18n ? window.__i18n.t(key, fallback) : fallback;
+}
 
 /**
  * 建立打字指示器 (Typing Indicator) 的 HTML
@@ -93,7 +119,7 @@ function createFollowUpsContainer(followUps) {
     followUps.forEach(item => {
         const span = document.createElement('span');
         span.className = 'bg-blue-500/10 text-blue-400 text-xs font-bold px-2 py-1 rounded border border-blue-500/20 cursor-pointer hover:bg-blue-500/20 transition-colors follow-up-btn w-full';
-        span.textContent = `Follow-up: ${item.question}`;
+        span.textContent = `${t('chat.follow_up_prefix', 'Follow-up: ')}${item.question}`;
         span.dataset.followUpId = item.id;
         span.onclick = () => handleFollowUpClick(item);
         div.appendChild(span);
@@ -192,7 +218,7 @@ async function startInitialChatAnimation() {
     setTimeout(() => chatBody.scrollTop = chatBody.scrollHeight, 50);
     
     // 重置 Input Box
-    chatInputText.textContent = 'Type your response...';
+    chatInputText.textContent = t('chat.input_placeholder', 'Type your response...');
     chatInputText.classList.remove('text-white');
     chatInputText.classList.add('text-gray-500');
 
@@ -271,7 +297,7 @@ async function handleFollowUpClick(item) {
     chatBody.scrollTop = chatBody.scrollHeight;
 
     // 重置 Input Box
-    chatInputText.textContent = 'Type your response...';
+    chatInputText.textContent = t('chat.input_placeholder', 'Type your response...');
     chatInputText.classList.remove('text-white');
     chatInputText.classList.add('text-gray-500');
 
@@ -294,9 +320,20 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 });
 
-document.addEventListener('DOMContentLoaded', () => {
+function startObserving() {
     const chatContainer = document.querySelector('.glass-card');
     if (chatContainer) {
         observer.observe(chatContainer);
     }
-});
+}
+
+// Wait for the translated demo transcript before arming the scroll-triggered
+// animation, so the chat never plays back in the wrong language.
+if (window.__i18nOnReady) {
+    window.__i18nOnReady((dict) => {
+        applyI18nToChatData(dict);
+        startObserving();
+    });
+} else {
+    document.addEventListener('DOMContentLoaded', startObserving);
+}

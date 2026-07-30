@@ -1,0 +1,99 @@
+{
+  "nav": {
+    "tagline": "Inteligencia Aeronáutica",
+    "badge": "Lanzamiento Limitado",
+    "login": "Iniciar Sesión",
+    "enter": "Entrar"
+  },
+  "hero": {
+    "badge": "Preparación de Evaluaciones con IA",
+    "title_line1": "Domina Cada Escenario.",
+    "title_line2": "Impulsa Tu Carrera.",
+    "description": "CaptainAI es un <span class=\"text-white font-medium\">motor de razonamiento avanzado</span> diseñado para pilotos. Al adaptarse a tu <span class=\"text-white font-medium\">perfil de vuelo exacto</span> y tus objetivos, ofrece <span class=\"text-white font-medium\">estrategias operativamente precisas</span> para el entrenamiento rutinario, ascensos de mando y evaluaciones externas.",
+    "cta": "Iniciar ACCESO PIONERO",
+    "trust": {
+      "source_verified": "Resultados Verificados en Fuentes",
+      "aviation_llm": "LLM Especializado en Aviación",
+      "context_aware": "IA Consciente del Contexto"
+    }
+  },
+  "chat": {
+    "status_online": "En línea",
+    "input_placeholder": "Escribe tu respuesta...",
+    "follow_up_prefix": "Pregunta de seguimiento: ",
+    "demo": {
+      "question": "CX888, HKG-JFK, duración de vuelo de 15 horas, tripulación aumentada (4 pilotos). A las 6 horas de vuelo sobre el Pacífico Norte, el Capitán de Relevo (actualmente en descanso) reporta dolor abdominal agudo e intenso, además de mareos persistentes. Simultáneamente, el EICAS de la aeronave muestra un mensaje de presión FUEL CTR L PUMP, seguido de un ligero desbalance de combustible. Medlink sugiere una posible apendicitis en el Capitán de Relevo, que requiere observación clínica.",
+      "user_answer": "Primero estabilizaría la aeronave y ejecutaría la QRH de combustible para confirmar que la situación está contenida.\nAl mismo tiempo, retiraría al capitán de relevo de sus funciones y lo mantendría bajo observación continua de la tripulación de cabina con apoyo de MedLink.\nDespués reevaluaría a la tripulación restante de tres pilotos considerando dos puntos: si aún contamos con un FDP legal y sostenible para el resto del vuelo, y si la anomalía del sistema de combustible modifica nuestro margen de ETOPS o de destino.\nSi tanto el problema técnico como la situación de la tripulación se mantienen estables, continuaría. Si cualquiera de los dos empieza a reducir mi margen de seguridad, desviaría el vuelo de forma anticipada hacia un aeropuerto adecuado con apoyo médico.",
+      "followups": {
+        "f1": {
+          "question": "Si la anomalía de combustible empieza a afectar la aptitud ETOPS, ¿cómo cambia eso tu decisión de continuar?",
+          "answer": "Si la anomalía de combustible empieza a afectar la aptitud ETOPS, mi inclinación a continuar cambia de inmediato.\nEn ese momento necesito confirmar si la aeronave todavía cumple con la ruta de forma legal y segura. Si el margen ETOPS ya no está protegido, no continuaré más adentro del Pacífico. Coordinaré con ATC y Despacho para desviar el vuelo de forma anticipada hacia el aeropuerto adecuado más cercano.\nEl punto clave es que, en cuanto el margen ETOPS se vuelve incierto, lo trato como un detonante de decisión, no como algo que se pueda manejar con optimismo."
+        },
+        "f2": {
+          "question": "¿Qué aeropuerto de desvío preferirías en el Pacífico Norte, y por qué?",
+          "answer": "Mi primera opción normalmente sería Anchorage, porque ofrece el mejor apoyo médico ante una posible apendicitis y el soporte de ingeniería más sólido para el problema del sistema de combustible.\nSi el tiempo se vuelve más crítico y un aeropuerto más cercano es claramente adecuado, optaría por esa opción más cercana, como Cold Bay, siempre que el clima, la pista y el soporte sean aceptables.\nAsí que la decisión no es solo el más cercano contra el más lejano. Es el mejor equilibrio entre la urgencia médica, el soporte a la aeronave y una recuperación segura de la operación."
+        }
+      }
+    }
+  },
+  "features": {
+    "heading": "Deja Atrás el Estudio Estático",
+    "subheading": "CaptainAI es un motor de razonamiento dinámico. <strong>Los modelos genéricos carecen de la profundidad del contexto aeronáutico</strong>. Sustituimos los métodos de preparación obsoletos por un sistema inteligente construido estrictamente sobre los estándares de las aerolíneas líderes, las mejores prácticas de CRM y la seguridad aeronáutica absoluta.",
+    "items": {
+      "holistic": {
+        "title": "Integración Holística del Contexto",
+        "body": "CaptainAI va más allá de las horas de vuelo básicas. Nuestro motor integra toda tu trayectoria profesional y recuerda cada interacción que tienes con el sistema. Evolucionamos contigo de forma continua, creando estrategias altamente personalizadas que realmente suenan como tuyas."
+      },
+      "predictive": {
+        "title": "Defensa Predictiva",
+        "body": "Nunca te tomarán por sorpresa. Al final de cada escenario, nuestro motor genera preguntas de seguimiento altamente probables, preparándote para la lógica dinámica de una evaluación real."
+      },
+      "native": {
+        "title": "Inteligencia Nativa de Aviación",
+        "body": "Mientras que la IA de propósito general se diseña para un conocimiento amplio, CaptainAI está diseñada estrictamente para las realidades de la cabina de mando. Identificamos las amenazas críticas y los matices sutiles de la aviación que los modelos generales pasan por alto, garantizando que tus decisiones operativas sean estructuralmente impecables y absolutamente seguras."
+      }
+    }
+  },
+  "contact": {
+    "heading": "Establece Contacto",
+    "subheading": "Para integración con aerolíneas, estandarización de escuelas de vuelo y alianzas estratégicas de ecosistema.",
+    "label_email": "Correo Laboral",
+    "label_content": "Detalles de tu Consulta",
+    "placeholder_content": "Cuéntanos con más detalle tus necesidades específicas o cualquier pregunta que tengas para nuestro equipo.",
+    "submit": "Iniciar Contacto",
+    "footnote": "Para consultas estratégicas, escríbenos a <a href=\"mailto:service@alnair-studio.com\" class=\"text-captain-purple-light hover:underline\">service@alnair-studio.com</a>"
+  },
+  "footer": {
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "copyright": "© 2026 Alnair Studio."
+  },
+  "modal": {
+    "title_signin": "Iniciar Sesión",
+    "google": "Google",
+    "apple": "Apple",
+    "or_email": "o con correo",
+    "label_email": "Correo Electrónico",
+    "label_password": "Contraseña",
+    "continue": "Continuar"
+  },
+  "alerts": {
+    "verification_sent": "Se ha enviado un correo de verificación. ¡Revisa tu bandeja de entrada!",
+    "login_failed": "Error. Correo electrónico o contraseña inválidos",
+    "inquiry_success": "Hemos recibido tu mensaje y te responderemos lo antes posible.",
+    "inquiry_failed": "Error al enviar. Inténtalo de nuevo más tarde.",
+    "google_signin_failed": "Error. Inténtalo de nuevo más tarde",
+    "apple_signin_failed": "Error. Inténtalo de nuevo más tarde"
+  },
+  "toast": {
+    "items": [
+      { "text": "Un capitán de B777 acaba de iniciar el modo Banco de Preguntas.", "time": "Justo ahora" },
+      { "text": "Un primer oficial de A320 está practicando escenarios de RR. HH.", "time": "Hace 2 min" },
+      { "text": "Un piloto se está preparando para una entrevista con Emirates.", "time": "Hace 5 min" },
+      { "text": "Un piloto de B737 acaba de crear una cuenta para desbloquear retroalimentación de la IA.", "time": "Hace 1 min" },
+      { "text": "Un primer oficial acaba de completar una sesión de entrevista con el Check Airman de IA.", "time": "Justo ahora" },
+      { "text": "4 pilotos se están preparando ahora mismo en el modo RR. HH.", "time": "En vivo" },
+      { "text": "12 sesiones de entrevista completadas en la última hora.", "time": "Hace 1 hora" }
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "nav": {
+    "tagline": "Aviation Intelligence",
+    "badge": "Limited Release",
+    "login": "Log In",
+    "enter": "Enter"
+  },
+  "hero": {
+    "badge": "AI-Powered Assessment Prep",
+    "title_line1": "Command Every Scenario.",
+    "title_line2": "Advance Your Career.",
+    "description": "CaptainAI is an <span class=\"text-white font-medium\">advanced reasoning engine</span> engineered for pilots. By adapting to your <span class=\"text-white font-medium\">exact flight profile</span> and objectives, it delivers <span class=\"text-white font-medium\">operationally precise strategies</span> for routine training, command upgrades, and external assessments.",
+    "cta": "Initialise PIONEER ACCESS",
+    "trust": {
+      "source_verified": "Source-Verified Output",
+      "aviation_llm": "Aviation-Specific LLM",
+      "context_aware": "Context-Aware AI"
+    }
+  },
+  "chat": {
+    "status_online": "Online",
+    "input_placeholder": "Type your response...",
+    "follow_up_prefix": "Follow-up: ",
+    "demo": {
+      "question": "CX888, HKG-JFK, 15 hours flight duration, Augmented Crew (4 Pilots). 6 hours into the flight over the North Pacific, the Relief Captain (currently on rest) reports severe, acute abdominal pain and persistent dizziness. Concurrently, the aircraft EICAS displays a FUEL CTR L PUMP pressure message, followed by a minor fuel imbalance. Medlink suggests potential appendicitis for the Relief Captain, requiring clinical observation.",
+      "user_answer": "I would stabilise the aircraft first and run the fuel QRH so I know the fuel situation is contained.\nAt the same time, I would remove the relief captain from duty and keep him under continuous cabin crew observation with MedLink support.\nThen I would reassess the remaining three-pilot crew against two things: whether we still have a legal and sustainable FDP for the rest of the flight, and whether the fuel system abnormal changes our ETOPS or destination margin.\nIf both the technical issue and the crew situation remain stable, I can continue. If either one starts reducing my safety margin, I will divert early to a suitable airport with medical support.",
+      "followups": {
+        "f1": {
+          "question": "If the fuel abnormal starts affecting ETOPS suitability, how does that change your continuation decision?",
+          "answer": "If the fuel abnormal starts affecting ETOPS suitability, my continuation bias changes immediately.\nAt that point, I need to confirm whether the aircraft still supports the route legally and safely. If the ETOPS margin is no longer protected, I will not continue deeper into the Pacific. I will coordinate with ATC and Dispatch and divert early to the nearest suitable airport.\nThe key point is that once ETOPS margin becomes uncertain, I treat that as a decision trigger, not something to manage optimistically."
+        },
+        "f2": {
+          "question": "Which diversion field would you prefer in the North Pacific, and why?",
+          "answer": "My first preference would usually be Anchorage, because it gives me the best medical support for a possible appendicitis and the strongest engineering support for the fuel system issue.\nIf time becomes more critical and a closer field is clearly suitable, then I would take the nearer option, such as Cold Bay, provided weather, runway, and support are acceptable.\nSo the decision is not just nearest versus farthest. It is the best balance between medical urgency, aircraft support, and safe recovery of the operation."
+        }
+      }
+    }
+  },
+  "features": {
+    "heading": "Leave Static Study Behind",
+    "subheading": "CaptainAI is a dynamic reasoning engine. <strong>Generic models lack the depth of aviation context</strong>. We replace outdated preparation methods with an intelligent system built strictly on top-tier airline standards, CRM best practices, and absolute aviation safety.",
+    "items": {
+      "holistic": {
+        "title": "Holistic Context Integration",
+        "body": "CaptainAI goes beyond basic flight hours. Our engine integrates your entire professional background and remembers every interaction you have with the system. We continuously evolve with you, crafting highly personalised strategies that sound genuinely yours."
+      },
+      "predictive": {
+        "title": "Predictive Defence",
+        "body": "Never be caught off guard. At the end of every scenario, our engine generates highly probable follow-up questions, preparing you for the dynamic logic flow of a real assessment."
+      },
+      "native": {
+        "title": "Aviation-Native Intelligence",
+        "body": "While general-purpose AI is built for broad knowledge, CaptainAI is engineered strictly for flight deck realities. We identify the critical threats and subtle aviation nuances that broad models miss, ensuring your operational decisions are structurally flawless and absolutely safe."
+      }
+    }
+  },
+  "contact": {
+    "heading": "Establish Connection",
+    "subheading": "For airline integration, flight school standardisation, and strategic ecosystem partnerships.",
+    "label_email": "Work Email",
+    "label_content": "Enquiry Details",
+    "placeholder_content": "Please provide more information about your specific needs or any questions you have for our team.",
+    "submit": "Initiate Contact",
+    "footnote": "For strategic enquiries, email us at <a href=\"mailto:service@alnair-studio.com\" class=\"text-captain-purple-light hover:underline\">service@alnair-studio.com</a>"
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "copyright": "© 2026 Alnair Studio."
+  },
+  "modal": {
+    "title_signin": "Sign In",
+    "google": "Google",
+    "apple": "Apple",
+    "or_email": "or email",
+    "label_email": "Email Address",
+    "label_password": "Password",
+    "continue": "Continue"
+  },
+  "alerts": {
+    "verification_sent": "Verification email has been sent. Please check your inbox!",
+    "login_failed": "Failed. Invalid email or password",
+    "inquiry_success": "We have received your message and will reply as soon as possible!",
+    "inquiry_failed": "Sending failed, please try again later.",
+    "google_signin_failed": "Failed. Please try again later",
+    "apple_signin_failed": "Failed. Please try again later"
+  },
+  "toast": {
+    "items": [
+      { "text": "A B777 Captain just started the Question Bank mode.", "time": "Just now" },
+      { "text": "An A320 FO is currently practising HR scenarios.", "time": "2 mins ago" },
+      { "text": "A pilot is currently preparing for an Emirates interview.", "time": "5 mins ago" },
+      { "text": "A B737 pilot just created an account to unlock AI feedback.", "time": "1 min ago" },
+      { "text": "An FO just completed an interview session with the AI Check Airman.", "time": "Just now" },
+      { "text": "4 pilots are currently preparing in the HR mode.", "time": "Live" },
+      { "text": "12 interview sessions completed in the last hour.", "time": "1 hour ago" }
+    ]
+  }
+}

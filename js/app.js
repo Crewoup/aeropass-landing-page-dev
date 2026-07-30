@@ -20,6 +20,10 @@ import {
 
 const consoleUrl = 'https://console-dev.captainai.app/';
 
+function t(key, fallback) {
+    return window.__i18n ? window.__i18n.t(key, fallback) : fallback;
+}
+
 // 你的 Firebase 配置資訊
 const firebaseConfig = {
     apiKey: "AIzaSyBRdXxaWzmG14q9b1Upb_-Dey9k5CFuXHU",  // dev
@@ -47,7 +51,7 @@ async function authWithEmailAndPasswordSync(auth, email, password) {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log("新用戶註冊並登入成功 (未驗證)");
       await sendEmailVerification(userCredential.user, actionCodeSettings);
-      alert("Verification email has been sent. Please check your inbox!");
+      alert(t('alerts.verification_sent', "Verification email has been sent. Please check your inbox!"));
       return userCredential.user;
     } catch (error) {
       // 2. 如果錯誤是「Email 已被使用」，則執行登入
@@ -58,11 +62,11 @@ async function authWithEmailAndPasswordSync(auth, email, password) {
             console.log("現有用戶登入成功");
           } else {
             await sendEmailVerification(userCredential.user, actionCodeSettings);
-            alert("Verification email has been sent. Please check your inbox!");
+            alert(t('alerts.verification_sent', "Verification email has been sent. Please check your inbox!"));
           }
           return userCredential.user;
         } catch (loginError) {
-          alert("Failed. Invalid email or password");
+          alert(t('alerts.login_failed', "Failed. Invalid email or password"));
           console.error("登入失敗（密碼錯誤）:", loginError.code);
           throw loginError;
         }
@@ -123,11 +127,11 @@ function onInquirySubmit(token) {
     })
     .then(response => {
         if (response.ok) {
-            alert("We have received your message and will reply as soon as possible!");
+            alert(t('alerts.inquiry_success', "We have received your message and will reply as soon as possible!"));
             form.reset();
         } else {
             console.error(response);
-            alert("Sending failed, please try again later.");
+            alert(t('alerts.inquiry_failed', "Sending failed, please try again later."));
         }
     })
     .catch(err => console.error("Network error:", err))
@@ -319,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             fromLoginPopup = false; // reset if error caused
             console.error("登入出錯：", error.code, error.message);
-            alert("Failed. Please try agiain later");
+            alert(t('alerts.google_signin_failed', "Failed. Please try again later"));
         }
         toggleModalLoading(false);
     };
@@ -333,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             fromLoginPopup = false; // reset if error caused
             console.error("Apple 登入出錯：", error.code, error.message);
-            alert("Failed. Please try again later");
+            alert(t('alerts.apple_signin_failed', "Failed. Please try again later"));
         }
         toggleModalLoading(false);
     };
@@ -428,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalSteps[step].classList.remove('hidden');
         
         if (step === 'signin') {
-            modalTitle.textContent = 'Sign In';
+            modalTitle.textContent = t('modal.title_signin', 'Sign In');
         } else if (step === 'profile') {
             modalTitle.textContent = 'Complete Your Profile';
             prefillProfileData();

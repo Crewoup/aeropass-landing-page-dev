@@ -1,0 +1,99 @@
+{
+  "nav": {
+    "tagline": "航空智能",
+    "badge": "限量开放",
+    "login": "登录",
+    "enter": "进入"
+  },
+  "hero": {
+    "badge": "AI 驱动的考核备战",
+    "title_line1": "掌控每一个场景。",
+    "title_line2": "加速你的职业发展。",
+    "description": "CaptainAI 是专为飞行员打造的<span class=\"text-white font-medium\">高级推理引擎</span>。通过适配你的<span class=\"text-white font-medium\">精确飞行履历</span>与目标，为常规训练、机长晋升与外部考核，提供<span class=\"text-white font-medium\">操作层面精准的策略</span>。",
+    "cta": "启动先锋通行证",
+    "trust": {
+      "source_verified": "来源可核实的输出内容",
+      "aviation_llm": "航空专用 LLM",
+      "context_aware": "具备情境理解能力的 AI"
+    }
+  },
+  "chat": {
+    "status_online": "在线",
+    "input_placeholder": "输入你的回答...",
+    "follow_up_prefix": "追问：",
+    "demo": {
+      "question": "CX888 航班，香港（HKG）飞往纽约（JFK），飞行时长 15 小时，采用加强机组（4 名飞行员）编制。飞行进入北太平洋上空第 6 小时，正在休息的替补机长（Relief Captain）报告出现剧烈急性腹痛及持续眩晕。与此同时，飞机 EICAS 显示 FUEL CTR L PUMP 压力信息，随后出现轻微燃油不平衡。MedLink 判断替补机长可能为阑尾炎，需要临床观察。",
+      "user_answer": "我会先稳定飞机，并执行燃油系统的 QRH，确认燃油状况已得到控制。\n同时，我会安排替补机长暂停执勤，并在 MedLink 的支持下，由客舱机组持续观察其状况。\n随后，我会针对剩余三人机组编制重新评估两点：一是剩余航段是否仍有合法且可持续的 FDP；二是燃油系统异常是否会影响我们的 ETOPS 或目的地余量。\n如果技术问题与机组状况都保持稳定，我会选择继续飞行；只要其中任何一项开始压缩安全余量，我就会提前备降至具备医疗支持能力的合适机场。",
+      "followups": {
+        "f1": {
+          "question": "如果燃油异常开始影响 ETOPS 适用性，这会如何改变你是否继续飞行的判断？",
+          "answer": "一旦燃油异常开始影响 ETOPS 适用性，我对是否继续飞行的判断倾向会立即改变。\n此时我需要确认飞机是否仍能合法且安全地执行这条航路。如果 ETOPS 余量已无法保证，我就不会继续深入太平洋。我会与 ATC 及签派协调，提前备降至最近且合适的机场。\n关键在于，一旦 ETOPS 余量变得不确定，我会把它当作触发决策的条件，而不是可以乐观处理、慢慢观察的事情。"
+        },
+        "f2": {
+          "question": "在北太平洋上，你会优先选择哪个备降机场？为什么？",
+          "answer": "通常我的第一选择会是安克雷奇（Anchorage），因为它能为可能出现的阑尾炎提供最完善的医疗支持，也能为燃油系统问题提供最强的工程支持。\n如果时间更为紧迫、且有更近的机场明显合适，我会选择较近的方案，例如冷湾（Cold Bay），前提是天气、跑道与地面保障都在可接受范围内。\n所以这个决定并不只是「最近」与「最远」之间的取舍，而是要在医疗紧迫性、飞机保障与飞行安全落地之间，取得最佳平衡。"
+        }
+      }
+    }
+  },
+  "features": {
+    "heading": "告别静态的备考方式",
+    "subheading": "CaptainAI 是一套动态推理引擎。<strong>通用 AI 模型缺乏航空领域应有的深度情境理解</strong>。我们用严格构建在顶级航空公司标准、CRM 最佳实践与绝对飞行安全之上的智能系统，取代过时的备考方式。",
+    "items": {
+      "holistic": {
+        "title": "全方位情境整合",
+        "body": "CaptainAI 不只是记录基本飞行时数。我们的引擎会整合你完整的职业背景，并记住你与系统的每一次互动。我们与你一同持续进化，打造出高度个性化、听起来就是「你自己」的备考策略。"
+      },
+      "predictive": {
+        "title": "预测性防御",
+        "body": "再也不会措手不及。每个场景结束时，我们的引擎都会生成高概率出现的追问，让你为真实考核中动态变化的逻辑提前做好准备。"
+      },
+      "native": {
+        "title": "原生航空智能",
+        "body": "相较于为广泛知识而生的通用 AI，CaptainAI 是专为驾驶舱的真实情境而打造。我们能识别通用模型容易忽略的关键风险与细微航空语境，确保你的每一次操作判断在结构上无懈可击、绝对安全。"
+      }
+    }
+  },
+  "contact": {
+    "heading": "建立联系",
+    "subheading": "适用于航空公司集成、飞行学校标准化，以及战略生态合作伙伴关系。",
+    "label_email": "工作邮箱",
+    "label_content": "咨询内容",
+    "placeholder_content": "请详细说明你的具体需求，或任何想咨询我们团队的问题。",
+    "submit": "发送咨询",
+    "footnote": "如有战略合作咨询，欢迎发送邮件至 <a href=\"mailto:service@alnair-studio.com\" class=\"text-captain-purple-light hover:underline\">service@alnair-studio.com</a>"
+  },
+  "footer": {
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "copyright": "© 2026 Alnair Studio."
+  },
+  "modal": {
+    "title_signin": "登录",
+    "google": "Google",
+    "apple": "Apple",
+    "or_email": "或使用邮箱",
+    "label_email": "电子邮箱",
+    "label_password": "密码",
+    "continue": "继续"
+  },
+  "alerts": {
+    "verification_sent": "验证邮件已发送，请前往收件箱查看！",
+    "login_failed": "登录失败，邮箱或密码有误",
+    "inquiry_success": "我们已收到你的留言，会尽快回复！",
+    "inquiry_failed": "发送失败，请稍后重试。",
+    "google_signin_failed": "登录失败，请稍后重试",
+    "apple_signin_failed": "登录失败，请稍后重试"
+  },
+  "toast": {
+    "items": [
+      { "text": "一位 B777 机长刚开启了题库模式。", "time": "刚刚" },
+      { "text": "一位 A320 副驾驶正在练习 HR 场景。", "time": "2 分钟前" },
+      { "text": "一位飞行员正在准备阿联酋航空的面试。", "time": "5 分钟前" },
+      { "text": "一位 B737 飞行员刚注册账号，解锁 AI 反馈功能。", "time": "1 分钟前" },
+      { "text": "一位副驾驶刚完成与 AI 考核机长的模拟面试。", "time": "刚刚" },
+      { "text": "目前有 4 位飞行员正在 HR 模式中备战。", "time": "实时" },
+      { "text": "过去一小时内，已完成 12 场模拟面试。", "time": "1 小时前" }
+    ]
+  }
+}
