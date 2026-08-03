@@ -6,16 +6,20 @@
     "enter": "시작하기"
   },
   "hero": {
-    "badge": "AI 기반 평가 대비",
-    "title_line1": "모든 시나리오를 장악하십시오.",
-    "title_line2": "커리어를 한 단계 높이십시오.",
-    "description": "CaptainAI는 조종사를 위해 설계된 <span class=\"text-white font-medium\">고도화된 추론 엔진</span>입니다. 귀하의 <span class=\"text-white font-medium\">정확한 비행 프로필</span>과 목표에 맞춰, 정기 훈련, 기장 승급, 외부 평가에 필요한 <span class=\"text-white font-medium\">운항 관점에서 정밀한 전략</span>을 제공합니다.",
-    "cta": "파이오니어 액세스 시작",
+    "badge": "AI 기반 항공사 면접 준비",
+    "title_line1": "다음 항공사를 위한",
+    "title_line2": "준비가 되셨습니까?",
+    "description": "모든 항공사 면접은 결국 하나의 질문으로 귀결됩니다.<br/>\n<span class=\"text-white font-medium mt-4 mb-4 block\">당신의 판단력을 신뢰할 수 있는가?</span>\nCaptainAI는 <span class=\"text-white font-medium\">실전과 같은 시나리오</span>, <span class=\"text-white font-medium\">수석 기장 수준의 피드백</span>, 그리고 <span class=\"text-white font-medium\">항공 분야에 특화된 지식</span>을 통해 현직 조종사가 실제 항공사 면접을 준비할 수 있도록 돕습니다.",
+    "cta": "CaptainAI 베타 참여하기",
     "trust": {
-      "source_verified": "출처가 검증된 결과",
-      "aviation_llm": "항공 특화 LLM",
-      "context_aware": "맥락을 이해하는 AI"
+      "source_verified": "실전과 같은 면접 시나리오",
+      "aviation_llm": "수석 기장 수준의 피드백",
+      "context_aware": "항공 분야에 특화된 지식"
     }
+  },
+  "intro": {
+    "heading": "합격하는 조종사의 조건",
+    "list": "<li class=\"pl-1\">기술적 지식은 문을 열어줄 뿐입니다.</li>\n<li class=\"pl-1\">합격을 결정짓는 것은 판단력입니다.</li>\n<li class=\"pl-1\">항공사 면접은 아는 것만으로 평가되지 않습니다. 사고방식, 소통 방식, 우선순위 설정, 그리고 압박 속에서 내리는 운항 판단까지 평가합니다.</li>"
   },
   "chat": {
     "status_online": "온라인",
@@ -37,20 +41,20 @@
     }
   },
   "features": {
-    "heading": "정적인 학습 방식과 결별하십시오",
-    "subheading": "CaptainAI는 동적인 추론 엔진입니다. <strong>범용 AI 모델에는 항공 분야 특유의 깊이 있는 맥락이 없습니다</strong>. 저희는 시대에 뒤떨어진 준비 방식을, 최상위 항공사 기준과 CRM 모범 사례, 그리고 절대적인 항공 안전 위에 엄격하게 구축된 지능형 시스템으로 대체합니다.",
+    "heading": "정답만으로는 부족합니다.",
+    "subheading": "CaptainAI는 항공사가 전문 조종사를 평가하는 방식을 기반으로 설계되었습니다.<br/>\n실전과 같은 면접 시나리오를 연습하고, 좋은 답변 뒤에 숨은 논리를 이해하며, 면접관이 신뢰하는 판단력을 길러 보십시오.",
     "items": {
       "holistic": {
-        "title": "총체적 맥락 통합",
-        "body": "CaptainAI는 단순한 비행시간 기록을 넘어섭니다. 저희 엔진은 귀하의 전체 커리어를 통합하고, 시스템과의 모든 상호작용을 기억합니다. 귀하와 함께 지속적으로 발전하며, 진정으로 귀하다운 목소리처럼 들리는 고도로 개인화된 전략을 만들어 갑니다."
+        "title": "실전과 같은 면접 시나리오",
+        "body": "실제 항공사 면접을 바탕으로 한 기술, 운항, 상황 대응 질문을 연습해 보십시오."
       },
       "predictive": {
-        "title": "예측적 방어",
-        "body": "더 이상 허를 찔리지 않습니다. 각 시나리오가 끝날 때마다, 저희 엔진은 발생 가능성이 높은 후속 질문을 생성하여 실제 평가의 역동적인 논리 흐름에 대비할 수 있도록 돕습니다."
+        "title": "수석 기장 수준의 피드백",
+        "body": "좋은 면접 답변 뒤에 담긴 우선순위, 논리, 전문가로서의 판단력을 이해해 보십시오."
       },
       "native": {
-        "title": "항공 네이티브 인텔리전스",
-        "body": "범용 AI가 폭넓은 지식을 위해 설계된 반면, CaptainAI는 조종석의 현실을 위해 철저히 설계되었습니다. 범용 모델이 놓치기 쉬운 핵심 위협과 미묘한 항공 특유의 뉘앙스를 정확히 짚어내어, 귀하의 운항 판단이 구조적으로 완벽하고 절대적으로 안전하도록 보장합니다."
+        "title": "맞춤형 준비",
+        "body": "귀하의 경험, 목표, 성과에 맞춘 피드백으로 가장 중요한 부분에 집중해 보십시오."
       }
     }
   },

@@ -275,8 +275,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const signinModal = document.getElementById('signin-modal');
     const modalSteps = {
         signin: document.getElementById('modal-step-signin'),
-        profile: document.getElementById('modal-step-profile'),
-        success: document.getElementById('modal-step-success')
+        // profile: document.getElementById('modal-step-profile'),
+        // success: document.getElementById('modal-step-success')
     };
     const modalTitle = document.getElementById('modal-title');
     const formSignin = document.getElementById('form-signin');

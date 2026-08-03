@@ -6,16 +6,20 @@
     "enter": "Enter"
   },
   "hero": {
-    "badge": "AI-Powered Assessment Prep",
-    "title_line1": "Command Every Scenario.",
-    "title_line2": "Advance Your Career.",
-    "description": "CaptainAI is an <span class=\"text-white font-medium\">advanced reasoning engine</span> engineered for pilots. By adapting to your <span class=\"text-white font-medium\">exact flight profile</span> and objectives, it delivers <span class=\"text-white font-medium\">operationally precise strategies</span> for routine training, command upgrades, and external assessments.",
-    "cta": "Initialise PIONEER ACCESS",
+    "badge": "AI-Powered Airline Interview Preparation",
+    "title_line1": "Ready for Your",
+    "title_line2": "Next Airline?",
+    "description": "Every airline interview comes down to one question.<br/>\n<span class=\"text-white font-medium mt-4 mb-4 block\">Can they trust your judgment?</span>\nCaptainAI helps professional pilots prepare for real airline interviews through <span class=\"text-white font-medium\">realistic scenarios</span>, <span class=\"text-white font-medium\">chief-pilot-level feedback</span>, and <span class=\"text-white font-medium\">aviation-specific knowledge</span>.",
+    "cta": "Join the CaptainAI Beta",
     "trust": {
-      "source_verified": "Source-Verified Output",
-      "aviation_llm": "Aviation-Specific LLM",
-      "context_aware": "Context-Aware AI"
+      "source_verified": "Realistic Interview Scenarios",
+      "aviation_llm": "Chief-Pilot-Level Feedback",
+      "context_aware": "Aviation-Specific Knowledge"
     }
+  },
+  "intro": {
+    "heading": "What Gets Pilots Hired",
+    "list": "<li class=\"pl-1\">Technical knowledge gets you through the door.</li>\n<li class=\"pl-1\">Judgment gets you the offer.</li>\n<li class=\"pl-1\">Airline interviews go beyond what you know. They evaluate how you think, communicate, set priorities, and make sound operational decisions under pressure.</li>"
   },
   "chat": {
     "status_online": "Online",
@@ -37,20 +41,20 @@
     }
   },
   "features": {
-    "heading": "Leave Static Study Behind",
-    "subheading": "CaptainAI is a dynamic reasoning engine. <strong>Generic models lack the depth of aviation context</strong>. We replace outdated preparation methods with an intelligent system built strictly on top-tier airline standards, CRM best practices, and absolute aviation safety.",
+    "heading": "Prepare for More Than the Right Answer.",
+    "subheading": "CaptainAI is built around the way airlines evaluate professional pilots.<br/>\nPractice realistic interview scenarios, understand the reasoning behind strong answers, and strengthen the judgment interviewers need to trust.",
     "items": {
       "holistic": {
-        "title": "Holistic Context Integration",
-        "body": "CaptainAI goes beyond basic flight hours. Our engine integrates your entire professional background and remembers every interaction you have with the system. We continuously evolve with you, crafting highly personalised strategies that sound genuinely yours."
+        "title": "Realistic Interview Scenarios",
+        "body": "Practice technical, operational, and scenario-based questions modeled on real airline interviews."
       },
       "predictive": {
-        "title": "Predictive Defence",
-        "body": "Never be caught off guard. At the end of every scenario, our engine generates highly probable follow-up questions, preparing you for the dynamic logic flow of a real assessment."
+        "title": "Chief-Pilot-Level Feedback",
+        "body": "Understand the priorities, reasoning, and professional judgment behind a strong interview answer."
       },
       "native": {
-        "title": "Aviation-Native Intelligence",
-        "body": "While general-purpose AI is built for broad knowledge, CaptainAI is engineered strictly for flight deck realities. We identify the critical threats and subtle aviation nuances that broad models miss, ensuring your operational decisions are structurally flawless and absolutely safe."
+        "title": "Personalized Preparation",
+        "body": "Focus on what matters most with feedback tailored to your experience, goals, and performance."
       }
     }
   },

@@ -6,16 +6,20 @@
     "enter": "进入"
   },
   "hero": {
-    "badge": "AI 驱动的考核备战",
-    "title_line1": "掌控每一个场景。",
-    "title_line2": "加速你的职业发展。",
-    "description": "CaptainAI 是专为飞行员打造的<span class=\"text-white font-medium\">高级推理引擎</span>。通过适配你的<span class=\"text-white font-medium\">精确飞行履历</span>与目标，为常规训练、机长晋升与外部考核，提供<span class=\"text-white font-medium\">操作层面精准的策略</span>。",
-    "cta": "启动先锋通行证",
+    "badge": "AI 驱动的航空公司面试备战",
+    "title_line1": "准备好迎接",
+    "title_line2": "下一家航空公司了吗？",
+    "description": "每一场航空公司面试，最终都会归结为同一个问题。<br/>\n<span class=\"text-white font-medium mt-4 mb-4 block\">他们能信任你的判断力吗？</span>\nCaptainAI 通过<span class=\"text-white font-medium\">贴近真实的情境题</span>、<span class=\"text-white font-medium\">机长级别的反馈</span>，以及<span class=\"text-white font-medium\">航空专业知识</span>，帮助职业飞行员备战真实的航空公司面试。",
+    "cta": "加入 CaptainAI Beta",
     "trust": {
-      "source_verified": "来源可核实的输出内容",
-      "aviation_llm": "航空专用 LLM",
-      "context_aware": "具备情境理解能力的 AI"
+      "source_verified": "贴近真实的面试情境",
+      "aviation_llm": "机长级别的反馈",
+      "context_aware": "航空专业知识"
     }
+  },
+  "intro": {
+    "heading": "决定飞行员能否被录用的关键",
+    "list": "<li class=\"pl-1\">专业知识能帮你敲开大门。</li>\n<li class=\"pl-1\">判断力才能帮你拿到录用通知。</li>\n<li class=\"pl-1\">航空公司面试考察的不只是你懂什么，更会评估你的思考方式、表达能力、排定优先级的能力，以及在压力下做出正确运营判断的能力。</li>"
   },
   "chat": {
     "status_online": "在线",
@@ -37,20 +41,20 @@
     }
   },
   "features": {
-    "heading": "告别静态的备考方式",
-    "subheading": "CaptainAI 是一套动态推理引擎。<strong>通用 AI 模型缺乏航空领域应有的深度情境理解</strong>。我们用严格构建在顶级航空公司标准、CRM 最佳实践与绝对飞行安全之上的智能系统，取代过时的备考方式。",
+    "heading": "不只是答对，更要准备到位。",
+    "subheading": "CaptainAI 的设计紧扣航空公司评估职业飞行员的方式。<br/>\n练习贴近真实的面试场景、理解优秀回答背后的逻辑，并锻炼面试官需要信任的判断力。",
     "items": {
       "holistic": {
-        "title": "全方位情境整合",
-        "body": "CaptainAI 不只是记录基本飞行时数。我们的引擎会整合你完整的职业背景，并记住你与系统的每一次互动。我们与你一同持续进化，打造出高度个性化、听起来就是「你自己」的备考策略。"
+        "title": "贴近真实的面试场景",
+        "body": "练习依据真实航空公司面试设计的技术、运营与情境判断题目。"
       },
       "predictive": {
-        "title": "预测性防御",
-        "body": "再也不会措手不及。每个场景结束时，我们的引擎都会生成高概率出现的追问，让你为真实考核中动态变化的逻辑提前做好准备。"
+        "title": "机长级别的反馈",
+        "body": "理解一次优秀面试回答背后的优先级、逻辑思路与专业判断。"
       },
       "native": {
-        "title": "原生航空智能",
-        "body": "相较于为广泛知识而生的通用 AI，CaptainAI 是专为驾驶舱的真实情境而打造。我们能识别通用模型容易忽略的关键风险与细微航空语境，确保你的每一次操作判断在结构上无懈可击、绝对安全。"
+        "title": "个性化备考方案",
+        "body": "依据你的经历、目标与表现量身定制反馈，让你专注于最重要的部分。"
       }
     }
   },

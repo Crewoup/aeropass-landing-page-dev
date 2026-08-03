@@ -6,16 +6,20 @@
     "enter": "Entrar"
   },
   "hero": {
-    "badge": "Preparación de Evaluaciones con IA",
-    "title_line1": "Domina Cada Escenario.",
-    "title_line2": "Impulsa Tu Carrera.",
-    "description": "CaptainAI es un <span class=\"text-white font-medium\">motor de razonamiento avanzado</span> diseñado para pilotos. Al adaptarse a tu <span class=\"text-white font-medium\">perfil de vuelo exacto</span> y tus objetivos, ofrece <span class=\"text-white font-medium\">estrategias operativamente precisas</span> para el entrenamiento rutinario, ascensos de mando y evaluaciones externas.",
-    "cta": "Iniciar ACCESO PIONERO",
+    "badge": "Preparación con IA para Entrevistas de Aerolíneas",
+    "title_line1": "¿Listo para Tu",
+    "title_line2": "Próxima Aerolínea?",
+    "description": "Toda entrevista de aerolínea se reduce a una sola pregunta.<br/>\n<span class=\"text-white font-medium mt-4 mb-4 block\">¿Pueden confiar en tu criterio?</span>\nCaptainAI ayuda a pilotos profesionales a prepararse para entrevistas reales de aerolíneas mediante <span class=\"text-white font-medium\">escenarios realistas</span>, <span class=\"text-white font-medium\">retroalimentación al nivel de un jefe de pilotos</span> y <span class=\"text-white font-medium\">conocimiento específico de la aviación</span>.",
+    "cta": "Únete a la Beta de CaptainAI",
     "trust": {
-      "source_verified": "Resultados Verificados en Fuentes",
-      "aviation_llm": "LLM Especializado en Aviación",
-      "context_aware": "IA Consciente del Contexto"
+      "source_verified": "Escenarios de Entrevista Realistas",
+      "aviation_llm": "Retroalimentación al Nivel de un Jefe de Pilotos",
+      "context_aware": "Conocimiento Específico de la Aviación"
     }
+  },
+  "intro": {
+    "heading": "Lo Que Hace que Contraten a un Piloto",
+    "list": "<li class=\"pl-1\">El conocimiento técnico te abre la puerta.</li>\n<li class=\"pl-1\">El criterio te consigue la oferta.</li>\n<li class=\"pl-1\">Las entrevistas de aerolíneas van más allá de lo que sabes. Evalúan cómo piensas, te comunicas, estableces prioridades y tomas decisiones operativas acertadas bajo presión.</li>"
   },
   "chat": {
     "status_online": "En línea",
@@ -37,20 +41,20 @@
     }
   },
   "features": {
-    "heading": "Deja Atrás el Estudio Estático",
-    "subheading": "CaptainAI es un motor de razonamiento dinámico. <strong>Los modelos genéricos carecen de la profundidad del contexto aeronáutico</strong>. Sustituimos los métodos de preparación obsoletos por un sistema inteligente construido estrictamente sobre los estándares de las aerolíneas líderes, las mejores prácticas de CRM y la seguridad aeronáutica absoluta.",
+    "heading": "Prepárate para Algo Más que la Respuesta Correcta.",
+    "subheading": "CaptainAI está diseñado en torno a la forma en que las aerolíneas evalúan a los pilotos profesionales.<br/>\nPractica escenarios de entrevista realistas, comprende el razonamiento detrás de las respuestas sólidas y fortalece el criterio que los entrevistadores necesitan confiar.",
     "items": {
       "holistic": {
-        "title": "Integración Holística del Contexto",
-        "body": "CaptainAI va más allá de las horas de vuelo básicas. Nuestro motor integra toda tu trayectoria profesional y recuerda cada interacción que tienes con el sistema. Evolucionamos contigo de forma continua, creando estrategias altamente personalizadas que realmente suenan como tuyas."
+        "title": "Escenarios de Entrevista Realistas",
+        "body": "Practica preguntas técnicas, operativas y basadas en escenarios, inspiradas en entrevistas reales de aerolíneas."
       },
       "predictive": {
-        "title": "Defensa Predictiva",
-        "body": "Nunca te tomarán por sorpresa. Al final de cada escenario, nuestro motor genera preguntas de seguimiento altamente probables, preparándote para la lógica dinámica de una evaluación real."
+        "title": "Retroalimentación al Nivel de un Jefe de Pilotos",
+        "body": "Comprende las prioridades, el razonamiento y el criterio profesional detrás de una respuesta sólida en una entrevista."
       },
       "native": {
-        "title": "Inteligencia Nativa de Aviación",
-        "body": "Mientras que la IA de propósito general se diseña para un conocimiento amplio, CaptainAI está diseñada estrictamente para las realidades de la cabina de mando. Identificamos las amenazas críticas y los matices sutiles de la aviación que los modelos generales pasan por alto, garantizando que tus decisiones operativas sean estructuralmente impecables y absolutamente seguras."
+        "title": "Preparación Personalizada",
+        "body": "Concéntrate en lo que más importa con retroalimentación adaptada a tu experiencia, tus metas y tu desempeño."
       }
     }
   },
