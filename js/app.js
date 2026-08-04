@@ -269,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const btnSignOutNav = document.getElementById('btn-signout-nav');
 
     const btnHeroCta = document.getElementById('btn-hero-cta');
+    const btnFinalCta = document.getElementById('btn-final-cta');
     const btnUnlockCta = document.getElementById('btn-unlock-cta');
     const btnSigninGoogle = document.getElementById('btn-signin-google');
     const btnSigninApple = document.getElementById('btn-signin-apple');
@@ -409,6 +410,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnHeroCta) {
         btnHeroCta.addEventListener('click', handleCurrentStep);
+    }
+
+    if (btnFinalCta) {
+        btnFinalCta.addEventListener('click', handleCurrentStep);
     }
 
     if (btnUnlockCta) {

@@ -248,7 +248,7 @@
     </section>
 
     <!-- Establish Connection Section (Contact) -->
-    <section class="py-24 bg-captain-bg relative z-10 border-t border-white/5 transparent" id="contact">
+    <!-- <section class="py-24 bg-captain-bg relative z-10 border-t border-white/5 transparent" id="contact">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-captain-purple/5 pointer-events-none"></div>
         <div class="max-w-4xl mx-auto px-6 text-center relative z-20">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-i18n="contact.heading">Establish Connection</h2>
@@ -273,6 +273,20 @@
                 <div class="mt-6 pt-6 border-t border-white/5 text-center">
                     <p class="text-sm text-gray-500" data-i18n-html="contact.footnote">For strategic enquiries, email us at <a href="mailto:service@alnair-studio.com" class="text-captain-purple-light hover:underline">service@alnair-studio.com</a></p>
                 </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Final CTA -->
+    <section class="py-24 bg-captain-bg relative z-10 border-t border-white/5 transparent" id="final-cta">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-20">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-i18n="final_cta.heading">Ready for Your Next Airline?</h2>
+            <div class="w-16 h-1 bg-captain-purple mx-auto mb-6 rounded-full"></div>
+            <p class="text-gray-400 mb-20 text-lg" data-i18n="final_cta.subheading">When the opportunity comes, be ready.</p>
+            <div class="flex flex-col items-center justify-center sm:flex-row gap-4 pt-4">
+                <button id="btn-final-cta" class="px-8 py-4 bg-captain-purple text-white font-bold rounded-xl hover:bg-violet-600 transition-all transform hover:-translate-y-1 shadow-[0_0_25px_rgba(124,58,237,0.4)] flex items-center justify-center gap-2 group text-lg">
+                    <span data-i18n="hero.cta">Join the CaptainAI Beta</span>
+                </button>
             </div>
         </div>
     </section>
@@ -308,8 +322,8 @@
     <!-- Sign In Modal -->
     <div id="signin-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 md:p-8">
         <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm modal-close"></div>
-        <div class="modal-content-wrapper relative z-10 max-h-[90vh] flex flex-col items-center justify-center pointer-events-none">
-            <div class="glass-card modal-container relative overflow-hidden animate-fade-in-up pointer-events-auto flex flex-col">
+        <div class="modal-content-wrapper relative z-10 max-h-[90vh] w-full md:max-w-lg flex flex-col items-center justify-center pointer-events-none">
+            <div class="glass-card modal-container relative overflow-hidden animate-fade-in-up pointer-events-auto flex flex-col w-full">
                 <!-- Modal Header -->
                 <div class="p-6 border-b border-white/10 flex justify-between items-center shrink-0">
                     <h3 class="text-xl font-bold font-mono" id="modal-title" data-i18n="modal.title_signin">Sign In</h3>

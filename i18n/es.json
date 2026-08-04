@@ -58,6 +58,10 @@
       }
     }
   },
+  "final_cta": {
+    "heading": "¿Listo para Tu Próxima Aerolínea?",
+    "subheading": "Cuando llegue la oportunidad, está listo."
+  },
   "contact": {
     "heading": "Establece Contacto",
     "subheading": "Para integración con aerolíneas, estandarización de escuelas de vuelo y alianzas estratégicas de ecosistema.",
