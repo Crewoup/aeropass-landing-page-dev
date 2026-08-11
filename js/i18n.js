@@ -6,23 +6,25 @@
  * manual dev switcher (#i18n-dev-switcher) is revealed that sets `?lang=` and reloads.
  */
 (function () {
-    var SUPPORTED_LOCALES = ['en', 'es', 'ja', 'ko', 'zh-hant', 'zh-hans'];
+    var SUPPORTED_LOCALES = ['en', 'es', 'ja', 'ko',
+        // 'zh-hant', 'zh-hans'
+    ];
     var DEFAULT_LOCALE = 'en';
     var HTML_LANG = {
         en: 'en-GB',
         es: 'es-MX',
         ja: 'ja-JP',
         ko: 'ko-KR',
-        'zh-hant': 'zh-Hant-TW',
-        'zh-hans': 'zh-Hans-CN'
+        // 'zh-hant': 'zh-Hant-TW',
+        // 'zh-hans': 'zh-Hans-CN'
     };
     var LOCALE_LABELS = {
         en: 'English',
         es: 'Español',
         ja: '日本語',
         ko: '한국어',
-        'zh-hant': '繁體中文',
-        'zh-hans': '简体中文'
+        // 'zh-hant': '繁體中文',
+        // 'zh-hans': '简体中文'
     };
     var REVEAL_TIMEOUT_MS = 2000;
 
@@ -31,9 +33,13 @@
         return host === 'localhost' || host === '127.0.0.1' || host === '::1' || /^www-dev(\.|$)/.test(host);
     }
 
+    function isSupportedLang(lang) {
+        return SUPPORTED_LOCALES.indexOf(lang) !== -1;
+    }
+
     function getLocaleFromQuery() {
         var lang = new URLSearchParams(window.location.search).get('lang');
-        return SUPPORTED_LOCALES.indexOf(lang) !== -1 ? lang : null;
+        return isSupportedLang(lang) ? lang : null;
     }
 
     function setupDevSwitcher(currentLocale) {
@@ -65,20 +71,25 @@
             var tag = (browserLangs[i] || '').toLowerCase();
             if (!tag) continue;
 
-            if (tag === 'zh-tw' || tag === 'zh-hk' || tag === 'zh-mo' || tag.indexOf('zh-hant') === 0) {
-                return 'zh-hant';
-            }
-            if (tag === 'zh-cn' || tag === 'zh-sg' || tag.indexOf('zh-hans') === 0) {
-                return 'zh-hans';
-            }
-            if (tag === 'zh') {
-                // Bare "zh" with no region: default to the locale used by the largest
-                // population of speakers (Mainland China).
-                return 'zh-hans';
+            if (isSupportedLang('zh-hant')) {
+                if (tag === 'zh-tw' || tag === 'zh-hk' || tag === 'zh-mo' || tag.indexOf('zh-hant') === 0) {
+                    return 'zh-hant';
+                }
             }
 
+            if (isSupportedLang('zh-hans')) {
+                if (tag === 'zh-cn' || tag === 'zh-sg' || tag.indexOf('zh-hans') === 0) {
+                    return 'zh-hans';
+                }
+                if (tag === 'zh') {
+                    // Bare "zh" with no region: default to the locale used by the largest
+                    // population of speakers (Mainland China).
+                    return 'zh-hans';
+                }
+            }
+            
             var prefix = tag.split('-')[0];
-            if (SUPPORTED_LOCALES.indexOf(prefix) !== -1) {
+            if (isSupportedLang(prefix)) {
                 return prefix;
             }
         }
