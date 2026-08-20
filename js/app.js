@@ -24,6 +24,10 @@ function t(key, fallback) {
     return window.__i18n ? window.__i18n.t(key, fallback) : fallback;
 }
 
+function getLang() {
+    return window.__i18n ? window.__i18n.locale : "en";
+}
+
 // 你的 Firebase 配置資訊
 const firebaseConfig = {
     apiKey: "AIzaSyBRdXxaWzmG14q9b1Upb_-Dey9k5CFuXHU",  // dev
@@ -380,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function handleCurrentStep() {
         if (currentUser) {
             const idToken = await currentUser.getIdToken();
-            const url = `${consoleUrl}?token=${idToken}` + (userIsNew ? `&new=1` : '');
+            const url = `${consoleUrl}?token=${idToken}&setlang=${getLang()}` + (userIsNew ? `&new=1` : '');
             // do redirect to console
             console.log("do redirect to console");
             location.href = url;
